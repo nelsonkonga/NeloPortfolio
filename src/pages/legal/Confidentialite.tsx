@@ -1,0 +1,57 @@
+import { LegalLayout } from './LegalLayout'
+
+export function Confidentialite() {
+  return (
+    <LegalLayout>
+      <div>
+        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">
+          Légal
+        </p>
+        <h1 className="text-4xl font-extrabold tracking-tight text-balance">
+          Politique de Confidentialité
+        </h1>
+      </div>
+
+      <div className="space-y-8 text-muted-foreground leading-7">
+        <section className="space-y-3">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
+            Collecte des données
+          </h2>
+          <p>
+            Nous collectons des données (Nom, Entreprise, Email, Besoin) via le formulaire
+            de contact afin de répondre à vos demandes B2B. Aucune donnée n'est collectée
+            à votre insu.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
+            Utilisation et Sécurité
+          </h2>
+          <p>
+            Vos données sont destinées exclusivement à <strong className="text-foreground">Nelo | Digital &amp; IA</strong>.
+            En accord avec nos standards de cybersécurité, elles sont protégées et ne seront
+            jamais cédées, vendues ou transférées à des tiers.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
+            Vos droits
+          </h2>
+          <p>
+            Vous disposez d'un droit d'accès, de modification et de suppression de vos données
+            personnelles, sur simple demande à{' '}
+            <a
+              href="mailto:nelo.engineering@hotmail.com"
+              className="text-gold hover:underline"
+            >
+              nelo.engineering@hotmail.com
+            </a>
+            .
+          </p>
+        </section>
+      </div>
+    </LegalLayout>
+  )
+}
