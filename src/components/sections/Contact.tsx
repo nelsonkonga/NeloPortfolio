@@ -129,7 +129,7 @@ export function Contact() {
                       {item.highlight && (
                         <div className="mt-3.5 pt-3 border-t border-gold/15 flex items-center gap-2">
                           <a
-                            href="https://wa.me/237694662523?text=Bonjour%20Nelo,%20je%20souhaite%20r%C3%A9server%20un%20audit%20technique%20gratuit."
+                            href="https://wa.me/237659300327?text=Bonjour%20Nelo,%20je%20souhaite%20r%C3%A9server%20un%20audit%20technique%20gratuit."
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:underline cursor-pointer"
@@ -154,12 +154,12 @@ export function Contact() {
               <div className="flex items-center gap-3 text-sm">
                 <PhoneCall className="h-4 w-4 text-gold shrink-0" />
                 <a
-                  href="https://wa.me/237694662523"
+                  href="https://wa.me/237659300327"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-gold transition-colors text-xs font-medium"
                 >
-                  +237 694 66 25 23 (WhatsApp)
+                  +237 659 30 03 27 (WhatsApp)
                 </a>
               </div>
               <div className="flex items-center gap-3 text-sm">
@@ -185,7 +185,7 @@ export function Contact() {
                     Les 10 points critiques pour sécuriser et accélérer les plateformes hôtelières et PME.
                   </p>
                   <a
-                    href="https://wa.me/237694662523?text=Bonjour%20Nelo,%20je%20souhaite%20recevoir%20la%20Checklist%20S%C3%A9curit%C3%A9%20%26%20Performance."
+                    href="https://wa.me/237659300327?text=Bonjour%20Nelo,%20je%20souhaite%20recevoir%20la%20Checklist%20S%C3%A9curit%C3%A9%20%26%20Performance."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-[11px] font-semibold text-cyan-accent hover:underline mt-2"
