@@ -112,6 +112,7 @@ export function Header() {
             <Button
               variant="gold"
               size="sm"
+              className="shadow-[0_0_15px_rgba(234,179,8,0.2)] hover:shadow-[0_0_22px_rgba(234,179,8,0.45)] transition-all duration-300"
               onClick={() => handleNavClick('#contact')}
             >
               {t('nav.cta')}
