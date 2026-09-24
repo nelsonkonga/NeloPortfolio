@@ -1,4 +1,5 @@
-import { Search, Lock, Code2, Rocket } from 'lucide-react'
+import { Search, Lock, Code2, Rocket, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useLang } from '@/contexts/LangContext'
 
 const steps = [
@@ -96,6 +97,27 @@ export function Methodology() {
               </div>
             )
           })}
+        </div>
+
+        {/* Contextual Link to Pricing */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border border-border/60 bg-card/60 backdrop-blur max-w-3xl mx-auto text-left">
+            <div>
+              <p className="font-semibold text-sm text-foreground">
+                Vous avez un projet digital pour votre établissement hôtelier ?
+              </p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Consultez nos forfaits transparents (Découverte, Essentiel, Complet) et leurs prestations détaillées.
+              </p>
+            </div>
+            <Link
+              to="/tarifs"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-gold/10 text-gold hover:bg-gold/20 border border-gold/30 transition-all shrink-0 group cursor-pointer"
+            >
+              Consulter nos forfaits hôteliers
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

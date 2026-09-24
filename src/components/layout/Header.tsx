@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { key: 'nav.expertise', href: '#expertise' },
   { key: 'nav.projects', href: '#projects' },
   { key: 'nav.methodology', href: '#methodology' },
+  { key: 'nav.pricing', href: '/tarifs' },
   { key: 'nav.about', href: '#about' },
   { key: 'nav.contact', href: '#contact' },
 ]
@@ -40,7 +41,10 @@ export function Header() {
 
   function handleNavClick(href: string) {
     setMobileOpen(false)
-    if (location.pathname !== '/') {
+    if (href.startsWith('/')) {
+      navigate(href)
+      window.scrollTo(0, 0)
+    } else if (location.pathname !== '/') {
       navigate({ pathname: '/', hash: href })
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })

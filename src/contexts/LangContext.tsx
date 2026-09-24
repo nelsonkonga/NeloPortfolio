@@ -13,6 +13,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'nav.expertise': { fr: 'Expertise', en: 'Expertise' },
   'nav.projects': { fr: 'Études de cas', en: 'Case Studies' },
   'nav.methodology': { fr: 'Méthodologie', en: 'Methodology' },
+  'nav.pricing': { fr: 'Tarifs', en: 'Pricing' },
   'nav.about': { fr: 'À propos', en: 'About' },
   'nav.contact': { fr: 'Contact', en: 'Contact' },
   'nav.cta': { fr: 'Discuter de votre projet', en: 'Discuss your project' },
