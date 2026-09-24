@@ -123,11 +123,136 @@ const translations: Record<string, Record<Lang, string>> = {
   'contact.quote.title': { fr: 'Devis Sur-Mesure', en: 'Custom Quote' },
   'contact.quote.desc': { fr: 'Une proposition détaillée et transparente, adaptée à vos contraintes et à vos objectifs.', en: 'A detailed and transparent proposal, adapted to your constraints and objectives.' },
   'contact.strategy.title': { fr: 'Accompagnement Stratégique', en: 'Strategic Support' },
-  'contact.strategy.desc': { fr: 'Un partenaire technique de confiance pour vous guider dans vos décisions digitales.', en: 'A trusted technical partner to guide your digital decisions.' },
+  // Methodology Teaser
+  'methodology.teaser.title': {
+    fr: 'Vous avez un projet digital pour votre établissement hôtelier ?',
+    en: 'Have a digital project for your hotel establishment?',
+  },
+  'methodology.teaser.desc': {
+    fr: 'Consultez nos forfaits transparents (Découverte, Essentiel, Complet) et leurs prestations détaillées.',
+    en: 'Check our transparent packages (Discovery, Essential, Complete) and their detailed services.',
+  },
+  'methodology.teaser.btn': {
+    fr: 'Consulter nos forfaits hôteliers',
+    en: 'View our hotel packages',
+  },
 
-  // Trust / Tech Stack
-  'trust.title': { fr: 'Technologies & Standards Industriels', en: 'Technologies & Industry Standards' },
-  'trust.subtitle': { fr: 'Des solutions robustes conçues avec des technologies éprouvées et sécurisées.', en: 'Robust solutions built with battle-tested, secure technologies.' },
+  // Tarifs / Pricing Page
+  'tarifs.back': { fr: 'Retour à l\'accueil', en: 'Back to home' },
+  'tarifs.badge': { fr: 'Tarifs Hôtellerie', en: 'Hotel Pricing' },
+  'tarifs.title': { fr: 'Nos offres pour sites d\'hôtels', en: 'Our Hotel Website Packages' },
+  'tarifs.subtitle': {
+    fr: 'Ces formules clés en main sont spécialement conçues et dimensionnées pour les établissements hôteliers. Elles constituent un socle technique robuste, moderne et évolutif auquel des services ou fonctionnalités sur-mesure peuvent être ajoutés selon vos besoins spécifiques.',
+    en: 'These turnkey packages are specifically designed and scaled for hotel properties. They provide a robust, modern, and scalable technical foundation to which custom features can be added according to your specific needs.',
+  },
+  'tarifs.priceLabel': { fr: 'Prix affiché', en: 'Starting price' },
+  'tarifs.from': { fr: 'à partir de', en: 'from' },
+  'tarifs.includedTitle': { fr: 'Services inclus :', en: 'Included services:' },
+  'tarifs.cta': { fr: 'Demander ce package', en: 'Request this package' },
+  'tarifs.ctaWhatsapp': { fr: 'Ou réserver via WhatsApp', en: 'Or book via WhatsApp' },
+
+  // Package Découverte
+  'tarifs.pkg.decouverte.name': { fr: 'Découverte', en: 'Discovery' },
+  'tarifs.pkg.decouverte.tagline': {
+    fr: 'Une présence digitale élégante pour valoriser votre établissement et capter vos premiers clients en direct.',
+    en: 'An elegant digital presence to showcase your property and capture your first direct clients.',
+  },
+  'tarifs.pkg.decouverte.f1': {
+    fr: 'Page d\'accueil (hero, présentation générale, responsive)',
+    en: 'Homepage (hero, general presentation, responsive)',
+  },
+  'tarifs.pkg.decouverte.f2': {
+    fr: 'Galerie photo (grille responsive avec affichage en grand au clic)',
+    en: 'Photo gallery (responsive grid with fullscreen modal on click)',
+  },
+  'tarifs.pkg.decouverte.f3': {
+    fr: 'Formulaire de contact fonctionnel',
+    en: 'Functional contact form',
+  },
+  'tarifs.pkg.decouverte.f4': {
+    fr: 'Nom de domaine .com & hébergement cloud haute performance (1ère année)',
+    en: '.com domain & high-performance cloud hosting included (1st year)',
+  },
+  'tarifs.domain.note': {
+    fr: 'Nom de domaine international (.com) et hébergement cloud inclus la première année dans chaque formule. Extension locale (.cm / .com.cm) disponible sur devis registrar.',
+    en: 'International .com domain and cloud hosting included for the first year in all packages. Local extension (.cm / .com.cm) available upon registrar quote.',
+  },
+
+  // Package Essentiel
+  'tarifs.pkg.essentiel.name': { fr: 'Essentiel', en: 'Essential' },
+  'tarifs.pkg.essentiel.popularBadge': { fr: 'Le plus populaire', en: 'Most Popular' },
+  'tarifs.pkg.essentiel.tagline': {
+    fr: 'La formule idéale pour s\'affranchir des commissions des plateformes et booster vos réservations directes.',
+    en: 'The ideal formula to break free from OTA commissions and boost your direct bookings.',
+  },
+  'tarifs.pkg.essentiel.includedHeader': {
+    fr: 'Tout le Package Découverte, plus :',
+    en: 'Everything in Discovery Package, plus:',
+  },
+  'tarifs.pkg.essentiel.f1': {
+    fr: 'Réservation directe (calendrier de disponibilité + formulaire)',
+    en: 'Direct booking (availability calendar + booking form)',
+  },
+  'tarifs.pkg.essentiel.f2': {
+    fr: 'Version bilingue (français / anglais)',
+    en: 'Bilingual version (French / English)',
+  },
+  'tarifs.pkg.essentiel.f3': {
+    fr: 'Section « Notre histoire » avec mise en page narrative',
+    en: '“Our Story” section with narrative layout',
+  },
+
+  // Package Complet
+  'tarifs.pkg.complet.name': { fr: 'Complet', en: 'Complete' },
+  'tarifs.pkg.complet.tagline': {
+    fr: 'Une infrastructure hôtelière complète et autonome avec paiement sécurisé et espace de gestion des clients.',
+    en: 'A complete and autonomous hotel platform with secure payment and customer management.',
+  },
+  'tarifs.pkg.complet.includedHeader': {
+    fr: 'Tout le Package Essentiel, plus :',
+    en: 'Everything in Essential Package, plus:',
+  },
+  'tarifs.pkg.complet.f1': {
+    fr: 'Paiement en ligne intégré (carte bancaire / Mobile Money)',
+    en: 'Integrated online payment (credit card / Mobile Money)',
+  },
+  'tarifs.pkg.complet.f2': {
+    fr: 'Espace client (création de compte, connexion, historique)',
+    en: 'Customer portal (account creation, login, history)',
+  },
+  'tarifs.pkg.complet.f3': {
+    fr: 'Tableau de bord d\'administration basique',
+    en: 'Basic administration dashboard',
+  },
+
+  // Règle de dimensionnement
+  'tarifs.rule.title': { fr: 'Règle de dimensionnement', en: 'Sizing Rule' },
+  'tarifs.rule.text': {
+    fr: 'Prix de base valable jusqu\'à 15 chambres. Au-delà, un supplément de 15 € par chambre supplémentaire s\'applique.',
+    en: 'Base price valid for up to 15 rooms. Beyond this threshold, an additional €15 fee applies per extra room.',
+  },
+  'tarifs.rule.desc': {
+    fr: 'Ce supplément forfaitaire couvre la configuration individualisée des catégories, des galeries photos dédiées, des inventaires et des plannings de disponibilité.',
+    en: 'This flat fee covers individual setup for room categories, dedicated photo galleries, inventories, and availability schedules.',
+  },
+
+  // Restaurant & Gelateria Note
+  'tarifs.resto.title': {
+    fr: 'Vous gérez un restaurant ou une gelateria ?',
+    en: 'Running a restaurant or a gelateria?',
+  },
+  'tarifs.resto.desc': {
+    fr: 'Contactez-moi directement pour discuter d\'une offre adaptée à votre activité. Les besoins d\'un restaurant ou d\'un salon glacier (carte en ligne, menu QR code dynamique, réservation de tables, click & collect) font l\'objet d\'un dimensionnement sur-mesure.',
+    en: 'Contact me directly to discuss a tailor-made offer for your business. Restaurant and ice cream parlor requirements (online menu, dynamic QR code menu, table reservation, click & collect) are custom scoped.',
+  },
+  'tarifs.resto.cta': {
+    fr: 'Discuter d\'une offre adaptée',
+    en: 'Discuss a tailored offer',
+  },
+  'tarifs.resto.whatsapp': {
+    fr: 'WhatsApp direct',
+    en: 'Direct WhatsApp',
+  },
 
   // Footer
   'footer.desc': { fr: 'Solutions digitales premium, cybersécurité et intelligence artificielle pour les entreprises exigeantes.', en: 'Premium digital solutions, cybersecurity and artificial intelligence for demanding businesses.' },

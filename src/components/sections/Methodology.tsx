@@ -104,17 +104,17 @@ export function Methodology() {
           <div className="inline-flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl border border-border/60 bg-card/60 backdrop-blur max-w-3xl mx-auto text-left">
             <div>
               <p className="font-semibold text-sm text-foreground">
-                Vous avez un projet digital pour votre établissement hôtelier ?
+                {t('methodology.teaser.title')}
               </p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Consultez nos forfaits transparents (Découverte, Essentiel, Complet) et leurs prestations détaillées.
+                {t('methodology.teaser.desc')}
               </p>
             </div>
             <Link
               to="/tarifs"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-gold/10 text-gold hover:bg-gold/20 border border-gold/30 transition-all shrink-0 group cursor-pointer"
             >
-              Consulter nos forfaits hôteliers
+              {t('methodology.teaser.btn')}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

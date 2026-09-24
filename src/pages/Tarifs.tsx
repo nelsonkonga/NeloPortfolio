@@ -2,72 +2,87 @@ import { ArrowLeft, CheckCircle2, Sparkles, UtensilsCrossed, Hotel, MessageSquar
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { useLang } from '@/contexts/LangContext'
 
-interface PackageItem {
+interface PackageConfig {
   id: string
-  name: string
+  nameKey: string
   price: string
-  tagline: string
+  taglineKey: string
   popular?: boolean
-  popularBadge?: string
-  includedHeader?: string
-  features: string[]
-  ctaText: string
-  whatsappMessage: string
+  popularBadgeKey?: string
+  includedHeaderKey?: string
+  featureKeys: string[]
+  whatsappMessage: {
+    fr: string
+    en: string
+  }
 }
 
-const PACKAGES: PackageItem[] = [
+const PACKAGES: PackageConfig[] = [
   {
     id: 'decouverte',
-    name: 'Découverte',
+    nameKey: 'tarifs.pkg.decouverte.name',
     price: '330 €',
-    tagline: 'Une présence digitale élégante pour valoriser votre établissement et capter vos premiers clients en direct.',
-    features: [
-      "Page d'accueil (hero, présentation générale, responsive)",
-      'Galerie photo (grille responsive avec affichage en grand au clic)',
-      'Formulaire de contact fonctionnel',
+    taglineKey: 'tarifs.pkg.decouverte.tagline',
+    featureKeys: [
+      'tarifs.pkg.decouverte.f1',
+      'tarifs.pkg.decouverte.f2',
+      'tarifs.pkg.decouverte.f3',
+      'tarifs.pkg.decouverte.f4',
     ],
-    ctaText: 'Demander ce package',
-    whatsappMessage: 'Bonjour Nelo, je suis intéressé par le Package Découverte (330 €) pour mon hôtel.',
+    whatsappMessage: {
+      fr: 'Bonjour Nelo, je suis intéressé par le Package Découverte (330 €) pour mon hôtel.',
+      en: 'Hello Nelo, I am interested in the Discovery Package (330 €) for my hotel.',
+    },
   },
   {
     id: 'essentiel',
-    name: 'Essentiel',
+    nameKey: 'tarifs.pkg.essentiel.name',
     price: '930 €',
-    tagline: 'La formule idéale pour s\'affranchir des commissions des plateformes et booster vos réservations directes.',
+    taglineKey: 'tarifs.pkg.essentiel.tagline',
     popular: true,
-    popularBadge: 'Le plus populaire',
-    includedHeader: 'Tout le Package Découverte, plus :',
-    features: [
-      'Réservation directe (calendrier de disponibilité + formulaire)',
-      'Version bilingue (français / anglais)',
-      'Section « Notre histoire » avec mise en page narrative',
+    popularBadgeKey: 'tarifs.pkg.essentiel.popularBadge',
+    includedHeaderKey: 'tarifs.pkg.essentiel.includedHeader',
+    featureKeys: [
+      'tarifs.pkg.essentiel.f1',
+      'tarifs.pkg.essentiel.f2',
+      'tarifs.pkg.essentiel.f3',
     ],
-    ctaText: 'Demander ce package',
-    whatsappMessage: 'Bonjour Nelo, je suis intéressé par le Package Essentiel (930 €) pour mon hôtel.',
+    whatsappMessage: {
+      fr: 'Bonjour Nelo, je suis intéressé par le Package Essentiel (930 €) pour mon hôtel.',
+      en: 'Hello Nelo, I am interested in the Essential Package (930 €) for my hotel.',
+    },
   },
   {
     id: 'complet',
-    name: 'Complet',
+    nameKey: 'tarifs.pkg.complet.name',
     price: '2 230 €',
-    tagline: 'Une infrastructure hôtelière complète et autonome avec paiement sécurisé et espace de gestion des clients.',
-    includedHeader: 'Tout le Package Essentiel, plus :',
-    features: [
-      'Paiement en ligne intégré (carte bancaire / Mobile Money)',
-      'Espace client (création de compte, connexion, historique)',
-      "Tableau de bord d'administration basique",
+    taglineKey: 'tarifs.pkg.complet.tagline',
+    includedHeaderKey: 'tarifs.pkg.complet.includedHeader',
+    featureKeys: [
+      'tarifs.pkg.complet.f1',
+      'tarifs.pkg.complet.f2',
+      'tarifs.pkg.complet.f3',
     ],
-    ctaText: 'Demander ce package',
-    whatsappMessage: 'Bonjour Nelo, je suis intéressé par le Package Complet (2 230 €) pour mon hôtel.',
+    whatsappMessage: {
+      fr: 'Bonjour Nelo, je suis intéressé par le Package Complet (2 230 €) pour mon hôtel.',
+      en: 'Hello Nelo, I am interested in the Complete Package (2 230 €) for my hotel.',
+    },
   },
 ]
 
 export function Tarifs() {
   const navigate = useNavigate()
+  const { t, lang } = useLang()
 
   function handlePackageClick() {
     navigate({ pathname: '/', hash: '#contact' })
   }
+
+  const restoWhatsappText = lang === 'fr'
+    ? "Bonjour Nelo, je gère un restaurant/une gelateria et je souhaite discuter d'une offre."
+    : "Hello Nelo, I run a restaurant/gelateria and would like to discuss a custom offer."
 
   return (
     <div className="pt-28 pb-24 min-h-screen">
@@ -79,7 +94,7 @@ export function Tarifs() {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold transition-colors group cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            Retour à l'accueil
+            {t('tarifs.back')}
           </Link>
         </div>
 
@@ -88,16 +103,14 @@ export function Tarifs() {
           <div className="inline-flex items-center gap-1.5 mb-3">
             <Badge className="bg-gold/10 text-gold border-gold/30 gap-1.5 px-3 py-1 font-semibold">
               <Hotel className="h-3.5 w-3.5" />
-              Tarifs Hôtellerie
+              {t('tarifs.badge')}
             </Badge>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-5 leading-tight">
-            Nos offres pour sites d'hôtels
+            {t('tarifs.title')}
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Ces formules clés en main sont spécialement conçues et dimensionnées pour les établissements
-            hôteliers. Elles constituent un socle technique robuste, moderne et évolutif auquel des
-            services ou fonctionnalités sur-mesure peuvent être ajoutés selon vos besoins spécifiques.
+            {t('tarifs.subtitle')}
           </p>
         </div>
 
@@ -115,11 +128,11 @@ export function Tarifs() {
                 }`}
               >
                 {/* Badge le plus populaire */}
-                {isPopular && (
+                {isPopular && pkg.popularBadgeKey && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
                     <span className="inline-flex items-center gap-1.5 bg-gold text-gold-foreground text-xs font-bold px-3 py-1 rounded-full shadow-md">
                       <Sparkles className="h-3 w-3" />
-                      {pkg.popularBadge}
+                      {t(pkg.popularBadgeKey)}
                     </span>
                   </div>
                 )}
@@ -129,20 +142,19 @@ export function Tarifs() {
                   {/* Titre & Description */}
                   <div className="mb-6">
                     <h2 className="text-2xl font-bold tracking-tight mb-2">
-                      {pkg.name}
+                      {t(pkg.nameKey)}
                     </h2>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed min-h-[40px]">
-                      {pkg.tagline}
+                      {t(pkg.taglineKey)}
                     </p>
                   </div>
 
                   {/* Prix */}
                   <div className="mb-6 pb-6 border-b border-border/60">
-                    <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground block mb-1">
-                      Prix affiché
-                    </span>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm font-medium text-muted-foreground">à partir de</span>
+                      <span className="text-sm font-medium text-muted-foreground">
+                        {t('tarifs.from')}
+                      </span>
                       <span className="text-4xl font-extrabold text-foreground tracking-tight">
                         {pkg.price}
                       </span>
@@ -152,21 +164,21 @@ export function Tarifs() {
                   {/* Liste des services inclus (toujours visible) */}
                   <div className="space-y-3 mb-8 flex-1">
                     <p className="text-xs font-semibold uppercase tracking-wider text-gold">
-                      Services inclus :
+                      {t('tarifs.includedTitle')}
                     </p>
 
-                    {pkg.includedHeader && (
+                    {pkg.includedHeaderKey && (
                       <p className="text-xs font-semibold text-foreground/90 italic flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
-                        {pkg.includedHeader}
+                        {t(pkg.includedHeaderKey)}
                       </p>
                     )}
 
                     <ul className="space-y-3">
-                      {pkg.features.map((feature, idx) => (
+                      {pkg.featureKeys.map((fKey, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm">
                           <CheckCircle2 className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground leading-snug">{feature}</span>
+                          <span className="text-muted-foreground leading-snug">{t(fKey)}</span>
                         </li>
                       ))}
                     </ul>
@@ -183,16 +195,16 @@ export function Tarifs() {
                       }`}
                       onClick={handlePackageClick}
                     >
-                      {pkg.ctaText}
+                      {t('tarifs.cta')}
                     </Button>
                     <a
-                      href={`https://wa.me/237659300327?text=${encodeURIComponent(pkg.whatsappMessage)}`}
+                      href={`https://wa.me/237659300327?text=${encodeURIComponent(pkg.whatsappMessage[lang] ?? pkg.whatsappMessage.fr)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-1.5 w-full text-center text-[11px] text-muted-foreground hover:text-gold transition-colors py-1 cursor-pointer"
                     >
                       <MessageSquare className="h-3 w-3" />
-                      Ou réserver via WhatsApp
+                      {t('tarifs.ctaWhatsapp')}
                     </a>
                   </div>
                 </div>
@@ -209,13 +221,16 @@ export function Tarifs() {
             </div>
             <div className="flex-1">
               <p className="text-xs font-semibold tracking-wider uppercase text-gold mb-1">
-                Règle de dimensionnement
+                {t('tarifs.rule.title')}
               </p>
               <p className="text-sm font-medium text-foreground">
-                Prix de base valable jusqu'à 15 chambres. Au-delà, un supplément de 15 € par chambre supplémentaire s'applique.
+                {t('tarifs.rule.text')}
               </p>
               <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                Ce supplément forfaitaire couvre la configuration individualisée des catégories, des galeries photos dédiées, des inventaires et des plannings de disponibilité.
+                {t('tarifs.rule.desc')}
+              </p>
+              <p className="text-xs text-gold/90 mt-2.5 pt-2.5 border-t border-border/50 leading-relaxed font-medium">
+                {t('tarifs.domain.note')}
               </p>
             </div>
           </div>
@@ -230,12 +245,10 @@ export function Tarifs() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground mb-1.5">
-                  Vous gérez un restaurant ou une gelateria ?
+                  {t('tarifs.resto.title')}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                  Contactez-moi directement pour discuter d'une offre adaptée à votre activité.
-                  Les besoins d'un restaurant ou d'un salon glacier (carte en ligne, menu QR code dynamique,
-                  réservation de tables, click & collect) font l'objet d'un dimensionnement sur-mesure.
+                  {t('tarifs.resto.desc')}
                 </p>
               </div>
             </div>
@@ -246,17 +259,17 @@ export function Tarifs() {
                 className="w-full sm:w-auto font-semibold gap-2 shadow-[0_0_15px_rgba(234,179,8,0.25)]"
                 onClick={() => navigate({ pathname: '/', hash: '#contact' })}
               >
-                Discuter d'une offre adaptée
+                {t('tarifs.resto.cta')}
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <a
-                href="https://wa.me/237659300327?text=Bonjour%20Nelo,%20je%20g%C3%A8re%20un%20restaurant/une%20gelateria%20et%20je%20souhaite%20discuter%20d'une%20offre."
+                href={`https://wa.me/237659300327?text=${encodeURIComponent(restoWhatsappText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium border border-border hover:border-gold/40 text-muted-foreground hover:text-gold transition-colors w-full sm:w-auto cursor-pointer"
               >
                 <PhoneCall className="h-3.5 w-3.5" />
-                WhatsApp direct
+                {t('tarifs.resto.whatsapp')}
               </a>
             </div>
           </div>
