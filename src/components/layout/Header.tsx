@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
   { key: 'nav.expertise', href: '#expertise' },
-  { key: 'nav.projects', href: '#projects' },
+  { key: 'nav.portfolio', href: '/portfolio' },
   { key: 'nav.methodology', href: '#methodology' },
   { key: 'nav.pricing', href: '/tarifs' },
   { key: 'nav.about', href: '#about' },

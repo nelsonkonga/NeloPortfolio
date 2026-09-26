@@ -14,6 +14,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'nav.projects': { fr: 'Études de cas', en: 'Case Studies' },
   'nav.methodology': { fr: 'Méthodologie', en: 'Methodology' },
   'nav.pricing': { fr: 'Tarifs', en: 'Pricing' },
+  'nav.portfolio': { fr: 'Portfolio', en: 'Portfolio' },
   'nav.about': { fr: 'À propos', en: 'About' },
   'nav.contact': { fr: 'Contact', en: 'Contact' },
   'nav.cta': { fr: 'Discuter de votre projet', en: 'Discuss your project' },
@@ -253,6 +254,63 @@ const translations: Record<string, Record<Lang, string>> = {
     fr: 'WhatsApp direct',
     en: 'Direct WhatsApp',
   },
+
+  // Portfolio Page
+  'portfolio.back': { fr: 'Retour à l\'accueil', en: 'Back to home' },
+  'portfolio.badge': { fr: 'Portfolio', en: 'Portfolio' },
+  'portfolio.title': { fr: 'Mes Réalisations', en: 'My Work' },
+  'portfolio.subtitle': {
+    fr: 'Découvrez en détail les projets que j\'ai conçus et livrés. Chaque réalisation illustre mon expertise technique, ma rigueur méthodologique et mon engagement envers des résultats concrets et mesurables.',
+    en: 'Explore in detail the projects I\'ve designed and delivered. Each achievement showcases my technical expertise, methodical rigor and commitment to concrete, measurable results.',
+  },
+  'portfolio.context': { fr: 'Contexte', en: 'Context' },
+  'portfolio.solution': { fr: 'Solution technique', en: 'Technical solution' },
+  'portfolio.results': { fr: 'Résultats', en: 'Results' },
+  'portfolio.stack': { fr: 'Stack technique', en: 'Tech stack' },
+  'portfolio.cta': { fr: 'Un projet similaire ? Discutons-en', en: 'A similar project? Let\'s talk' },
+  'portfolio.cta.viewAll': { fr: 'Découvrir tout le portfolio en détail', en: 'Explore full portfolio in detail' },
+
+  // Portfolio Project 1
+  'portfolio.p1.title': { fr: 'Audit Digital & Optimisation Hôtelière', en: 'Digital Audit & Hotel Optimization' },
+  'portfolio.p1.context': {
+    fr: 'Un établissement hôtelier de premier plan souhaitait améliorer sa visibilité en ligne, optimiser son parcours de réservation directe et réduire sa dépendance aux OTA (Booking, Expedia).',
+    en: 'A leading hotel establishment wanted to improve its online visibility, optimize its direct booking journey and reduce dependency on OTAs (Booking, Expedia).',
+  },
+  'portfolio.p1.solution': {
+    fr: 'Audit technique complet couvrant plus de 30 points de contrôle : performance de chargement (Core Web Vitals), audit SEO structurel et sémantique, analyse UX du tunnel de réservation, revue de l\'architecture mobile-first et recommandations d\'accessibilité.',
+    en: 'Comprehensive technical audit covering 30+ checkpoints: loading performance (Core Web Vitals), structural and semantic SEO audit, booking funnel UX analysis, mobile-first architecture review and accessibility recommendations.',
+  },
+  'portfolio.p1.result1': { fr: '30+ points de contrôle audités', en: '30+ checkpoints audited' },
+  'portfolio.p1.result2': { fr: 'Plan d\'action technique priorisé livré', en: 'Prioritized technical action plan delivered' },
+  'portfolio.p1.result3': { fr: 'Optimisations SEO identifiées pour +40% de trafic organique potentiel', en: 'SEO optimizations identified for +40% potential organic traffic' },
+
+  // Portfolio Project 2
+  'portfolio.p2.title': { fr: 'Infrastructure Backend & Menu Numérique', en: 'Backend Infrastructure & Digital Menu' },
+  'portfolio.p2.context': {
+    fr: 'Un restaurant haut de gamme avait besoin d\'une infrastructure backend robuste et sécurisée pour gérer ses commandes en ligne, son menu dynamique et la communication avec sa clientèle.',
+    en: 'A premium restaurant needed a robust and secure backend infrastructure to manage online orders, dynamic menu and customer communication.',
+  },
+  'portfolio.p2.solution': {
+    fr: 'Développement d\'une API REST complète sous Spring Boot avec PostgreSQL. Authentification JWT stricte, gestion des rôles (admin, serveur, client), système de commandes en temps réel et panel d\'administration pour la mise à jour du menu et des prix.',
+    en: 'Development of a complete REST API with Spring Boot and PostgreSQL. Strict JWT authentication, role management (admin, server, client), real-time order system and admin panel for menu and price updates.',
+  },
+  'portfolio.p2.result1': { fr: 'Architecture sécurisée JWT production-ready', en: 'Production-ready JWT secured architecture' },
+  'portfolio.p2.result2': { fr: 'Base de données optimisée et scalable', en: 'Optimized and scalable database' },
+  'portfolio.p2.result3': { fr: 'Temps de réponse API < 200ms', en: 'API response time < 200ms' },
+
+  // Portfolio Project 3
+  'portfolio.p3.title': { fr: 'Automatisation de Contenu IA', en: 'AI Content Automation' },
+  'portfolio.p3.context': {
+    fr: 'Une entreprise de médias souhaitait automatiser la collecte, le traitement et la publication de contenus éditoriaux à partir de multiples sources de données, sans intervention humaine récurrente.',
+    en: 'A media company wanted to automate the collection, processing and publishing of editorial content from multiple data sources, without recurring human intervention.',
+  },
+  'portfolio.p3.solution': {
+    fr: 'Mise en place de pipelines automatisés combinant des scripts d\'ingestion de données, des modèles de langage (LLM) pour la reformulation et la structuration, et des connecteurs CMS pour la publication directe. Orchestration via workflows planifiés avec monitoring et alertes.',
+    en: 'Implementation of automated pipelines combining data ingestion scripts, language models (LLM) for reformulation and structuring, and CMS connectors for direct publishing. Orchestration via scheduled workflows with monitoring and alerts.',
+  },
+  'portfolio.p3.result1': { fr: '100% automatisé — 0 intervention manuelle', en: '100% automated — 0 manual intervention' },
+  'portfolio.p3.result2': { fr: 'Gain de productivité estimé à 15h / semaine', en: 'Estimated productivity gain of 15h / week' },
+  'portfolio.p3.result3': { fr: 'Publication continue 24/7 sans supervision', en: 'Continuous 24/7 publishing without supervision' },
 
   // Footer
   'footer.desc': { fr: 'Solutions digitales premium, cybersécurité et intelligence artificielle pour les entreprises exigeantes.', en: 'Premium digital solutions, cybersecurity and artificial intelligence for demanding businesses.' },

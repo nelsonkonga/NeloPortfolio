@@ -1,4 +1,5 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { useLang } from '@/contexts/LangContext'
 
@@ -104,6 +105,17 @@ export function Projects() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View all portfolio button */}
+        <div className="mt-14 text-center">
+          <Link
+            to="/portfolio"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-semibold bg-card border border-border/80 hover:border-gold/50 hover:bg-gold/5 text-foreground hover:text-gold shadow-sm hover:shadow-md transition-all group cursor-pointer"
+          >
+            {t('portfolio.cta.viewAll')}
+            <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

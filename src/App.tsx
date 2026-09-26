@@ -13,6 +13,7 @@ import { MentionsLegales } from '@/pages/legal/MentionsLegales'
 import { Confidentialite } from '@/pages/legal/Confidentialite'
 import { ConditionsGenerales } from '@/pages/legal/ConditionsGenerales'
 import { Tarifs } from '@/pages/Tarifs'
+import { Portfolio } from '@/pages/Portfolio'
 import './index.css'
 
 function HomePage() {
@@ -38,6 +39,7 @@ function App() {
             <div className="flex-1">
               <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/tarifs" element={<Tarifs />} />
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />

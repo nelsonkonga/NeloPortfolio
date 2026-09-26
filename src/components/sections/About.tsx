@@ -18,10 +18,10 @@ export function About() {
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto">
               <img
-                src="https://images.pexels.com/photos/5483147/pexels-photo-5483147.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                src="/nelo-profile.jpg"
                 alt="Nelo – Software Engineer & AI Consultant"
                 loading="lazy"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
