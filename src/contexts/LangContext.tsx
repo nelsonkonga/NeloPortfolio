@@ -40,33 +40,39 @@ const translations: Record<string, Record<Lang, string>> = {
   'services.cta.title': { fr: 'Prêt à sécuriser et optimiser votre infrastructure ?', en: 'Ready to secure and optimize your infrastructure?' },
   'services.cta.button': { fr: 'Demander un audit', en: 'Request an audit' },
 
-  // Projects
-  'projects.title': { fr: 'Études de Cas B2B', en: 'B2B Case Studies' },
-  'projects.subtitle': { fr: 'Des missions concrètes, des résultats mesurables.', en: 'Concrete missions, measurable results.' },
-  'projects.p1.result': { fr: 'Rapport détaillé et plan d\'action technique livré', en: 'Detailed report and technical action plan delivered' },
-  'projects.p1.metric': { fr: '30+ Points de contrôle', en: '30+ Checkpoints' },
-  'projects.p1.metricLabel': { fr: 'Audit exhaustif', en: 'Comprehensive audit' },
-  'projects.p2.result': { fr: 'API robuste, bases de données sécurisées et prêtes pour la production', en: 'Robust API, secured databases and production-ready' },
-  'projects.p2.metric': { fr: 'Sécurité JWT Stricte', en: 'Strict JWT Security' },
-  'projects.p2.metricLabel': { fr: 'Architecture Scalable', en: 'Scalable Architecture' },
-  'projects.p3.result': { fr: 'Gain de temps maximal grâce à l\'ingestion automatique de données', en: 'Maximum time savings through automatic data ingestion' },
-  'projects.p3.metric': { fr: '100% Automatisé', en: '100% Automated' },
-  'projects.p3.metricLabel': { fr: '0 Intervention manuelle', en: '0 Manual intervention' },
-  'projects.p1.title': { fr: 'Audit Digital & Optimisation Hôtelière', en: 'Digital Audit & Hotel Optimization' },
-  'projects.p1.desc': { fr: 'Analyse complète des performances, du SEO et du parcours de réservation pour un établissement hôtelier de premier plan.', en: 'Complete performance, SEO and booking journey analysis for a leading hotel establishment.' },
-  'projects.p1.tag1': { fr: 'Audit SEO', en: 'SEO Audit' },
-  'projects.p1.tag2': { fr: 'UX Review', en: 'UX Review' },
-  'projects.p1.tag3': { fr: 'Performance', en: 'Performance' },
-  'projects.p2.title': { fr: 'Infrastructure Backend & Menu Numérique', en: 'Backend Infrastructure & Digital Menu' },
-  'projects.p2.desc': { fr: 'Développement d\'une architecture sécurisée sous Spring Boot/PostgreSQL pour la gestion des commandes d\'un restaurant.', en: 'Development of a secure Spring Boot/PostgreSQL architecture for restaurant order management.' },
-  'projects.p2.tag1': { fr: 'Spring Boot', en: 'Spring Boot' },
-  'projects.p2.tag2': { fr: 'PostgreSQL', en: 'PostgreSQL' },
-  'projects.p2.tag3': { fr: 'Sécurité JWT', en: 'JWT Security' },
-  'projects.p3.title': { fr: 'Automatisation de Contenu IA', en: 'AI Content Automation' },
-  'projects.p3.desc': { fr: 'Mise en place de pipelines automatisés reliant des flux de données à des CMS pour une publication optimisée.', en: 'Implementation of automated pipelines connecting data streams to CMSs for optimized publishing.' },
-  'projects.p3.tag1': { fr: 'IA / LLM', en: 'AI / LLM' },
-  'projects.p3.tag2': { fr: 'Automatisation', en: 'Automation' },
-  'projects.p3.tag3': { fr: 'CMS', en: 'CMS' },
+  // Projects (Home page preview)
+  'projects.title': { fr: 'Études de Cas Réelles & B2B', en: 'Real-World & B2B Case Studies' },
+  'projects.subtitle': { fr: 'Des interventions techniques de haut niveau, des architectures résilientes et des résultats mesurables en production.', en: 'High-level technical interventions, resilient architectures, and measurable production results.' },
+  
+  // Project 1: Sellam.store Monétisation
+  'projects.p1.title': { fr: 'Sellam.store · Monétisation SaaS & Mobile Money', en: 'Sellam.store · SaaS Monetization & Mobile Money' },
+  'projects.p1.desc': { fr: 'Conception d\'un module d\'abonnements à états, intégration CinetPay Mobile Money sécurisée avec webhooks anti-falsification et stratégie de repli manuel résiliente pour marché émergent.', en: 'State-machine subscription module, secure CinetPay Mobile Money integration with anti-tampering webhooks, and resilient manual fallback strategy for emerging markets.' },
+  'projects.p1.metric': { fr: '100% Résilient', en: '100% Resilient' },
+  'projects.p1.metricLabel': { fr: 'Repli Mobile Money garanti', en: 'Guaranteed Mobile Money fallback' },
+  'projects.p1.result': { fr: 'Architecture abonnements & parrainage multi-boutiques en production', en: 'Subscription & multi-store referral architecture in production' },
+  'projects.p1.tag1': { fr: 'Java 21 / Spring Boot 4', en: 'Java 21 / Spring Boot 4' },
+  'projects.p1.tag2': { fr: 'CinetPay Mobile Money', en: 'CinetPay Mobile Money' },
+  'projects.p1.tag3': { fr: 'PostgreSQL (Supabase)', en: 'PostgreSQL (Supabase)' },
+
+  // Project 2: Sellam.store Diagnostic Production
+  'projects.p2.title': { fr: 'Sellam.store · Diagnostic Production & Offline-First', en: 'Sellam.store · Production Troubleshooting & Offline-First' },
+  'projects.p2.desc': { fr: 'Résolution méthodique d\'un incident critique bloquant les appels API (faux-positif CORS masquant une URL invalide au build), migration SQL en production et spécification offline-first sur Dexie.js.', en: 'Methodical resolution of a critical incident blocking API calls (CORS false-positive masking build URL error), production SQL migration, and offline-first Dexie.js specification.' },
+  'projects.p2.metric': { fr: '0 Incident bloquant', en: '0 Blocking incident' },
+  'projects.p2.metricLabel': { fr: 'Production stabilisée', en: 'Stabilized production' },
+  'projects.p2.result': { fr: 'Rétablissement immédiat des appels API multi-boutiques', en: 'Immediate recovery of multi-store API calls' },
+  'projects.p2.tag1': { fr: 'Spring Security 7', en: 'Spring Security 7' },
+  'projects.p2.tag2': { fr: 'Railway / DevOps', en: 'Railway / DevOps' },
+  'projects.p2.tag3': { fr: 'IndexedDB (Dexie.js)', en: 'IndexedDB (Dexie.js)' },
+
+  // Project 3: Audit Hôtelier
+  'projects.p3.title': { fr: 'Audit Digital & Optimisation Hôtelière', en: 'Digital Audit & Hotel Optimization' },
+  'projects.p3.desc': { fr: 'Analyse complète des Core Web Vitals, du SEO sémantique et du tunnel de réservation directe pour réduire la dépendance aux plateformes intermédiaires (OTA).', en: 'Comprehensive analysis of Core Web Vitals, semantic SEO, and direct booking funnel to reduce dependency on OTA platforms.' },
+  'projects.p3.metric': { fr: '30+ Points de contrôle', en: '30+ Checkpoints' },
+  'projects.p3.metricLabel': { fr: 'Audit exhaustif', en: 'Comprehensive audit' },
+  'projects.p3.result': { fr: 'Rapport technique et plan d\'action pour maximiser les réservations directes', en: 'Technical report and action plan to maximize direct bookings' },
+  'projects.p3.tag1': { fr: 'Audit SEO & UX', en: 'SEO & UX Audit' },
+  'projects.p3.tag2': { fr: 'Core Web Vitals', en: 'Core Web Vitals' },
+  'projects.p3.tag3': { fr: 'Tunnel de réservation', en: 'Booking Funnel' },
 
   // Methodology
   'methodology.title': { fr: 'Ma Méthodologie', en: 'My Methodology' },
@@ -257,60 +263,189 @@ const translations: Record<string, Record<Lang, string>> = {
 
   // Portfolio Page
   'portfolio.back': { fr: 'Retour à l\'accueil', en: 'Back to home' },
-  'portfolio.badge': { fr: 'Portfolio', en: 'Portfolio' },
-  'portfolio.title': { fr: 'Mes Réalisations', en: 'My Work' },
+  'portfolio.badge': { fr: 'Portfolio Technique', en: 'Technical Portfolio' },
+  'portfolio.title': { fr: 'Études de Cas & Réalisations en Production', en: 'Case Studies & Production Achievements' },
   'portfolio.subtitle': {
-    fr: 'Découvrez en détail les projets que j\'ai conçus et livrés. Chaque réalisation illustre mon expertise technique, ma rigueur méthodologique et mon engagement envers des résultats concrets et mesurables.',
-    en: 'Explore in detail the projects I\'ve designed and delivered. Each achievement showcases my technical expertise, methodical rigor and commitment to concrete, measurable results.',
+    fr: 'Des interventions réelles et documentées sur des architectures SaaS distribuées, des systèmes de paiement Mobile Money résilients et des audits de performance.',
+    en: 'Documented, real-world interventions on distributed SaaS architectures, resilient Mobile Money payment systems, and performance audits.',
   },
-  'portfolio.context': { fr: 'Contexte', en: 'Context' },
-  'portfolio.solution': { fr: 'Solution technique', en: 'Technical solution' },
-  'portfolio.results': { fr: 'Résultats', en: 'Results' },
-  'portfolio.stack': { fr: 'Stack technique', en: 'Tech stack' },
-  'portfolio.cta': { fr: 'Un projet similaire ? Discutons-en', en: 'A similar project? Let\'s talk' },
+  'portfolio.framing.title': { fr: 'Rigueur d\'Ingénierie & Résultats Vérifiés', en: 'Engineering Rigor & Verified Results' },
+  'portfolio.framing.text': {
+    fr: 'Chaque étude de cas reflète une mission technique concrète : les choix d\'architecture, la stack éprouvée, le diagnostic de bugs critiques en production et l\'impact mesurable sur le système.',
+    en: 'Each case study reflects a concrete technical mission: architectural decisions, battle-tested stack, critical production debugging, and measurable system impact.',
+  },
+  'portfolio.tab.skills': { fr: 'Stack & Hard Skills', en: 'Stack & Hard Skills' },
+  'portfolio.tab.approach': { fr: 'Démarche de l\'Ingénieur & Soft Skills', en: 'Engineering Approach & Soft Skills' },
+  'portfolio.tab.impact': { fr: 'Réalisation Concrète & Impact', en: 'Concrete Achievement & Impact' },
+  'portfolio.category.label': { fr: 'Catégorie :', en: 'Category:' },
+  'portfolio.status.label': { fr: 'Statut :', en: 'Status:' },
+  'portfolio.status.prod': { fr: 'En production', en: 'In Production' },
+  'portfolio.cta': { fr: 'Un projet d\'envergure ? Parlons de votre architecture', en: 'An ambitious project? Let\'s discuss your architecture' },
   'portfolio.cta.viewAll': { fr: 'Découvrir tout le portfolio en détail', en: 'Explore full portfolio in detail' },
 
-  // Portfolio Project 1
-  'portfolio.p1.title': { fr: 'Audit Digital & Optimisation Hôtelière', en: 'Digital Audit & Hotel Optimization' },
-  'portfolio.p1.context': {
-    fr: 'Un établissement hôtelier de premier plan souhaitait améliorer sa visibilité en ligne, optimiser son parcours de réservation directe et réduire sa dépendance aux OTA (Booking, Expedia).',
-    en: 'A leading hotel establishment wanted to improve its online visibility, optimize its direct booking journey and reduce dependency on OTAs (Booking, Expedia).',
+  // Project 1: Sellam.store Monetization
+  'portfolio.p1.badge': { fr: 'sellam.store · Production', en: 'sellam.store · Production' },
+  'portfolio.p1.category': { fr: 'Développement Web · Ingénierie & Sciences', en: 'Web Development · Engineering & Sciences' },
+  'portfolio.p1.title': {
+    fr: 'Conception et intégration d\'un module de monétisation SaaS (abonnements, paiement Mobile Money, parrainage) avec stratégie de repli résiliente',
+    en: 'Design and integration of a SaaS monetization module (subscriptions, Mobile Money, referral) with resilient fallback strategy',
   },
-  'portfolio.p1.solution': {
-    fr: 'Audit technique complet couvrant plus de 30 points de contrôle : performance de chargement (Core Web Vitals), audit SEO structurel et sémantique, analyse UX du tunnel de réservation, revue de l\'architecture mobile-first et recommandations d\'accessibilité.',
-    en: 'Comprehensive technical audit covering 30+ checkpoints: loading performance (Core Web Vitals), structural and semantic SEO audit, booking funnel UX analysis, mobile-first architecture review and accessibility recommendations.',
+  'portfolio.p1.summary': {
+    fr: 'Pilotage de la conception et mise en production d\'un système complet de monétisation pour l\'application de gestion commerciale multi-boutiques sellam.store, avec machine à états et repli manuel en cas d\'indisponibilité du prestataire de paiement.',
+    en: 'Product steering and production deployment of a complete monetization system for the multi-store commercial SaaS sellam.store, featuring a state machine and manual fallback for uninterrupted service.',
   },
-  'portfolio.p1.result1': { fr: '30+ points de contrôle audités', en: '30+ checkpoints audited' },
-  'portfolio.p1.result2': { fr: 'Plan d\'action technique priorisé livré', en: 'Prioritized technical action plan delivered' },
-  'portfolio.p1.result3': { fr: 'Optimisations SEO identifiées pour +40% de trafic organique potentiel', en: 'SEO optimizations identified for +40% potential organic traffic' },
+  'portfolio.p1.skill.backend': {
+    fr: 'Backend : Java 21, Spring Boot 4, Spring Security 6 (filtres personnalisés, @PreAuthorize, RBAC), Spring Data JPA / Hibernate, PostgreSQL (Supabase)',
+    en: 'Backend: Java 21, Spring Boot 4, Spring Security 6 (custom filters, @PreAuthorize, RBAC), Spring Data JPA / Hibernate, PostgreSQL (Supabase)',
+  },
+  'portfolio.p1.skill.frontend': {
+    fr: 'Frontend : React (hooks, state management), Axios, Tailwind CSS',
+    en: 'Frontend: React (hooks, state management), Axios, Tailwind CSS',
+  },
+  'portfolio.p1.skill.api': {
+    fr: 'Fintech & Webhooks : CinetPay (Mobile Money mode Seamless/Checkout), webhooks serveur-à-serveur avec revérification obligatoire anti-falsification',
+    en: 'Fintech & Webhooks: CinetPay (Seamless/Checkout Mobile Money), server-to-server webhooks with mandatory server re-verification (anti-tampering)',
+  },
+  'portfolio.p1.skill.arch': {
+    fr: 'Architecture : Machine à états (essai → actif → retard → expiré), filtre applicatif pour blocage conditionnel, gestion d\'erreurs métier vs indisponibilité de service tiers',
+    en: 'Architecture: State machine for subscription lifecycle (trial → active → overdue → expired), security filter for conditional access, domain vs 3rd-party error isolation',
+  },
+  'portfolio.p1.skill.devops': {
+    fr: 'DevOps & Légal : Déploiement Railway (backend) et Vercel (frontend), gestion sécurisée des variables d\'environnement (VITE_), rédaction CGU & Confidentialité conformes',
+    en: 'DevOps & Compliance: Railway deployment (backend) and Vercel (frontend), secure environment variable management (VITE_), compliant Terms & Privacy policy drafting',
+  },
+  'portfolio.p1.approach.1': {
+    fr: 'Pilotage produit rigoureux : formulation de décisions tranchées sur le modèle d\'abonnement (par boutique vs par compte), logique de parrainage conditionnelle et anticipation des cas limites multi-boutiques.',
+    en: 'Rigorous product steering: firm decisions on subscription models (per store vs per account), conditional referral rewards, and multi-store edge case anticipation.',
+  },
+  'portfolio.p1.approach.2': {
+    fr: 'Anticipation des contraintes terrain : conception proactive d\'un mécanisme de repli (paiement manuel Mobile Money) garantissant 100% de continuité de service face aux délais d\'activation administrative locale.',
+    en: 'Field constraint anticipation: proactive design of a manual Mobile Money fallback mechanism ensuring 100% business continuity despite local administrative payment delays.',
+  },
+  'portfolio.p1.approach.3': {
+    fr: 'Diagnostic méthodique : analyse de stack traces et logs de production pour isoler la cause racine (distinction entre redémarrage local devtools et crash-loop réel sur Railway).',
+    en: 'Methodical troubleshooting: stack trace and production log analysis to isolate root cause (distinguishing local devtools reload from actual Railway crash-loop).',
+  },
+  'portfolio.p1.approach.4': {
+    fr: 'Exigence de non-régression : vérification systématique de l\'état réel du code existant avant toute modification pour garantir la cohérence des patches avec l\'architecture en place.',
+    en: 'Non-regression requirement: systematic verification of existing codebase state before any modification to ensure architectural consistency.',
+  },
+  'portfolio.p1.impact.1': {
+    fr: 'Architecture de monétisation SaaS complète déployée et opérationnelle en production.',
+    en: 'Complete SaaS monetization architecture deployed and operational in production.',
+  },
+  'portfolio.p1.impact.2': {
+    fr: 'Continuité de service et encaissements garantis même en cas d\'indisponibilité du prestataire principal grâce au mode de repli manuel.',
+    en: 'Uninterrupted service and payments guaranteed even during 3rd-party gateway downtime via manual fallback.',
+  },
+  'portfolio.p1.impact.3': {
+    fr: 'Programme de parrainage robuste avec choix explicite du bénéficiaire sur les comptes multi-boutiques, sans ambiguïté produit.',
+    en: 'Robust referral program with explicit beneficiary selection for multi-store accounts, eliminating product ambiguity.',
+  },
+  'portfolio.p1.impact.4': {
+    fr: 'Résolution des crash-loops de déploiement et des avertissements React par vérification méthodique.',
+    en: 'Deployment crash-loops and React warnings diagnosed and fixed through methodical verification.',
+  },
 
-  // Portfolio Project 2
-  'portfolio.p2.title': { fr: 'Infrastructure Backend & Menu Numérique', en: 'Backend Infrastructure & Digital Menu' },
-  'portfolio.p2.context': {
-    fr: 'Un restaurant haut de gamme avait besoin d\'une infrastructure backend robuste et sécurisée pour gérer ses commandes en ligne, son menu dynamique et la communication avec sa clientèle.',
-    en: 'A premium restaurant needed a robust and secure backend infrastructure to manage online orders, dynamic menu and customer communication.',
+  // Project 2: Sellam.store Troubleshooting
+  'portfolio.p2.badge': { fr: 'sellam.store · Résolution Critique', en: 'sellam.store · Critical Fix' },
+  'portfolio.p2.category': { fr: 'Développement Web · Ingénierie & Sciences', en: 'Web Development · Engineering & Sciences' },
+  'portfolio.p2.title': {
+    fr: 'Diagnostic et résolution d\'incidents de production sur une architecture SaaS distribuée (Spring Boot / React / Multi-cloud)',
+    en: 'Troubleshooting and root-cause resolution of production incidents on a distributed SaaS architecture (Spring Boot / React / Multi-cloud)',
   },
-  'portfolio.p2.solution': {
-    fr: 'Développement d\'une API REST complète sous Spring Boot avec PostgreSQL. Authentification JWT stricte, gestion des rôles (admin, serveur, client), système de commandes en temps réel et panel d\'administration pour la mise à jour du menu et des prix.',
-    en: 'Development of a complete REST API with Spring Boot and PostgreSQL. Strict JWT authentication, role management (admin, server, client), real-time order system and admin panel for menu and price updates.',
+  'portfolio.p2.summary': {
+    fr: 'Diagnostic approfondi d\'un blocage API généralisé en production (fausse alerte CORS), migration SQL à chaud d\'une contrainte d\'intégrité PostgreSQL et spécification technique d\'une architecture de facturation offline-first sur Dexie.js.',
+    en: 'Deep-dive troubleshooting of a widespread production API outage (CORS false alert), hotfix SQL migration of a PostgreSQL constraint, and technical spec of an offline-first billing architecture on Dexie.js.',
   },
-  'portfolio.p2.result1': { fr: 'Architecture sécurisée JWT production-ready', en: 'Production-ready JWT secured architecture' },
-  'portfolio.p2.result2': { fr: 'Base de données optimisée et scalable', en: 'Optimized and scalable database' },
-  'portfolio.p2.result3': { fr: 'Temps de réponse API < 200ms', en: 'API response time < 200ms' },
+  'portfolio.p2.skill.backend': {
+    fr: 'Backend : Java 21, Spring Boot 4, Spring Security 7 (chaîne de filtres, CORS, JWT, @PreAuthorize), Hibernate/JPA 7, PostgreSQL (contraintes CHECK, migrations SQL)',
+    en: 'Backend: Java 21, Spring Boot 4, Spring Security 7 (filter chain, CORS, JWT, @PreAuthorize), Hibernate/JPA 7, PostgreSQL (CHECK constraints, SQL migrations)',
+  },
+  'portfolio.p2.skill.frontend': {
+    fr: 'Frontend & Offline : React, Axios (intercepteurs requêtes/réponses, cache offline localStorage), Vite (variables d\'environnement)',
+    en: 'Frontend & Offline: React, Axios (request/response interceptors, localStorage offline cache), Vite (build environment variables)',
+  },
+  'portfolio.p2.skill.infra': {
+    fr: 'Infrastructure & DevOps : Railway, Vercel, Supabase, analyse des logs runtime Railway, DNS/domaines applicatifs',
+    en: 'Infrastructure & DevOps: Railway, Vercel, Supabase, Railway runtime log analysis, application DNS/domains',
+  },
+  'portfolio.p2.skill.debug': {
+    fr: 'Méthodologie Debug : Analyse de traces Spring Security complexes, analyse de fichiers HAR (HTTP Archive) pour tracer les requêtes bout-en-bout, distinction faux-positif CORS vs URL mal formée',
+    en: 'Debugging Methodology: Complex Spring Security trace analysis, HAR (HTTP Archive) file inspection for end-to-end tracing, CORS false-positive vs malformed URL root cause distinction',
+  },
+  'portfolio.p2.skill.offline': {
+    fr: 'Architecture Offline-first : IndexedDB (Dexie.js), queue de synchronisation (pendingActions), stratégie de résolution de conflits hors-ligne',
+    en: 'Offline-First Architecture: IndexedDB (Dexie.js), synchronization queue (pendingActions), offline conflict resolution strategy',
+  },
+  'portfolio.p2.approach.1': {
+    fr: 'Démarche de diagnostic structurée en éliminant méthodiquement les hypothèses par ordre de probabilité (config CORS → service down → erreur de routing URL), évitant tout patch superficiel.',
+    en: 'Structured diagnostic workflow eliminating hypotheses by probability (CORS config → service down → URL routing error), avoiding superficial patches.',
+  },
+  'portfolio.p2.approach.2': {
+    fr: 'Capacité à distinguer un signal trompeur (erreur CORS générique) de sa cause racine réelle (concaténation d\'URL invalide côté build frontend), démontrée par vérification croisée logs/HAR.',
+    en: 'Ability to distinguish misleading signals (generic CORS error) from true root causes (invalid URL concatenation at frontend build), verified across logs and HAR traces.',
+  },
+  'portfolio.p2.approach.3': {
+    fr: 'Structuration d\'une demande multi-facettes (facturation offline, gestion de quantités, tour guidé) en sous-problèmes clairement délimités avant tout développement.',
+    en: 'Structuring a multi-faceted requirement (offline billing, quantity merging, guided tour) into well-bounded sub-problems prior to development.',
+  },
+  'portfolio.p2.impact.1': {
+    fr: 'Incident bloquant résolu : rétablissement immédiat de l\'intégralité des appels API de l\'application SaaS multi-boutiques.',
+    en: 'Blocking incident resolved: immediate restoration of all API calls across the multi-store SaaS application.',
+  },
+  'portfolio.p2.impact.2': {
+    fr: 'Contrainte d\'intégrité PostgreSQL défaillante corrigée en production sans interruption, permettant l\'activation manuelle immédiate des abonnements.',
+    en: 'Faulty PostgreSQL integrity constraint fixed in production without downtime, enabling immediate manual subscription activation.',
+  },
+  'portfolio.p2.impact.3': {
+    fr: 'Spécification technique détaillée livrée pour la facturation offline-first avec fusion de quantités et affichage optimiste sur Dexie / IndexedDB.',
+    en: 'Detailed technical specification delivered for offline-first billing with quantity merging and optimistic UI on Dexie / IndexedDB.',
+  },
 
-  // Portfolio Project 3
-  'portfolio.p3.title': { fr: 'Automatisation de Contenu IA', en: 'AI Content Automation' },
-  'portfolio.p3.context': {
-    fr: 'Une entreprise de médias souhaitait automatiser la collecte, le traitement et la publication de contenus éditoriaux à partir de multiples sources de données, sans intervention humaine récurrente.',
-    en: 'A media company wanted to automate the collection, processing and publishing of editorial content from multiple data sources, without recurring human intervention.',
+  // Project 3: Hotel Audit
+  'portfolio.p3.badge': { fr: 'Hôtellerie · Optimisation', en: 'Hospitality · Optimization' },
+  'portfolio.p3.category': { fr: 'Performance Web, UX & SEO', en: 'Web Performance, UX & SEO' },
+  'portfolio.p3.title': {
+    fr: 'Audit technique, optimisation des Core Web Vitals et refonte du tunnel de réservation directe',
+    en: 'Technical audit, Core Web Vitals optimization, and direct booking funnel overhaul',
   },
-  'portfolio.p3.solution': {
-    fr: 'Mise en place de pipelines automatisés combinant des scripts d\'ingestion de données, des modèles de langage (LLM) pour la reformulation et la structuration, et des connecteurs CMS pour la publication directe. Orchestration via workflows planifiés avec monitoring et alertes.',
-    en: 'Implementation of automated pipelines combining data ingestion scripts, language models (LLM) for reformulation and structuring, and CMS connectors for direct publishing. Orchestration via scheduled workflows with monitoring and alerts.',
+  'portfolio.p3.summary': {
+    fr: 'Audit digital exhaustif couvrant plus de 30 points de contrôle pour un établissement hôtelier de premier plan : temps de chargement, SEO structurel, accessibilité et ergonomie du tunnel de réservation mobile.',
+    en: 'Exhaustive digital audit covering 30+ checkpoints for a premier hotel property: loading performance, structural SEO, accessibility, and mobile booking funnel UX.',
   },
-  'portfolio.p3.result1': { fr: '100% automatisé — 0 intervention manuelle', en: '100% automated — 0 manual intervention' },
-  'portfolio.p3.result2': { fr: 'Gain de productivité estimé à 15h / semaine', en: 'Estimated productivity gain of 15h / week' },
-  'portfolio.p3.result3': { fr: 'Publication continue 24/7 sans supervision', en: 'Continuous 24/7 publishing without supervision' },
+  'portfolio.p3.skill.audit': {
+    fr: 'Audit & Diagnostic : Core Web Vitals (LCP, FID/INP, CLS), Google PageSpeed Insights, analyse d\'arborescence et de maillage interne',
+    en: 'Audit & Diagnostics: Core Web Vitals (LCP, FID/INP, CLS), Google PageSpeed Insights, site tree and internal linking analysis',
+  },
+  'portfolio.p3.skill.frontend': {
+    fr: 'Frontend : React, Tailwind CSS, Responsive Design mobile-first, optimisation des assets et médias',
+    en: 'Frontend: React, Tailwind CSS, Mobile-first responsive design, media and asset optimization',
+  },
+  'portfolio.p3.skill.seo': {
+    fr: 'SEO & Données Structurées : Balisage sémantique Schema.org (Hotel, Room, AggregateRating), Open Graph, métadonnées dynamiques',
+    en: 'SEO & Structured Data: Semantic Schema.org markup (Hotel, Room, AggregateRating), Open Graph, dynamic metadata',
+  },
+  'portfolio.p3.approach.1': {
+    fr: 'Analyse méthodique de l\'entonnoir de conversion pour identifier les points de friction et les causes d\'abandon de panier sur mobile.',
+    en: 'Methodical conversion funnel analysis identifying mobile drop-off points and checkout friction.',
+  },
+  'portfolio.p3.approach.2': {
+    fr: 'Priorisation des actions techniques par matrice effort / impact business direct, focalisée sur la réduction des commissions intermédiaires.',
+    en: 'Technical action prioritization via effort vs direct business impact matrix, focused on lowering OTA commissions.',
+  },
+  'portfolio.p3.impact.1': {
+    fr: 'Plus de 30 points de contrôle audités et plan d\'action technique priorisé livré à la direction de l\'établissement.',
+    en: '30+ checkpoints audited and prioritized technical action plan delivered to hotel management.',
+  },
+  'portfolio.p3.impact.2': {
+    fr: 'Optimisations SEO structurelles identifiées pour un potentiel de +40% de trafic organique qualifié.',
+    en: 'Structural SEO optimizations identified for +40% potential qualified organic traffic.',
+  },
+  'portfolio.p3.impact.3': {
+    fr: 'Recommandations d\'architecture pour un parcours de réservation fluide réduisant la dépendance aux OTA.',
+    en: 'Architectural roadmap for a streamlined booking journey reducing reliance on OTA platforms.',
+  },
 
   // Footer
   'footer.desc': { fr: 'Solutions digitales premium, cybersécurité et intelligence artificielle pour les entreprises exigeantes.', en: 'Premium digital solutions, cybersecurity and artificial intelligence for demanding businesses.' },
