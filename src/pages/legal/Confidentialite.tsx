@@ -18,9 +18,9 @@ export function Confidentialite() {
             Collecte des données
           </h2>
           <p>
-            Nous collectons des données (Nom, Entreprise, Email, Besoin) via le formulaire
-            de contact afin de répondre à vos demandes B2B. Aucune donnée n'est collectée
-            à votre insu.
+            Nous collectons le nom de l’hôtel, votre nom, votre numéro WhatsApp et la formule
+            choisie via le formulaire, afin de répondre à une demande d’appel. Aucune donnée
+            n’est collectée à votre insu.
           </p>
         </section>
 
@@ -29,9 +29,8 @@ export function Confidentialite() {
             Utilisation et Sécurité
           </h2>
           <p>
-            Vos données sont destinées exclusivement à <strong className="text-foreground">Nelo | Digital &amp; IA</strong>.
-            En accord avec nos standards de cybersécurité, elles sont protégées et ne seront
-            jamais cédées, vendues ou transférées à des tiers.
+            Vos données sont destinées exclusivement à Nelo. Elles ne sont ni cédées, ni vendues,
+            ni transférées à des tiers.
           </p>
         </section>
 

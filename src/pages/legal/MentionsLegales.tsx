@@ -19,7 +19,7 @@ export function MentionsLegales() {
           </h2>
           <p>
             Ce site est édité par <strong className="text-foreground">Nelo</strong>,
-            Consultant indépendant en Ingénierie Web &amp; IA, basé à Yaoundé, Cameroun.
+            qui livre des sites de réservation pour hôtels indépendants, basé à Yaoundé, Cameroun.
           </p>
           <p>
             Email :{' '}
