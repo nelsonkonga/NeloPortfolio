@@ -9,449 +9,342 @@ interface LangContextValue {
 }
 
 const translations: Record<string, Record<Lang, string>> = {
-  // Nav
-  'nav.expertise': { fr: 'Expertise', en: 'Expertise' },
-  'nav.projects': { fr: 'Études de cas', en: 'Case Studies' },
-  'nav.methodology': { fr: 'Méthodologie', en: 'Methodology' },
+  'nav.offer': { fr: 'Offre', en: 'Offer' },
+  'nav.examples': { fr: 'Scénarios', en: 'Scenarios' },
+  'nav.method': { fr: 'Déroulement', en: 'Process' },
   'nav.pricing': { fr: 'Tarifs', en: 'Pricing' },
-  'nav.portfolio': { fr: 'Portfolio', en: 'Portfolio' },
+  'nav.faq': { fr: 'Questions', en: 'FAQ' },
   'nav.about': { fr: 'À propos', en: 'About' },
   'nav.contact': { fr: 'Contact', en: 'Contact' },
-  'nav.cta': { fr: 'Discuter de votre projet', en: 'Discuss your project' },
+  'nav.cta': { fr: 'Réserver un appel', en: 'Book a call' },
 
-  // Hero
-  'hero.badge': { fr: 'Disponible pour de nouveaux projets', en: 'Available for new projects' },
-  'hero.title': { fr: 'Propulsez votre entreprise. Sécurisez vos données. Intégrez l\'IA.', en: 'Accelerate your business. Secure your data. Integrate AI.' },
-  'hero.subtitle': { fr: 'Solutions digitales premium, architectures sécurisées et automatisation intelligente pour les PME, l\'hôtellerie et la restauration.', en: 'Premium digital solutions, secure architectures and intelligent automation for SMBs, hospitality and restaurants.' },
-  'hero.cta.primary': { fr: 'Voir mon expertise', en: 'View my expertise' },
-  'hero.cta.secondary': { fr: 'Demander un audit', en: 'Request an audit' },
+  'cta.book': { fr: 'Réserver un appel de 20 min', en: 'Book a 20-min call' },
+  'cta.pricing': { fr: 'Voir les formules', en: 'See the packages' },
+  'cta.instagram': { fr: 'Instagram', en: 'Instagram' },
+  'cta.linkedin': { fr: 'LinkedIn', en: 'LinkedIn' },
+  'cta.whatsapp': { fr: 'WhatsApp', en: 'WhatsApp' },
 
-  // Services
-  'services.title': { fr: 'Mon Expertise', en: 'My Expertise' },
-  'services.subtitle': { fr: 'Des solutions techniques de pointe adaptées à vos enjeux business.', en: 'State-of-the-art technical solutions adapted to your business challenges.' },
-  'services.web.title': { fr: 'Création Web & Plateformes Premium', en: 'Web Development & Premium Platforms' },
-  'services.web.desc': { fr: 'Réservation en ligne, menus digitaux, interfaces sur-mesure pour l\'hôtellerie et la restauration haut de gamme.', en: 'Online booking, digital menus, bespoke interfaces for luxury hospitality and restaurant industries.' },
-  'services.ai.title': { fr: 'Automatisation & Workflows IA', en: 'AI Automation & Workflows' },
-  'services.ai.desc': { fr: 'Intégration d\'outils IA, ingestion de données et pipelines automatisés pour maximiser votre productivité.', en: 'AI tools integration, data ingestion and automated pipelines to maximize your productivity.' },
-  'services.security.title': { fr: 'Cybersécurité & Architectures Backend', en: 'Cybersecurity & Backend Architectures' },
-  'services.security.desc': { fr: 'Protection des données sensibles, authentification robuste par JWT, architectures sécurisées by design (Spring Boot, PostgreSQL, Node.js).', en: 'Sensitive data protection, robust JWT authentication, security-by-design architectures (Spring Boot, PostgreSQL, Node.js).' },
-  'services.audit.title': { fr: 'Audit Digital & Performance', en: 'Digital Audit & Performance' },
-  'services.audit.desc': { fr: 'Optimisation SEO, analyse de vitesse de chargement et amélioration des taux de conversion UX.', en: 'SEO optimization, loading speed analysis and UX conversion rate improvement.' },
-  'services.cta.title': { fr: 'Prêt à sécuriser et optimiser votre infrastructure ?', en: 'Ready to secure and optimize your infrastructure?' },
-  'services.cta.button': { fr: 'Demander un audit', en: 'Request an audit' },
-
-  // Projects (Home page preview)
-  'projects.title': { fr: 'Études de Cas Réelles & B2B', en: 'Real-World & B2B Case Studies' },
-  'projects.subtitle': { fr: 'Des interventions techniques de haut niveau, des architectures résilientes et des résultats mesurables en production.', en: 'High-level technical interventions, resilient architectures, and measurable production results.' },
-  
-  // Project 1: Sellam.store Monétisation
-  'projects.p1.title': { fr: 'Sellam.store · Monétisation SaaS & Mobile Money', en: 'Sellam.store · SaaS Monetization & Mobile Money' },
-  'projects.p1.desc': { fr: 'Conception d\'un module d\'abonnements à états, intégration CinetPay Mobile Money sécurisée avec webhooks anti-falsification et stratégie de repli manuel résiliente pour marché émergent.', en: 'State-machine subscription module, secure CinetPay Mobile Money integration with anti-tampering webhooks, and resilient manual fallback strategy for emerging markets.' },
-  'projects.p1.metric': { fr: '100% Résilient', en: '100% Resilient' },
-  'projects.p1.metricLabel': { fr: 'Repli Mobile Money garanti', en: 'Guaranteed Mobile Money fallback' },
-  'projects.p1.result': { fr: 'Architecture abonnements & parrainage multi-boutiques en production', en: 'Subscription & multi-store referral architecture in production' },
-  'projects.p1.tag1': { fr: 'Java 21 / Spring Boot 4', en: 'Java 21 / Spring Boot 4' },
-  'projects.p1.tag2': { fr: 'CinetPay Mobile Money', en: 'CinetPay Mobile Money' },
-  'projects.p1.tag3': { fr: 'PostgreSQL (Supabase)', en: 'PostgreSQL (Supabase)' },
-
-  // Project 2: Sellam.store Diagnostic Production
-  'projects.p2.title': { fr: 'Sellam.store · Diagnostic Production & Offline-First', en: 'Sellam.store · Production Troubleshooting & Offline-First' },
-  'projects.p2.desc': { fr: 'Résolution méthodique d\'un incident critique bloquant les appels API (faux-positif CORS masquant une URL invalide au build), migration SQL en production et spécification offline-first sur Dexie.js.', en: 'Methodical resolution of a critical incident blocking API calls (CORS false-positive masking build URL error), production SQL migration, and offline-first Dexie.js specification.' },
-  'projects.p2.metric': { fr: '0 Incident bloquant', en: '0 Blocking incident' },
-  'projects.p2.metricLabel': { fr: 'Production stabilisée', en: 'Stabilized production' },
-  'projects.p2.result': { fr: 'Rétablissement immédiat des appels API multi-boutiques', en: 'Immediate recovery of multi-store API calls' },
-  'projects.p2.tag1': { fr: 'Spring Security 7', en: 'Spring Security 7' },
-  'projects.p2.tag2': { fr: 'Railway / DevOps', en: 'Railway / DevOps' },
-  'projects.p2.tag3': { fr: 'IndexedDB (Dexie.js)', en: 'IndexedDB (Dexie.js)' },
-
-  // Project 3: Audit Hôtelier
-  'projects.p3.title': { fr: 'Audit Digital & Optimisation Hôtelière', en: 'Digital Audit & Hotel Optimization' },
-  'projects.p3.desc': { fr: 'Analyse complète des Core Web Vitals, du SEO sémantique et du tunnel de réservation directe pour réduire la dépendance aux plateformes intermédiaires (OTA).', en: 'Comprehensive analysis of Core Web Vitals, semantic SEO, and direct booking funnel to reduce dependency on OTA platforms.' },
-  'projects.p3.metric': { fr: '30+ Points de contrôle', en: '30+ Checkpoints' },
-  'projects.p3.metricLabel': { fr: 'Audit exhaustif', en: 'Comprehensive audit' },
-  'projects.p3.result': { fr: 'Rapport technique et plan d\'action pour maximiser les réservations directes', en: 'Technical report and action plan to maximize direct bookings' },
-  'projects.p3.tag1': { fr: 'Audit SEO & UX', en: 'SEO & UX Audit' },
-  'projects.p3.tag2': { fr: 'Core Web Vitals', en: 'Core Web Vitals' },
-  'projects.p3.tag3': { fr: 'Tunnel de réservation', en: 'Booking Funnel' },
-
-  // Methodology
-  'methodology.title': { fr: 'Ma Méthodologie', en: 'My Methodology' },
-  'methodology.subtitle': { fr: 'Un processus rigoureux pour des livrables sans compromis.', en: 'A rigorous process for uncompromising deliverables.' },
-  'methodology.step1.title': { fr: 'Audit & Cadrage Stratégique', en: 'Audit & Strategic Scoping' },
-  'methodology.step1.desc': { fr: 'Analyse de votre contexte, de vos objectifs business et de vos contraintes techniques pour définir une feuille de route claire.', en: 'Analysis of your context, business objectives and technical constraints to define a clear roadmap.' },
-  'methodology.step2.title': { fr: 'Architecture & Security by Design', en: 'Architecture & Security by Design' },
-  'methodology.step2.desc': { fr: 'Conception d\'architectures robustes intégrant la sécurité dès la conception, pas en option.', en: 'Design of robust architectures integrating security from the ground up, not as an afterthought.' },
-  'methodology.step3.title': { fr: 'Développement & Intégration IA', en: 'Development & AI Integration' },
-  'methodology.step3.desc': { fr: 'Développement agile, intégration des outils IA pertinents et tests rigoureux à chaque étape.', en: 'Agile development, integration of relevant AI tools and rigorous testing at every step.' },
-  'methodology.step4.title': { fr: 'Déploiement & Suivi', en: 'Deployment & Monitoring' },
-  'methodology.step4.desc': { fr: 'Mise en production maîtrisée, monitoring continu et accompagnement post-livraison pour garantir la performance.', en: 'Controlled production deployment, continuous monitoring and post-delivery support to ensure performance.' },
-
-  // About
-  'about.title': { fr: 'À Propos', en: 'About' },
-  'about.role': { fr: 'Consultant Web & IA', en: 'Web & AI Consultant' },
-  'about.location': { fr: 'Yaoundé, Cameroun — Disponible à l\'international', en: 'Yaoundé, Cameroon — Available internationally' },
-  'about.bio': { fr: 'Formé à l\'ingénierie logicielle et aux mathématiques appliquées, j\'accompagne les entreprises dans leur transformation digitale avec une rigueur scientifique. Mon approche repose sur la fiabilité : que ce soit pour concevoir l\'architecture backend sécurisée d\'un restaurant, réaliser l\'audit technique d\'un hôtel premium, ou automatiser des flux de travail complexes grâce à l\'IA, je construis des solutions durables. Mon exigence est simple : un code propre, des infrastructures solides et une technologie qui sert véritablement vos objectifs business.', en: 'Trained in software engineering and applied mathematics, I support businesses in their digital transformation with scientific rigor. My approach is built on reliability: whether designing the secure backend architecture of a restaurant, conducting a technical audit of a premium hotel, or automating complex workflows with AI, I build lasting solutions. My standard is simple: clean code, solid infrastructure and technology that truly serves your business objectives.' },
-  'about.available': { fr: 'Disponible', en: 'Available' },
-  'about.international': { fr: 'International', en: 'International' },
-  'about.stat1.title': { fr: 'Code Clean', en: 'Clean Code' },
-  'about.stat1.subtitle': { fr: 'Respect strict des standards de l\'industrie', en: 'Strict adherence to industry standards' },
-  'about.stat2.title': { fr: 'Security by Design', en: 'Security by Design' },
-  'about.stat2.subtitle': { fr: 'La protection de vos données intégrée dès la première ligne de code', en: 'Data protection built in from the first line of code' },
-  'about.stat3.title': { fr: 'Veille Technologique', en: 'Tech Watch' },
-  'about.stat3.subtitle': { fr: 'Utilisation des derniers standards en IA et développement Web', en: 'Using the latest standards in AI and Web development' },
-
-  // Contact
-  'contact.title': { fr: 'Discutons de votre projet', en: 'Let\'s discuss your project' },
-  'contact.subtitle': { fr: 'Prenons le temps de comprendre vos besoins pour construire la meilleure solution.', en: 'Let\'s take the time to understand your needs to build the best solution.' },
-  'contact.company': { fr: 'Nom de l\'entreprise', en: 'Company name' },
-  'contact.company.placeholder': { fr: 'Nom de votre entreprise', en: 'Your company name' },
-  'contact.name': { fr: 'Nom complet', en: 'Full name' },
-  'contact.name.placeholder': { fr: 'Votre nom complet', en: 'Your full name' },
-  'contact.phone': { fr: 'Numéro de téléphone (WhatsApp recommandé)', en: 'Phone number (WhatsApp recommended)' },
-  'contact.phone.placeholder': { fr: '+237 6... ou +33 6...', en: '+237 6... or +1...' },
-  'contact.email': { fr: 'Adresse email', en: 'Email address' },
-  'contact.email.placeholder': { fr: 'contact@entreprise.com', en: 'contact@company.com' },
-  'contact.need': { fr: 'Type de besoin', en: 'Type of need' },
-  'contact.need.web': { fr: 'Création web', en: 'Web development' },
-  'contact.need.ai': { fr: 'Intégration IA', en: 'AI integration' },
-  'contact.need.security': { fr: 'Cybersécurité', en: 'Cybersecurity' },
-  'contact.need.audit': { fr: 'Audit digital', en: 'Digital audit' },
-  'contact.need.other': { fr: 'Autre', en: 'Other' },
-  'contact.message': { fr: 'Décrivez votre projet', en: 'Describe your project' },
-  'contact.message.placeholder': { fr: 'Décrivez votre projet, vos besoins, vos contraintes…', en: 'Describe your project, needs, timeline…' },
-  'contact.send': { fr: 'Envoyer le message', en: 'Send message' },
-  'contact.sending': { fr: 'Envoi en cours…', en: 'Sending…' },
-  'contact.success': { fr: 'Message envoyé ! Je vous recontacte sous 24h.', en: 'Message sent! I\'ll get back to you within 24h.' },
-  'contact.error': { fr: 'Une erreur est survenue. Veuillez réessayer.', en: 'An error occurred. Please try again.' },
-  'contact.audit.title': { fr: 'Audit Technique Gratuit', en: 'Free Technical Audit' },
-  'contact.audit.desc': { fr: '30 minutes pour analyser votre situation digitale et identifier les axes d\'amélioration prioritaires.', en: '30 minutes to analyze your digital situation and identify priority improvement areas.' },
-  'contact.audit.direct': { fr: 'Prendre RDV directement', en: 'Book a direct call' },
-  'contact.whatsapp.cta': { fr: 'Échanger sur WhatsApp', en: 'Chat on WhatsApp' },
-  'contact.quote.title': { fr: 'Devis Sur-Mesure', en: 'Custom Quote' },
-  'contact.quote.desc': { fr: 'Une proposition détaillée et transparente, adaptée à vos contraintes et à vos objectifs.', en: 'A detailed and transparent proposal, adapted to your constraints and objectives.' },
-  'contact.strategy.title': { fr: 'Accompagnement Stratégique', en: 'Strategic Support' },
-  // Methodology Teaser
-  'methodology.teaser.title': {
-    fr: 'Vous avez un projet digital pour votre établissement hôtelier ?',
-    en: 'Have a digital project for your hotel establishment?',
+  'hero.badge': { fr: 'Hôtels indépendants', en: 'Independent hotels' },
+  'hero.title': {
+    fr: 'Des réservations directes pour votre hôtel, sans commission de plateforme.',
+    en: 'Direct bookings for your hotel, without a platform commission.',
   },
-  'methodology.teaser.desc': {
-    fr: 'Consultez nos forfaits transparents (Découverte, Essentiel, Complet) et leurs prestations détaillées.',
-    en: 'Check our transparent packages (Discovery, Essential, Complete) and their detailed services.',
+  'hero.subtitle': {
+    fr: 'Nous aidons les hôtels indépendants à recevoir des réservations sur leur propre site. Découverte en 14 jours, Essentiel en 21 jours, Complet en 30 jours, dès l’acompte et la réception de vos textes et photos.',
+    en: 'We help independent hotels take bookings on their own website. Discovery in 14 days, Essential in 21 days, Complete in 30 days, once the deposit and your texts and photos are in.',
   },
-  'methodology.teaser.btn': {
-    fr: 'Consulter nos forfaits hôteliers',
-    en: 'View our hotel packages',
+  'hero.trust1': { fr: 'Un seul service', en: 'One service' },
+  'hero.trust2': { fr: 'Délai écrit', en: 'A written deadline' },
+  'hero.trust3': { fr: 'Deux séries de retouches', en: 'Two rounds of edits' },
+
+  'problem.eyebrow': { fr: 'Le problème', en: 'The problem' },
+  'problem.title': {
+    fr: 'Chaque nuit réservée sur une plateforme vous laisse une commission.',
+    en: 'Every night booked on a platform costs you a commission.',
+  },
+  'problem.lead': {
+    fr: 'Le voyageur compare, réserve ailleurs, et vous payez pour une nuitée que vous auriez pu encaisser. Un site qui se contente de montrer des photos laisse ce réflexe en place.',
+    en: 'The guest compares, books somewhere else, and you pay for a night you could have kept. A website that only shows photos leaves that habit in place.',
+  },
+  'problem.p1': {
+    fr: 'La commission sort de la nuitée à chaque réservation intermédiée.',
+    en: 'A commission leaves the room rate on every intermediated booking.',
+  },
+  'problem.p2': {
+    fr: 'Vous ne récupérez ni le téléphone ni l’e-mail du client.',
+    en: 'You never get the guest’s phone number or email.',
+  },
+  'problem.p3': {
+    fr: 'Votre site, s’il existe, informe. Il ne prend pas la réservation.',
+    en: 'If you already have a website, it informs. It does not take the booking.',
   },
 
-  // Tarifs / Pricing Page
-  'tarifs.back': { fr: 'Retour à l\'accueil', en: 'Back to home' },
-  'tarifs.badge': { fr: 'Tarifs Hôtellerie', en: 'Hotel Pricing' },
-  'tarifs.title': { fr: 'Nos offres pour sites d\'hôtels', en: 'Our Hotel Website Packages' },
+  'compare.eyebrow': { fr: 'Avant / après', en: 'Before / after' },
+  'compare.title': {
+    fr: 'Le même hôtel, avec un endroit pour réserver.',
+    en: 'The same hotel, with a place to book.',
+  },
+  'compare.before': { fr: 'Aujourd’hui', en: 'Today' },
+  'compare.after': { fr: 'Avec le site', en: 'With the website' },
+  'compare.b1': { fr: 'Le voyageur réserve sur une plateforme.', en: 'The guest books on a platform.' },
+  'compare.a1': { fr: 'Il réserve sur votre site.', en: 'They book on your website.' },
+  'compare.b2': { fr: 'Une commission sort de la nuitée.', en: 'A commission leaves the room rate.' },
+  'compare.a2': { fr: 'Vous gardez le montant convenu avec le client.', en: 'You keep the amount agreed with the guest.' },
+  'compare.b3': { fr: 'Vous n’avez pas le contact du client.', en: 'You do not have the guest’s contact.' },
+  'compare.a3': { fr: 'Vous avez le nom et le téléphone.', en: 'You have the name and the phone number.' },
+  'compare.b4': { fr: 'Le site montre l’hôtel sans prendre la demande.', en: 'The site shows the hotel and does not take the request.' },
+  'compare.a4': { fr: 'Un bouton mène à la réservation ou à la demande.', en: 'A button leads to the booking or the request.' },
+
+  'offer.eyebrow': { fr: 'L’offre', en: 'The offer' },
+  'offer.title': { fr: 'Un site de réservation. Rien d’autre.', en: 'A booking website. That is the offer.' },
+  'offer.lead': {
+    fr: 'Pour les hôtels indépendants. Le résultat : des demandes de réservation en direct. Le moyen : un site clair, livré dans le délai de la formule.',
+    en: 'For independent hotels. The result: direct booking requests. The means: a clear website, delivered on the package deadline.',
+  },
+  'offer.forWho': { fr: 'Pour qui', en: 'For whom' },
+  'offer.forWho.value': { fr: 'Hôtels indépendants', en: 'Independent hotels' },
+  'offer.result': { fr: 'Quel résultat', en: 'What result' },
+  'offer.result.value': { fr: 'Des réservations prises chez vous', en: 'Bookings taken on your site' },
+  'offer.how': { fr: 'Comment', en: 'How' },
+  'offer.how.value': { fr: 'Un site livré en 14, 21 ou 30 jours', en: 'A website delivered in 14, 21 or 30 days' },
+  'offer.b1.title': { fr: 'La réservation est sur votre site', en: 'The booking sits on your site' },
+  'offer.b1.desc': {
+    fr: 'Le visiteur comprend en quelques secondes qu’il peut réserver ici, pas seulement regarder des photos.',
+    en: 'The visitor understands in seconds that they can book here, not only look at photos.',
+  },
+  'offer.b2.title': { fr: 'Le délai est écrit avant l’appel', en: 'The deadline is written before the call' },
+  'offer.b2.desc': {
+    fr: '14 jours, 21 jours ou 30 jours selon la formule, à partir de l’acompte et de vos textes et photos.',
+    en: '14, 21 or 30 days depending on the package, starting from the deposit and your texts and photos.',
+  },
+  'offer.b3.title': { fr: 'Deux séries de modifications', en: 'Two rounds of edits' },
+  'offer.b3.desc': {
+    fr: 'Chaque formule les inclut. Vous voyez le site, vous demandez les ajustements, nous les faisons.',
+    en: 'Every package includes them. You see the site, you ask for the adjustments, we make them.',
+  },
+  'offer.b4.title': { fr: 'Le prix est sur cette page', en: 'The price is on this page' },
+  'offer.b4.desc': {
+    fr: '450 €, 990 € ou 2 900 € jusqu’à 15 chambres. Vous n’attendez pas un devis pour savoir où vous mettez les pieds.',
+    en: '€450, €990 or €2,900 for up to 15 rooms. You do not wait for a quote to know the range.',
+  },
+
+  'method.eyebrow': { fr: 'Déroulement', en: 'Process' },
+  'method.title': { fr: 'Quatre étapes, un délai qui commence quand vous êtes prêt.', en: 'Four steps, and a deadline that starts when you are ready.' },
+  'method.subtitle': {
+    fr: 'Le délai de 14, 21 ou 30 jours court à partir de l’acompte et de la réception de vos textes et photos.',
+    en: 'The 14, 21 or 30 day deadline starts once the deposit and your texts and photos have arrived.',
+  },
+  'method.s1.title': { fr: 'Appel de 20 minutes', en: '20-minute call' },
+  'method.s1.desc': {
+    fr: 'On vérifie le nombre de chambres, la formule, et ce que vous avez déjà comme photos et textes.',
+    en: 'We check the room count, the package, and which photos and texts you already have.',
+  },
+  'method.s2.title': { fr: 'Acompte et contenus', en: 'Deposit and content' },
+  'method.s2.desc': {
+    fr: 'Vous envoyez les textes, les photos, et l’acompte. C’est ce jour-là que le délai démarre.',
+    en: 'You send the texts, the photos, and the deposit. That is the day the deadline starts.',
+  },
+  'method.s3.title': { fr: 'Livraison dans le délai', en: 'Delivery within the deadline' },
+  'method.s3.desc': {
+    fr: '14 jours en Découverte, 21 jours en Essentiel, 30 jours en Complet.',
+    en: '14 days for Discovery, 21 days for Essential, 30 days for Complete.',
+  },
+  'method.s4.title': { fr: 'Deux séries de retouches, puis mise en ligne', en: 'Two edit rounds, then go-live' },
+  'method.s4.desc': {
+    fr: 'Vous validez. Le solde est dû à la livraison. Le nom de domaine et l’hébergement de la première année sont dans la formule.',
+    en: 'You approve. The balance is due on delivery. The domain name and first year of hosting are in the package.',
+  },
+
+  'scenarios.eyebrow': { fr: 'Scénarios', en: 'Scenarios' },
+  'scenarios.title': { fr: 'Trois parcours pour voir à quoi sert chaque formule.', en: 'Three journeys so you can see what each package is for.' },
+  'scenarios.disclaimer': {
+    fr: 'Scénarios illustratifs. Aucun nom d’établissement. Ce ne sont pas des clients, pas des témoignages, et pas des résultats mesurés.',
+    en: 'Illustrated scenarios. No property names. These are not clients, not testimonials, and not measured results.',
+  },
+  'scenarios.s1.kicker': { fr: 'Scénario — formule Découverte', en: 'Scenario — Discovery package' },
+  'scenarios.s1.title': { fr: 'L’hôtel qui n’a pas encore de site', en: 'The hotel that does not have a website yet' },
+  'scenarios.s1.body': {
+    fr: 'L’établissement n’est visible que sur une plateforme. La formule Découverte pose une page, une galerie et un formulaire de contact. Délai illustré : 14 jours une fois les photos et l’acompte reçus.',
+    en: 'The property is only visible on a platform. Discovery sets up a page, a gallery and a contact form. Illustrated deadline: 14 days once the photos and the deposit are in.',
+  },
+  'scenarios.s2.kicker': { fr: 'Scénario — formule Essentiel', en: 'Scenario — Essential package' },
+  'scenarios.s2.title': { fr: 'L’hôtel qui veut la demande sur son site', en: 'The hotel that wants the request on its own site' },
+  'scenarios.s2.body': {
+    fr: 'Les nuits passent surtout par une plateforme. Le site actuel montre des photos et un numéro. La formule Essentiel ajoute un calendrier, un formulaire de réservation, le français et l’anglais. Délai illustré : 21 jours.',
+    en: 'Nights mostly go through a platform. The current site shows photos and a phone number. Essential adds a calendar, a booking form, French and English. Illustrated deadline: 21 days.',
+  },
+  'scenarios.s3.kicker': { fr: 'Scénario — formule Complet', en: 'Scenario — Complete package' },
+  'scenarios.s3.title': { fr: 'L’hôtel qui veut encaisser au moment de la demande', en: 'The hotel that wants payment when the request is made' },
+  'scenarios.s3.body': {
+    fr: 'Même point de départ, avec en plus le paiement de la nuitée sur le site et un espace pour suivre les demandes. Délai illustré : 30 jours. Ceci décrit la formule, pas un chiffre de réservations obtenu.',
+    en: 'Same starting point, plus payment for the night on the site and a space to follow requests. Illustrated deadline: 30 days. This describes the package, not a booking number achieved.',
+  },
+
+  'tarifs.eyebrow': { fr: 'Tarifs', en: 'Pricing' },
+  'tarifs.title': { fr: 'Trois formules, jusqu’à 15 chambres.', en: 'Three packages, up to 15 rooms.' },
   'tarifs.subtitle': {
-    fr: 'Ces formules clés en main sont spécialement conçues et dimensionnées pour les établissements hôteliers. Elles constituent un socle technique robuste, moderne et évolutif auquel des services ou fonctionnalités sur-mesure peuvent être ajoutés selon vos besoins spécifiques.',
-    en: 'These turnkey packages are specifically designed and scaled for hotel properties. They provide a robust, modern, and scalable technical foundation to which custom features can be added according to your specific needs.',
+    fr: 'Le prix de 2 900 € situe l’Essentiel à 990 €. Les trois formules livrent un site d’hôtel. Elles n’ajoutent pas d’autre service.',
+    en: 'The €2,900 price puts Essential at €990. All three packages deliver a hotel website. They do not add another service.',
   },
-  'tarifs.priceLabel': { fr: 'Prix affiché', en: 'Starting price' },
-  'tarifs.from': { fr: 'à partir de', en: 'from' },
-  'tarifs.includedTitle': { fr: 'Services inclus :', en: 'Included services:' },
-  'tarifs.cta': { fr: 'Demander ce package', en: 'Request this package' },
-  'tarifs.ctaWhatsapp': { fr: 'Ou réserver via WhatsApp', en: 'Or book via WhatsApp' },
-
-  // Package Découverte
+  'tarifs.back': { fr: 'Retour à l’accueil', en: 'Back to home' },
+  'tarifs.rooms': { fr: 'Jusqu’à 15 chambres', en: 'Up to 15 rooms' },
+  'tarifs.delay': { fr: 'Livré en {n} jours', en: 'Delivered in {n} days' },
+  'tarifs.revisions': { fr: '2 séries de modifications incluses', en: '2 rounds of edits included' },
+  'tarifs.includedTitle': { fr: 'Inclus', en: 'Included' },
+  'tarifs.cta': { fr: 'Réserver un appel pour cette formule', en: 'Book a call for this package' },
   'tarifs.pkg.decouverte.name': { fr: 'Découverte', en: 'Discovery' },
   'tarifs.pkg.decouverte.tagline': {
-    fr: 'Une présence digitale élégante pour valoriser votre établissement et capter vos premiers clients en direct.',
-    en: 'An elegant digital presence to showcase your property and capture your first direct clients.',
+    fr: 'Une page pour exister en dehors des plateformes et recevoir un premier contact direct.',
+    en: 'A page so you exist outside the platforms and receive a first direct contact.',
   },
   'tarifs.pkg.decouverte.f1': {
-    fr: 'Page d\'accueil (hero, présentation générale, responsive)',
-    en: 'Homepage (hero, general presentation, responsive)',
+    fr: 'Page d’accueil : hôtel, chambres, téléphone, bouton de contact',
+    en: 'Homepage: hotel, rooms, phone, contact button',
   },
   'tarifs.pkg.decouverte.f2': {
-    fr: 'Galerie photo (grille responsive avec affichage en grand au clic)',
-    en: 'Photo gallery (responsive grid with fullscreen modal on click)',
+    fr: 'Galerie photo',
+    en: 'Photo gallery',
   },
   'tarifs.pkg.decouverte.f3': {
-    fr: 'Formulaire de contact fonctionnel',
-    en: 'Functional contact form',
+    fr: 'Formulaire de contact',
+    en: 'Contact form',
   },
   'tarifs.pkg.decouverte.f4': {
-    fr: 'Nom de domaine .com & hébergement cloud haute performance (1ère année)',
-    en: '.com domain & high-performance cloud hosting included (1st year)',
+    fr: 'Nom de domaine .com et hébergement, première année',
+    en: '.com domain and hosting, first year',
   },
-  'tarifs.domain.note': {
-    fr: 'Nom de domaine international (.com) et hébergement cloud inclus la première année dans chaque formule. Extension locale (.cm / .com.cm) disponible sur devis registrar.',
-    en: 'International .com domain and cloud hosting included for the first year in all packages. Local extension (.cm / .com.cm) available upon registrar quote.',
-  },
-
-  // Package Essentiel
   'tarifs.pkg.essentiel.name': { fr: 'Essentiel', en: 'Essential' },
-  'tarifs.pkg.essentiel.popularBadge': { fr: 'Le plus populaire', en: 'Most Popular' },
+  'tarifs.pkg.essentiel.popularBadge': { fr: 'Le plus choisi', en: 'Most chosen' },
   'tarifs.pkg.essentiel.tagline': {
-    fr: 'La formule idéale pour s\'affranchir des commissions des plateformes et booster vos réservations directes.',
-    en: 'The ideal formula to break free from OTA commissions and boost your direct bookings.',
+    fr: 'La formule pour recevoir la demande de réservation chez vous, en français et en anglais.',
+    en: 'The package for taking the booking request on your site, in French and English.',
   },
   'tarifs.pkg.essentiel.includedHeader': {
-    fr: 'Tout le Package Découverte, plus :',
-    en: 'Everything in Discovery Package, plus:',
+    fr: 'Tout Découverte, plus :',
+    en: 'Everything in Discovery, plus:',
   },
   'tarifs.pkg.essentiel.f1': {
-    fr: 'Réservation directe (calendrier de disponibilité + formulaire)',
-    en: 'Direct booking (availability calendar + booking form)',
+    fr: 'Calendrier de disponibilité et formulaire de réservation',
+    en: 'Availability calendar and booking form',
   },
   'tarifs.pkg.essentiel.f2': {
-    fr: 'Version bilingue (français / anglais)',
-    en: 'Bilingual version (French / English)',
+    fr: 'Site en français et en anglais',
+    en: 'Website in French and English',
   },
   'tarifs.pkg.essentiel.f3': {
-    fr: 'Section « Notre histoire » avec mise en page narrative',
-    en: '“Our Story” section with narrative layout',
+    fr: 'Page « L’établissement »',
+    en: '“The property” page',
   },
-
-  // Package Complet
   'tarifs.pkg.complet.name': { fr: 'Complet', en: 'Complete' },
   'tarifs.pkg.complet.tagline': {
-    fr: 'Une infrastructure hôtelière complète et autonome avec paiement sécurisé et espace de gestion des clients.',
-    en: 'A complete and autonomous hotel platform with secure payment and customer management.',
+    fr: 'La formule pour encaisser la nuitée sur le site et suivre les demandes.',
+    en: 'The package for taking payment on the site and following requests.',
   },
   'tarifs.pkg.complet.includedHeader': {
-    fr: 'Tout le Package Essentiel, plus :',
-    en: 'Everything in Essential Package, plus:',
+    fr: 'Tout Essentiel, plus :',
+    en: 'Everything in Essential, plus:',
   },
   'tarifs.pkg.complet.f1': {
-    fr: 'Paiement en ligne intégré (carte bancaire / Mobile Money)',
-    en: 'Integrated online payment (credit card / Mobile Money)',
+    fr: 'Paiement de la nuitée sur le site (carte ou Mobile Money)',
+    en: 'Payment for the night on the site (card or Mobile Money)',
   },
   'tarifs.pkg.complet.f2': {
-    fr: 'Espace client (création de compte, connexion, historique)',
-    en: 'Customer portal (account creation, login, history)',
+    fr: 'Espace client : compte, connexion, historique',
+    en: 'Guest area: account, login, history',
   },
   'tarifs.pkg.complet.f3': {
-    fr: 'Tableau de bord d\'administration basique',
-    en: 'Basic administration dashboard',
+    fr: 'Écran simple pour suivre les demandes',
+    en: 'A simple screen to follow requests',
   },
 
-  // Règle de dimensionnement
-  'tarifs.rule.title': { fr: 'Règle de dimensionnement', en: 'Sizing Rule' },
+  'guarantee.title': { fr: 'Garantie de délai', en: 'Deadline guarantee' },
+  'guarantee.text': {
+    fr: 'Si le délai de votre formule est dépassé de notre fait, le mois d’hébergement suivant est offert. Deux séries de modifications sont incluses. Le délai part le jour où l’acompte et vos textes et photos sont reçus. Nous ne promettons pas un nombre de réservations.',
+    en: 'If your package deadline is missed because of us, the following month of hosting is free. Two rounds of edits are included. The deadline starts the day the deposit and your texts and photos are received. We do not promise a number of bookings.',
+  },
+  'tarifs.rule.title': { fr: 'Au-delà de 15 chambres', en: 'Beyond 15 rooms' },
   'tarifs.rule.text': {
-    fr: 'Prix de base valable jusqu\'à 15 chambres. Au-delà, un supplément de 15 € par chambre supplémentaire s\'applique.',
-    en: 'Base price valid for up to 15 rooms. Beyond this threshold, an additional €15 fee applies per extra room.',
+    fr: 'Le prix affiché couvre jusqu’à 15 chambres. Chaque chambre au-dessus ajoute 15 €.',
+    en: 'The listed price covers up to 15 rooms. Each room above that adds €15.',
   },
-  'tarifs.rule.desc': {
-    fr: 'Ce supplément forfaitaire couvre la configuration individualisée des catégories, des galeries photos dédiées, des inventaires et des plannings de disponibilité.',
-    en: 'This flat fee covers individual setup for room categories, dedicated photo galleries, inventories, and availability schedules.',
+  'tarifs.domain.note': {
+    fr: 'Le nom de domaine .com et l’hébergement de la première année sont dans chaque formule. Une extension locale (.cm) se chiffre à part, au tarif du registrar.',
+    en: 'The .com domain and the first year of hosting are in every package. A local extension (.cm) is quoted separately, at the registrar’s price.',
   },
-
-  // Restaurant & Gelateria Note
-  'tarifs.resto.title': {
-    fr: 'Vous gérez un restaurant ou une gelateria ?',
-    en: 'Running a restaurant or a gelateria?',
-  },
+  'tarifs.resto.title': { fr: 'Vous tenez un restaurant ou une gelateria ?', en: 'You run a restaurant or a gelateria?' },
   'tarifs.resto.desc': {
-    fr: 'Contactez-moi directement pour discuter d\'une offre adaptée à votre activité. Les besoins d\'un restaurant ou d\'un salon glacier (carte en ligne, menu QR code dynamique, réservation de tables, click & collect) font l\'objet d\'un dimensionnement sur-mesure.',
-    en: 'Contact me directly to discuss a tailor-made offer for your business. Restaurant and ice cream parlor requirements (online menu, dynamic QR code menu, table reservation, click & collect) are custom scoped.',
+    fr: 'Ce n’est pas la formule affichée ici. Écrivez-nous : carte en ligne, menu QR, réservation de tables ou click and collect se chiffrent à part.',
+    en: 'That is not the package shown here. Write to us: online menu, QR menu, table booking or click and collect are quoted separately.',
   },
-  'tarifs.resto.cta': {
-    fr: 'Discuter d\'une offre adaptée',
-    en: 'Discuss a tailored offer',
+  'tarifs.resto.cta': { fr: 'Écrire pour un restaurant', en: 'Write about a restaurant' },
+
+  'faq.eyebrow': { fr: 'Questions', en: 'Questions' },
+  'faq.title': { fr: 'Avant l’appel.', en: 'Before the call.' },
+  'faq.q1': { fr: 'Pour qui est cette offre ?', en: 'Who is this offer for?' },
+  'faq.a1': {
+    fr: 'Les hôtels indépendants. Le prix affiché va jusqu’à 15 chambres. Au-dessus, comptez 15 € par chambre supplémentaire.',
+    en: 'Independent hotels. The listed price goes up to 15 rooms. Above that, add €15 per extra room.',
   },
-  'tarifs.resto.whatsapp': {
-    fr: 'WhatsApp direct',
-    en: 'Direct WhatsApp',
+  'faq.q2': { fr: 'Le délai part quand ?', en: 'When does the deadline start?' },
+  'faq.a2': {
+    fr: 'Le jour où nous avons l’acompte, les textes et les photos. Découverte : 14 jours. Essentiel : 21 jours. Complet : 30 jours.',
+    en: 'The day we have the deposit, the texts and the photos. Discovery: 14 days. Essential: 21 days. Complete: 30 days.',
+  },
+  'faq.q3': { fr: 'Que dois-je envoyer ?', en: 'What do I need to send?' },
+  'faq.a3': {
+    fr: 'Les textes (présentation, chambres, tarifs), les photos, et les informations de contact. Sans photos, le délai ne démarre pas.',
+    en: 'The texts (presentation, rooms, rates), the photos, and the contact details. Without photos, the deadline does not start.',
+  },
+  'faq.q4': { fr: 'Que se passe-t-il si le délai n’est pas tenu ?', en: 'What if the deadline is missed?' },
+  'faq.a4': {
+    fr: 'S’il est dépassé de notre fait, le mois d’hébergement suivant est offert. Un retard de votre côté sur les contenus décale le délai d’autant.',
+    en: 'If we miss it, the following month of hosting is free. A delay on your side for the content moves the deadline by the same amount.',
+  },
+  'faq.q5': { fr: 'Promettez-vous un nombre de réservations ?', en: 'Do you promise a number of bookings?' },
+  'faq.a5': {
+    fr: 'Non. Nous livrons le site, le délai et les deux séries de modifications. Le nombre de réservations dépend de votre hôtel, de vos prix et de votre visibilité.',
+    en: 'No. We deliver the website, the deadline and the two edit rounds. The number of bookings depends on your hotel, your rates and your visibility.',
+  },
+  'faq.q6': { fr: 'Comment se paie le site ?', en: 'How is the website paid for?' },
+  'faq.a6': {
+    fr: 'Un acompte au démarrage, le solde à la livraison. Le devis reste valable 30 jours.',
+    en: 'A deposit at the start, the balance on delivery. The quote stays valid for 30 days.',
+  },
+  'faq.q7': { fr: 'Et un restaurant ?', en: 'What about a restaurant?' },
+  'faq.a7': {
+    fr: 'Ce n’est pas cette offre. On peut en parler sur WhatsApp, le prix sera un devis à part.',
+    en: 'That is not this offer. We can talk about it on WhatsApp, and the price will be a separate quote.',
   },
 
-  // Portfolio Page
-  'portfolio.back': { fr: 'Retour à l\'accueil', en: 'Back to home' },
-  'portfolio.badge': { fr: 'Portfolio Technique', en: 'Technical Portfolio' },
-  'portfolio.title': { fr: 'Études de Cas & Réalisations en Production', en: 'Case Studies & Production Achievements' },
-  'portfolio.subtitle': {
-    fr: 'Des interventions réelles et documentées sur des architectures SaaS distribuées, des systèmes de paiement Mobile Money résilients et des audits de performance.',
-    en: 'Documented, real-world interventions on distributed SaaS architectures, resilient Mobile Money payment systems, and performance audits.',
+  'about.eyebrow': { fr: 'À propos', en: 'About' },
+  'about.title': { fr: 'Nelo', en: 'Nelo' },
+  'about.role': { fr: 'Sites de réservation pour hôtels indépendants', en: 'Booking websites for independent hotels' },
+  'about.location': { fr: 'Yaoundé, Cameroun — hôtels en français et en anglais', en: 'Yaoundé, Cameroon — hotels in French and English' },
+  'about.bio': {
+    fr: 'Je livre un site de réservation pour les hôtels indépendants. Vous m’envoyez vos textes et vos photos, je livre dans le délai de la formule : 14, 21 ou 30 jours. L’appel de 20 minutes sert à choisir la formule, pas à ajouter d’autres prestations.',
+    en: 'I deliver a booking website for independent hotels. You send your texts and photos, I deliver on the package deadline: 14, 21 or 30 days. The 20-minute call is for choosing the package, not for adding other services.',
   },
-  'portfolio.framing.title': { fr: 'Rigueur d\'Ingénierie & Résultats Vérifiés', en: 'Engineering Rigor & Verified Results' },
-  'portfolio.framing.text': {
-    fr: 'Chaque étude de cas reflète une mission technique concrète : les choix d\'architecture, la stack éprouvée, le diagnostic de bugs critiques en production et l\'impact mesurable sur le système.',
-    en: 'Each case study reflects a concrete technical mission: architectural decisions, battle-tested stack, critical production debugging, and measurable system impact.',
-  },
-  'portfolio.tab.skills': { fr: 'Stack & Hard Skills', en: 'Stack & Hard Skills' },
-  'portfolio.tab.approach': { fr: 'Démarche de l\'Ingénieur & Soft Skills', en: 'Engineering Approach & Soft Skills' },
-  'portfolio.tab.impact': { fr: 'Réalisation Concrète & Impact', en: 'Concrete Achievement & Impact' },
-  'portfolio.category.label': { fr: 'Catégorie :', en: 'Category:' },
-  'portfolio.status.label': { fr: 'Statut :', en: 'Status:' },
-  'portfolio.status.prod': { fr: 'En production', en: 'In Production' },
-  'portfolio.cta': { fr: 'Un projet d\'envergure ? Parlons de votre architecture', en: 'An ambitious project? Let\'s discuss your architecture' },
-  'portfolio.cta.viewAll': { fr: 'Découvrir tout le portfolio en détail', en: 'Explore full portfolio in detail' },
+  'about.h1': { fr: 'Une formule, un site', en: 'One package, one website' },
+  'about.h2': { fr: 'Délai écrit', en: 'Written deadline' },
+  'about.h3': { fr: 'Domaine et hébergement la 1re année', en: 'Domain and hosting in year 1' },
+  'about.available': { fr: 'Appels ouverts', en: 'Calls open' },
 
-  // Project 1: Sellam.store Monetization
-  'portfolio.p1.badge': { fr: 'sellam.store · Production', en: 'sellam.store · Production' },
-  'portfolio.p1.category': { fr: 'Développement Web · Ingénierie & Sciences', en: 'Web Development · Engineering & Sciences' },
-  'portfolio.p1.title': {
-    fr: 'Conception et intégration d\'un module de monétisation SaaS (abonnements, paiement Mobile Money, parrainage) avec stratégie de repli résiliente',
-    en: 'Design and integration of a SaaS monetization module (subscriptions, Mobile Money, referral) with resilient fallback strategy',
+  'contact.eyebrow': { fr: 'Appel', en: 'Call' },
+  'contact.title': { fr: 'Vingt minutes pour choisir la formule.', en: 'Twenty minutes to choose the package.' },
+  'contact.subtitle': {
+    fr: 'Le bouton ouvre WhatsApp. Le formulaire sert si vous préférez qu’on vous rappelle.',
+    en: 'The button opens WhatsApp. The form is there if you prefer a callback.',
   },
-  'portfolio.p1.summary': {
-    fr: 'Pilotage de la conception et mise en production d\'un système complet de monétisation pour l\'application de gestion commerciale multi-boutiques sellam.store, avec machine à états et repli manuel en cas d\'indisponibilité du prestataire de paiement.',
-    en: 'Product steering and production deployment of a complete monetization system for the multi-store commercial SaaS sellam.store, featuring a state machine and manual fallback for uninterrupted service.',
-  },
-  'portfolio.p1.skill.backend': {
-    fr: 'Backend : Java 21, Spring Boot 4, Spring Security 6 (filtres personnalisés, @PreAuthorize, RBAC), Spring Data JPA / Hibernate, PostgreSQL (Supabase)',
-    en: 'Backend: Java 21, Spring Boot 4, Spring Security 6 (custom filters, @PreAuthorize, RBAC), Spring Data JPA / Hibernate, PostgreSQL (Supabase)',
-  },
-  'portfolio.p1.skill.frontend': {
-    fr: 'Frontend : React (hooks, state management), Axios, Tailwind CSS',
-    en: 'Frontend: React (hooks, state management), Axios, Tailwind CSS',
-  },
-  'portfolio.p1.skill.api': {
-    fr: 'Fintech & Webhooks : CinetPay (Mobile Money mode Seamless/Checkout), webhooks serveur-à-serveur avec revérification obligatoire anti-falsification',
-    en: 'Fintech & Webhooks: CinetPay (Seamless/Checkout Mobile Money), server-to-server webhooks with mandatory server re-verification (anti-tampering)',
-  },
-  'portfolio.p1.skill.arch': {
-    fr: 'Architecture : Machine à états (essai → actif → retard → expiré), filtre applicatif pour blocage conditionnel, gestion d\'erreurs métier vs indisponibilité de service tiers',
-    en: 'Architecture: State machine for subscription lifecycle (trial → active → overdue → expired), security filter for conditional access, domain vs 3rd-party error isolation',
-  },
-  'portfolio.p1.skill.devops': {
-    fr: 'DevOps & Légal : Déploiement Railway (backend) et Vercel (frontend), gestion sécurisée des variables d\'environnement (VITE_), rédaction CGU & Confidentialité conformes',
-    en: 'DevOps & Compliance: Railway deployment (backend) and Vercel (frontend), secure environment variable management (VITE_), compliant Terms & Privacy policy drafting',
-  },
-  'portfolio.p1.approach.1': {
-    fr: 'Pilotage produit rigoureux : formulation de décisions tranchées sur le modèle d\'abonnement (par boutique vs par compte), logique de parrainage conditionnelle et anticipation des cas limites multi-boutiques.',
-    en: 'Rigorous product steering: firm decisions on subscription models (per store vs per account), conditional referral rewards, and multi-store edge case anticipation.',
-  },
-  'portfolio.p1.approach.2': {
-    fr: 'Anticipation des contraintes terrain : conception proactive d\'un mécanisme de repli (paiement manuel Mobile Money) garantissant 100% de continuité de service face aux délais d\'activation administrative locale.',
-    en: 'Field constraint anticipation: proactive design of a manual Mobile Money fallback mechanism ensuring 100% business continuity despite local administrative payment delays.',
-  },
-  'portfolio.p1.approach.3': {
-    fr: 'Diagnostic méthodique : analyse de stack traces et logs de production pour isoler la cause racine (distinction entre redémarrage local devtools et crash-loop réel sur Railway).',
-    en: 'Methodical troubleshooting: stack trace and production log analysis to isolate root cause (distinguishing local devtools reload from actual Railway crash-loop).',
-  },
-  'portfolio.p1.approach.4': {
-    fr: 'Exigence de non-régression : vérification systématique de l\'état réel du code existant avant toute modification pour garantir la cohérence des patches avec l\'architecture en place.',
-    en: 'Non-regression requirement: systematic verification of existing codebase state before any modification to ensure architectural consistency.',
-  },
-  'portfolio.p1.impact.1': {
-    fr: 'Architecture de monétisation SaaS complète déployée et opérationnelle en production.',
-    en: 'Complete SaaS monetization architecture deployed and operational in production.',
-  },
-  'portfolio.p1.impact.2': {
-    fr: 'Continuité de service et encaissements garantis même en cas d\'indisponibilité du prestataire principal grâce au mode de repli manuel.',
-    en: 'Uninterrupted service and payments guaranteed even during 3rd-party gateway downtime via manual fallback.',
-  },
-  'portfolio.p1.impact.3': {
-    fr: 'Programme de parrainage robuste avec choix explicite du bénéficiaire sur les comptes multi-boutiques, sans ambiguïté produit.',
-    en: 'Robust referral program with explicit beneficiary selection for multi-store accounts, eliminating product ambiguity.',
-  },
-  'portfolio.p1.impact.4': {
-    fr: 'Résolution des crash-loops de déploiement et des avertissements React par vérification méthodique.',
-    en: 'Deployment crash-loops and React warnings diagnosed and fixed through methodical verification.',
-  },
+  'contact.company': { fr: 'Nom de l’hôtel', en: 'Hotel name' },
+  'contact.company.placeholder': { fr: 'Nom de l’établissement', en: 'Property name' },
+  'contact.name': { fr: 'Votre nom', en: 'Your name' },
+  'contact.name.placeholder': { fr: 'Nom et prénom', en: 'Full name' },
+  'contact.phone': { fr: 'WhatsApp', en: 'WhatsApp' },
+  'contact.phone.placeholder': { fr: '+237 … ou +33 …', en: '+237 … or +1 …' },
+  'contact.need': { fr: 'Formule', en: 'Package' },
+  'contact.need.placeholder': { fr: 'Choisir une formule', en: 'Choose a package' },
+  'contact.need.decouverte': { fr: 'Découverte — 450 € — 14 jours', en: 'Discovery — €450 — 14 days' },
+  'contact.need.essentiel': { fr: 'Essentiel — 990 € — 21 jours', en: 'Essential — €990 — 21 days' },
+  'contact.need.complet': { fr: 'Complet — 2 900 € — 30 jours', en: 'Complete — €2,900 — 30 days' },
+  'contact.need.unsure': { fr: 'Je ne sais pas encore', en: 'I am not sure yet' },
+  'contact.need.restaurant': { fr: 'Restaurant (devis à part)', en: 'Restaurant (separate quote)' },
+  'contact.send': { fr: 'Demander l’appel', en: 'Request the call' },
+  'contact.sending': { fr: 'Envoi…', en: 'Sending…' },
+  'contact.success': { fr: 'Bien reçu. Réponse sous 24 h sur ce numéro.', en: 'Received. Reply within 24 h on this number.' },
+  'contact.error': { fr: 'L’envoi n’a pas abouti. Écrivez sur WhatsApp.', en: 'The form did not send. Write on WhatsApp.' },
+  'contact.err.name': { fr: 'Indiquez votre nom.', en: 'Add your name.' },
+  'contact.err.phone': { fr: 'Indiquez un numéro WhatsApp.', en: 'Add a WhatsApp number.' },
+  'contact.err.place': { fr: 'Indiquez le nom de l’hôtel.', en: 'Add the hotel name.' },
+  'contact.err.need': { fr: 'Choisissez une formule.', en: 'Choose a package.' },
+  'contact.direct': { fr: 'Ou écrire tout de suite', en: 'Or write now' },
 
-  // Project 2: Sellam.store Troubleshooting
-  'portfolio.p2.badge': { fr: 'sellam.store · Résolution Critique', en: 'sellam.store · Critical Fix' },
-  'portfolio.p2.category': { fr: 'Développement Web · Ingénierie & Sciences', en: 'Web Development · Engineering & Sciences' },
-  'portfolio.p2.title': {
-    fr: 'Diagnostic et résolution d\'incidents de production sur une architecture SaaS distribuée (Spring Boot / React / Multi-cloud)',
-    en: 'Troubleshooting and root-cause resolution of production incidents on a distributed SaaS architecture (Spring Boot / React / Multi-cloud)',
+  'footer.desc': {
+    fr: 'Sites de réservation directe pour hôtels indépendants. 14, 21 ou 30 jours selon la formule.',
+    en: 'Direct-booking websites for independent hotels. 14, 21 or 30 days depending on the package.',
   },
-  'portfolio.p2.summary': {
-    fr: 'Diagnostic approfondi d\'un blocage API généralisé en production (fausse alerte CORS), migration SQL à chaud d\'une contrainte d\'intégrité PostgreSQL et spécification technique d\'une architecture de facturation offline-first sur Dexie.js.',
-    en: 'Deep-dive troubleshooting of a widespread production API outage (CORS false alert), hotfix SQL migration of a PostgreSQL constraint, and technical spec of an offline-first billing architecture on Dexie.js.',
-  },
-  'portfolio.p2.skill.backend': {
-    fr: 'Backend : Java 21, Spring Boot 4, Spring Security 7 (chaîne de filtres, CORS, JWT, @PreAuthorize), Hibernate/JPA 7, PostgreSQL (contraintes CHECK, migrations SQL)',
-    en: 'Backend: Java 21, Spring Boot 4, Spring Security 7 (filter chain, CORS, JWT, @PreAuthorize), Hibernate/JPA 7, PostgreSQL (CHECK constraints, SQL migrations)',
-  },
-  'portfolio.p2.skill.frontend': {
-    fr: 'Frontend & Offline : React, Axios (intercepteurs requêtes/réponses, cache offline localStorage), Vite (variables d\'environnement)',
-    en: 'Frontend & Offline: React, Axios (request/response interceptors, localStorage offline cache), Vite (build environment variables)',
-  },
-  'portfolio.p2.skill.infra': {
-    fr: 'Infrastructure & DevOps : Railway, Vercel, Supabase, analyse des logs runtime Railway, DNS/domaines applicatifs',
-    en: 'Infrastructure & DevOps: Railway, Vercel, Supabase, Railway runtime log analysis, application DNS/domains',
-  },
-  'portfolio.p2.skill.debug': {
-    fr: 'Méthodologie Debug : Analyse de traces Spring Security complexes, analyse de fichiers HAR (HTTP Archive) pour tracer les requêtes bout-en-bout, distinction faux-positif CORS vs URL mal formée',
-    en: 'Debugging Methodology: Complex Spring Security trace analysis, HAR (HTTP Archive) file inspection for end-to-end tracing, CORS false-positive vs malformed URL root cause distinction',
-  },
-  'portfolio.p2.skill.offline': {
-    fr: 'Architecture Offline-first : IndexedDB (Dexie.js), queue de synchronisation (pendingActions), stratégie de résolution de conflits hors-ligne',
-    en: 'Offline-First Architecture: IndexedDB (Dexie.js), synchronization queue (pendingActions), offline conflict resolution strategy',
-  },
-  'portfolio.p2.approach.1': {
-    fr: 'Démarche de diagnostic structurée en éliminant méthodiquement les hypothèses par ordre de probabilité (config CORS → service down → erreur de routing URL), évitant tout patch superficiel.',
-    en: 'Structured diagnostic workflow eliminating hypotheses by probability (CORS config → service down → URL routing error), avoiding superficial patches.',
-  },
-  'portfolio.p2.approach.2': {
-    fr: 'Capacité à distinguer un signal trompeur (erreur CORS générique) de sa cause racine réelle (concaténation d\'URL invalide côté build frontend), démontrée par vérification croisée logs/HAR.',
-    en: 'Ability to distinguish misleading signals (generic CORS error) from true root causes (invalid URL concatenation at frontend build), verified across logs and HAR traces.',
-  },
-  'portfolio.p2.approach.3': {
-    fr: 'Structuration d\'une demande multi-facettes (facturation offline, gestion de quantités, tour guidé) en sous-problèmes clairement délimités avant tout développement.',
-    en: 'Structuring a multi-faceted requirement (offline billing, quantity merging, guided tour) into well-bounded sub-problems prior to development.',
-  },
-  'portfolio.p2.impact.1': {
-    fr: 'Incident bloquant résolu : rétablissement immédiat de l\'intégralité des appels API de l\'application SaaS multi-boutiques.',
-    en: 'Blocking incident resolved: immediate restoration of all API calls across the multi-store SaaS application.',
-  },
-  'portfolio.p2.impact.2': {
-    fr: 'Contrainte d\'intégrité PostgreSQL défaillante corrigée en production sans interruption, permettant l\'activation manuelle immédiate des abonnements.',
-    en: 'Faulty PostgreSQL integrity constraint fixed in production without downtime, enabling immediate manual subscription activation.',
-  },
-  'portfolio.p2.impact.3': {
-    fr: 'Spécification technique détaillée livrée pour la facturation offline-first avec fusion de quantités et affichage optimiste sur Dexie / IndexedDB.',
-    en: 'Detailed technical specification delivered for offline-first billing with quantity merging and optimistic UI on Dexie / IndexedDB.',
-  },
-
-  // Project 3: Hotel Audit
-  'portfolio.p3.badge': { fr: 'Hôtellerie · Optimisation', en: 'Hospitality · Optimization' },
-  'portfolio.p3.category': { fr: 'Performance Web, UX & SEO', en: 'Web Performance, UX & SEO' },
-  'portfolio.p3.title': {
-    fr: 'Audit technique, optimisation des Core Web Vitals et refonte du tunnel de réservation directe',
-    en: 'Technical audit, Core Web Vitals optimization, and direct booking funnel overhaul',
-  },
-  'portfolio.p3.summary': {
-    fr: 'Audit digital exhaustif couvrant plus de 30 points de contrôle pour un établissement hôtelier de premier plan : temps de chargement, SEO structurel, accessibilité et ergonomie du tunnel de réservation mobile.',
-    en: 'Exhaustive digital audit covering 30+ checkpoints for a premier hotel property: loading performance, structural SEO, accessibility, and mobile booking funnel UX.',
-  },
-  'portfolio.p3.skill.audit': {
-    fr: 'Audit & Diagnostic : Core Web Vitals (LCP, FID/INP, CLS), Google PageSpeed Insights, analyse d\'arborescence et de maillage interne',
-    en: 'Audit & Diagnostics: Core Web Vitals (LCP, FID/INP, CLS), Google PageSpeed Insights, site tree and internal linking analysis',
-  },
-  'portfolio.p3.skill.frontend': {
-    fr: 'Frontend : React, Tailwind CSS, Responsive Design mobile-first, optimisation des assets et médias',
-    en: 'Frontend: React, Tailwind CSS, Mobile-first responsive design, media and asset optimization',
-  },
-  'portfolio.p3.skill.seo': {
-    fr: 'SEO & Données Structurées : Balisage sémantique Schema.org (Hotel, Room, AggregateRating), Open Graph, métadonnées dynamiques',
-    en: 'SEO & Structured Data: Semantic Schema.org markup (Hotel, Room, AggregateRating), Open Graph, dynamic metadata',
-  },
-  'portfolio.p3.approach.1': {
-    fr: 'Analyse méthodique de l\'entonnoir de conversion pour identifier les points de friction et les causes d\'abandon de panier sur mobile.',
-    en: 'Methodical conversion funnel analysis identifying mobile drop-off points and checkout friction.',
-  },
-  'portfolio.p3.approach.2': {
-    fr: 'Priorisation des actions techniques par matrice effort / impact business direct, focalisée sur la réduction des commissions intermédiaires.',
-    en: 'Technical action prioritization via effort vs direct business impact matrix, focused on lowering OTA commissions.',
-  },
-  'portfolio.p3.impact.1': {
-    fr: 'Plus de 30 points de contrôle audités et plan d\'action technique priorisé livré à la direction de l\'établissement.',
-    en: '30+ checkpoints audited and prioritized technical action plan delivered to hotel management.',
-  },
-  'portfolio.p3.impact.2': {
-    fr: 'Optimisations SEO structurelles identifiées pour un potentiel de +40% de trafic organique qualifié.',
-    en: 'Structural SEO optimizations identified for +40% potential qualified organic traffic.',
-  },
-  'portfolio.p3.impact.3': {
-    fr: 'Recommandations d\'architecture pour un parcours de réservation fluide réduisant la dépendance aux OTA.',
-    en: 'Architectural roadmap for a streamlined booking journey reducing reliance on OTA platforms.',
-  },
-
-  // Footer
-  'footer.desc': { fr: 'Solutions digitales premium, cybersécurité et intelligence artificielle pour les entreprises exigeantes.', en: 'Premium digital solutions, cybersecurity and artificial intelligence for demanding businesses.' },
   'footer.legal': { fr: 'Mentions légales', en: 'Legal notice' },
   'footer.privacy': { fr: 'Confidentialité', en: 'Privacy' },
-  'footer.cgu': { fr: 'Conditions générales', en: 'Terms & Conditions' },
+  'footer.cgu': { fr: 'Conditions générales', en: 'Terms' },
   'footer.copyright': { fr: '© 2026 Nelo. Tous droits réservés.', en: '© 2026 Nelo. All rights reserved.' },
 }
 

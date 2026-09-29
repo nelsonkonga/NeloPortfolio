@@ -4,56 +4,55 @@ export function ConditionsGenerales() {
   return (
     <LegalLayout>
       <div>
-        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">
-          Légal
-        </p>
-        <h1 className="text-4xl font-extrabold tracking-tight text-balance">
-          Conditions Générales (CGV / CGU)
-        </h1>
+        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">Légal</p>
+        <h1 className="text-4xl font-extrabold tracking-tight text-balance">Conditions générales</h1>
       </div>
 
       <div className="space-y-8 text-muted-foreground leading-7">
         <section className="space-y-3">
-          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
-            Objet
-          </h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Objet</h2>
           <p>
-            Les présentes conditions générales régissent les prestations de développement,
-            d'audit cyber et d'intégration IA fournies par Nelo | Digital &amp; IA à des
-            professionnels.
+            Les présentes conditions régissent la création d’un site de réservation pour un hôtel
+            indépendant, vendu par Nelo sous l’une des trois formules : Découverte (450 €, 14 jours),
+            Essentiel (990 €, 21 jours), Complet (2 900 €, 30 jours). Ces prix couvrent jusqu’à 15
+            chambres. Chaque chambre au-dessus ajoute 15 €.
+          </p>
+          <p>
+            Un restaurant, une gelateria ou toute autre prestation fait l’objet d’un devis séparé.
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
-            Devis et Paiement
-          </h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Délai</h2>
           <p>
-            Les devis émis sont valables 30 jours à compter de leur date d'émission. Un acompte
-            est requis au démarrage du projet, le solde étant payable à la livraison.
+            Le délai de la formule commence le jour où l’acompte, les textes et les photos sont
+            reçus. Un retard du client sur ces éléments décale le délai d’autant.
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
-            Propriété
-          </h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Garantie de délai</h2>
           <p>
-            Le transfert des droits (code, architectures, scripts) au client s'effectue après
-            paiement total de la facture. Jusqu'à complet paiement, l'ensemble des livrables
-            reste la propriété de Nelo | Digital &amp; IA.
+            Si le délai est dépassé du fait de Nelo, le mois d’hébergement suivant la première année
+            est offert. Chaque formule inclut deux séries de modifications. Cette garantie ne porte
+            pas sur un nombre de réservations, de nuitées ou de chiffre d’affaires.
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-foreground">
-            Responsabilité
-          </h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Paiement</h2>
           <p>
-            Nelo | Digital &amp; IA s'engage à une obligation de moyens concernant l'intégration
-            de l'intelligence artificielle et la mise en œuvre de mesures de cybersécurité.
-            Aucune garantie de résultat ne peut être formulée, ces domaines étant par nature
-            évolutifs et contingents.
+            Un acompte est demandé au démarrage. Le solde est payable à la livraison. Le devis est
+            valable 30 jours. Le nom de domaine .com et l’hébergement de la première année sont
+            inclus. Une extension locale se paie au tarif du registrar.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Propriété</h2>
+          <p>
+            Le transfert des droits sur le site livré s’effectue après paiement total. Jusqu’à
+            complet paiement, les livrables restent la propriété de Nelo.
           </p>
         </section>
       </div>

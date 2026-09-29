@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { Moon, Sun, Menu, X, Globe } from 'lucide-react'
+import { Instagram, Linkedin, Menu, Moon, Sun, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useLang } from '@/contexts/LangContext'
+import { bookCallMessage, SOCIAL, whatsappUrl } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
-  { key: 'nav.expertise', href: '#expertise' },
-  { key: 'nav.portfolio', href: '/portfolio' },
-  { key: 'nav.methodology', href: '#methodology' },
-  { key: 'nav.pricing', href: '/tarifs' },
+  { key: 'nav.offer', href: '#offre' },
+  { key: 'nav.examples', href: '#exemples' },
+  { key: 'nav.method', href: '#methode' },
+  { key: 'nav.pricing', href: '#tarifs' },
+  { key: 'nav.faq', href: '#faq' },
   { key: 'nav.about', href: '#about' },
   { key: 'nav.contact', href: '#contact' },
 ]
@@ -41,10 +43,7 @@ export function Header() {
 
   function handleNavClick(href: string) {
     setMobileOpen(false)
-    if (href.startsWith('/')) {
-      navigate(href)
-      window.scrollTo(0, 0)
-    } else if (location.pathname !== '/') {
+    if (location.pathname !== '/') {
       navigate({ pathname: '/', hash: href })
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
@@ -55,30 +54,17 @@ export function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'glass bg-background/80 border-b border-border/60 shadow-sm'
-          : 'bg-transparent'
+        scrolled ? 'glass bg-background/80 border-b border-border/60 shadow-sm' : 'bg-transparent',
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-2 font-bold text-lg tracking-tight"
-          >
-            <img
-              src="/NeloLogo3.png"
-              alt="Logo Nelo"
-              className="h-8 w-8 rounded-lg object-cover border border-border/60"
-            />
-            <span className="text-foreground">Nelo</span>
-            <span className="text-muted-foreground font-light mx-0.5">|</span>
-            <span className="text-gold">Digital & IA</span>
+        <div className="flex items-center justify-between h-16 gap-3">
+          <Link to="/" className="flex items-center gap-2 font-bold text-lg tracking-tight shrink-0">
+            <img src="/NeloLogo3.png" alt="Nelo" className="h-8 w-8 rounded-lg object-cover border border-border/60" />
+            <span>Nelo</span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-4">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.key}
@@ -90,18 +76,19 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Controls */}
-          <div className="hidden md:flex items-center gap-2">
-            {/* Lang toggle */}
+          <div className="hidden lg:flex items-center gap-2">
+            <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label={t('cta.instagram')} className="text-muted-foreground hover:text-gold p-2">
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label={t('cta.linkedin')} className="text-muted-foreground hover:text-gold p-2">
+              <Linkedin className="h-4 w-4" />
+            </a>
             <button
               onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
-              className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md px-2 py-1 cursor-pointer"
+              className="text-xs font-semibold text-muted-foreground hover:text-foreground border border-border rounded-md px-2 py-1 cursor-pointer"
             >
-              <Globe className="h-3.5 w-3.5" />
-              {lang.toUpperCase()}
+              {lang === 'fr' ? 'EN' : 'FR'}
             </button>
-
-            {/* Theme toggle */}
             <Button
               variant="ghost"
               size="icon"
@@ -111,66 +98,53 @@ export function Header() {
             >
               {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
-
-            {/* CTA */}
-            <Button
-              variant="gold"
-              size="sm"
-              className="shadow-[0_0_15px_rgba(234,179,8,0.2)] hover:shadow-[0_0_22px_rgba(234,179,8,0.45)] transition-all duration-300"
-              onClick={() => handleNavClick('#contact')}
-            >
-              {t('nav.cta')}
+            <Button variant="gold" size="sm" asChild>
+              <a href={whatsappUrl(bookCallMessage(lang))} target="_blank" rel="noopener noreferrer">
+                {t('nav.cta')}
+              </a>
             </Button>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
+          <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden glass bg-background/95 border-b border-border">
+        <div className="lg:hidden glass bg-background/95 border-b border-border">
           <div className="px-4 pt-2 pb-6 space-y-1">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.key}
                 onClick={() => handleNavClick(item.href)}
-                className="block w-full text-left px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer"
+                className="block w-full text-left px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg cursor-pointer"
               >
                 {t(item.key)}
               </button>
             ))}
-            <div className="flex items-center gap-2 pt-3 px-3">
+            <div className="flex items-center gap-3 px-3 pt-3">
+              <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label={t('cta.instagram')} className="text-muted-foreground">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label={t('cta.linkedin')} className="text-muted-foreground">
+                <Linkedin className="h-4 w-4" />
+              </a>
               <button
                 onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
-                className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md px-2 py-1 cursor-pointer"
+                className="text-xs font-semibold border border-border rounded-md px-2 py-1 cursor-pointer"
               >
-                <Globe className="h-3.5 w-3.5" />
-                {lang.toUpperCase()}
+                {lang === 'fr' ? 'EN' : 'FR'}
               </button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="h-8 w-8"
-              >
+              <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="h-8 w-8">
                 {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
             </div>
             <div className="pt-2 px-3">
-              <Button
-                variant="gold"
-                className="w-full"
-                onClick={() => handleNavClick('#contact')}
-              >
-                {t('nav.cta')}
+              <Button variant="gold" className="w-full" asChild>
+                <a href={whatsappUrl(bookCallMessage(lang))} target="_blank" rel="noopener noreferrer">
+                  {t('nav.cta')}
+                </a>
               </Button>
             </div>
           </div>
