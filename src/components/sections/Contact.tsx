@@ -88,17 +88,17 @@ export function Contact() {
           <div className="space-y-1.5">
             <Label htmlFor="company">{t('contact.company')}</Label>
             <Input id="company" {...register('company')} placeholder={t('contact.company.placeholder')} disabled={status === 'loading'} />
-            {errors.company && <p className="text-xs text-destructive">{errors.company.message}</p>}
+            {status !== 'success' && errors.company && <p className="text-xs text-destructive">{errors.company.message}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="full_name">{t('contact.name')}</Label>
             <Input id="full_name" {...register('full_name')} placeholder={t('contact.name.placeholder')} disabled={status === 'loading'} />
-            {errors.full_name && <p className="text-xs text-destructive">{errors.full_name.message}</p>}
+            {status !== 'success' && errors.full_name && <p className="text-xs text-destructive">{errors.full_name.message}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="phone">{t('contact.phone')}</Label>
             <Input id="phone" type="tel" {...register('phone')} placeholder={t('contact.phone.placeholder')} disabled={status === 'loading'} />
-            {errors.phone && <p className="text-xs text-destructive">{errors.phone.message}</p>}
+            {status !== 'success' && errors.phone && <p className="text-xs text-destructive">{errors.phone.message}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="need_type">{t('contact.need')}</Label>
@@ -114,7 +114,7 @@ export function Contact() {
                 <SelectItem value="restaurant">{t('contact.need.restaurant')}</SelectItem>
               </SelectContent>
             </Select>
-            {errors.need_type && <p className="text-xs text-destructive">{errors.need_type.message}</p>}
+            {status !== 'success' && errors.need_type && <p className="text-xs text-destructive">{errors.need_type.message}</p>}
           </div>
 
           {status === 'success' && (
