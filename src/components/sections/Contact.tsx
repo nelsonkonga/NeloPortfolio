@@ -52,6 +52,9 @@ export function Contact() {
       ? `Bonjour Nelo, je souhaite un appel de 20 minutes. Hôtel : ${company}. Nom : ${fullName}. WhatsApp : ${phone}. Formule : ${formula}.`
       : `Hello Nelo, I would like a 20-minute call. Hotel: ${company}. Name: ${fullName}. WhatsApp: ${phone}. Package: ${formula}.`
 
+    const popup = window.open(whatsappUrl(message), '_blank')
+    if (popup) popup.opener = null
+
     let saved = false
     if (supabase) {
       const { error } = await supabase.from('contact_messages').insert({
@@ -65,8 +68,7 @@ export function Contact() {
       saved = !error
     }
 
-    const opened = window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer')
-    if (opened || saved) {
+    if (popup || saved) {
       setStatus('success')
       reset()
     } else {
