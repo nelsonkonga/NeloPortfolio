@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { BookCallButton } from '@/components/contact/BookCallButton'
 import { useLang } from '@/contexts/LangContext'
+import { whatsappUrl } from '@/lib/links'
 import { supabase } from '@/lib/supabase'
 
 type FormData = {
@@ -44,29 +45,32 @@ export function Contact() {
   async function onSubmit(data: FormData) {
     setStatus('loading')
     const formula = t(`contact.need.${data.need_type}`)
+    const company = data.company.trim()
+    const fullName = data.full_name.trim()
+    const phone = data.phone.trim()
     const message = lang === 'fr'
-      ? `Demande d’appel de 20 minutes. Formule : ${formula}. Hôtel : ${data.company.trim()}.`
-      : `20-minute call request. Package: ${formula}. Hotel: ${data.company.trim()}.`
+      ? `Bonjour Nelo, je souhaite un appel de 20 minutes. Hôtel : ${company}. Nom : ${fullName}. WhatsApp : ${phone}. Formule : ${formula}.`
+      : `Hello Nelo, I would like a 20-minute call. Hotel: ${company}. Name: ${fullName}. WhatsApp: ${phone}. Package: ${formula}.`
 
-    if (!supabase) {
-      setStatus('error')
-      return
+    let saved = false
+    if (supabase) {
+      const { error } = await supabase.from('contact_messages').insert({
+        company,
+        full_name: fullName,
+        phone,
+        email: null,
+        need_type: data.need_type,
+        message,
+      })
+      saved = !error
     }
 
-    const { error } = await supabase.from('contact_messages').insert({
-      company: data.company.trim(),
-      full_name: data.full_name.trim(),
-      phone: data.phone.trim(),
-      email: null,
-      need_type: data.need_type,
-      message,
-    })
-
-    if (error) {
-      setStatus('error')
-    } else {
+    const opened = window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer')
+    if (opened || saved) {
       setStatus('success')
       reset()
+    } else {
+      setStatus('error')
     }
   }
 
