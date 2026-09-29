@@ -48,6 +48,11 @@ export function Contact() {
       ? `Demande d’appel de 20 minutes. Formule : ${formula}. Hôtel : ${data.company.trim()}.`
       : `20-minute call request. Package: ${formula}. Hotel: ${data.company.trim()}.`
 
+    if (!supabase) {
+      setStatus('error')
+      return
+    }
+
     const { error } = await supabase.from('contact_messages').insert({
       company: data.company.trim(),
       full_name: data.full_name.trim(),
