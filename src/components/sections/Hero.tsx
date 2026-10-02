@@ -69,14 +69,14 @@ export function Hero() {
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 pb-16 grid grid-cols-1 md:grid-cols-3 gap-4">
         {JOURNEYS.map(([kicker, title]) => (
-          <button
+          <a
             key={title}
-            onClick={() => scrollTo('#exemples')}
-            className="rounded-3xl border border-border bg-card p-6 text-left min-h-[220px] hover:border-primary/40 transition-colors cursor-pointer"
+            href="#exemples"
+            className="rounded-3xl border border-border bg-card p-6 text-left min-h-[220px] hover:border-primary/40 transition-colors"
           >
             <p className="text-sm font-medium text-primary mb-3">{t(kicker)}</p>
             <p className="text-xl font-semibold tracking-tight leading-snug">{t(title)}</p>
-          </button>
+          </a>
         ))}
       </div>
     </section>

@@ -84,7 +84,7 @@ export function Header() {
             </button>
             <button
               onClick={() => handleNavClick('#tarifs')}
-              className="ml-2 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-[16px] font-medium cursor-pointer"
+              className="ml-2 inline-flex items-center gap-2 appearance-none rounded-full bg-secondary px-4 py-2 text-[16px] font-medium cursor-pointer"
             >
               {t('nav.pricing')}
               <ArrowRight className="h-4 w-4" />
