@@ -12,16 +12,16 @@ export function Pricing() {
     : 'Hello Nelo, I run a restaurant or a gelateria and I would like a separate quote.'
 
   return (
-    <section id="tarifs" className="py-24 sm:py-28 bg-muted/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-8">
-          <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">{t('tarifs.eyebrow')}</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{t('tarifs.title')}</h2>
+    <section id="tarifs" className="py-20 sm:py-28 bg-muted/40">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mb-8">
+          <p className="text-sm font-medium text-muted-foreground mb-3">{t('tarifs.eyebrow')}</p>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4">{t('tarifs.title')}</h2>
           <p className="text-muted-foreground leading-relaxed">{t('tarifs.subtitle')}</p>
         </div>
 
-        <div className="rounded-2xl border border-gold/30 bg-gold/5 p-5 mb-8">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-1">{t('guarantee.title')}</p>
+        <div className="rounded-3xl border border-primary/20 bg-primary/5 p-5 mb-8">
+          <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">{t('guarantee.title')}</p>
           <p className="text-sm leading-relaxed">{t('guarantee.text')}</p>
         </div>
 
@@ -32,15 +32,15 @@ export function Pricing() {
             return (
               <article
                 key={pkg.id}
-                className={`relative rounded-2xl flex flex-col bg-card p-6 sm:p-8 ${
+                className={`relative rounded-3xl flex flex-col bg-card p-6 sm:p-8 ${
                   pkg.popular
-                    ? 'border-2 border-gold/70 shadow-xl lg:-translate-y-2'
+                    ? 'border-2 border-primary shadow-xl lg:-translate-y-2'
                     : 'border border-border'
                 }`}
               >
                 {pkg.popular && pkg.popularBadgeKey && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1.5 bg-gold text-gold-foreground text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
                       <Sparkles className="h-3 w-3" />
                       {t(pkg.popularBadgeKey)}
                     </span>
@@ -55,20 +55,20 @@ export function Pricing() {
                 <p className="text-sm font-medium mb-1">{t('tarifs.delay').replace('{n}', String(pkg.days))}</p>
                 <p className="text-sm text-muted-foreground mb-6">{t('tarifs.revisions')}</p>
 
-                <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-3">{t('tarifs.includedTitle')}</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">{t('tarifs.includedTitle')}</p>
                 {pkg.includedHeaderKey && (
                   <p className="text-xs font-medium mb-3">{t(pkg.includedHeaderKey)}</p>
                 )}
                 <ul className="space-y-3 mb-8 flex-1">
                   {pkg.featureKeys.map((key) => (
                     <li key={key} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-gold shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <span>{t(key)}</span>
                     </li>
                   ))}
                 </ul>
 
-                <Button variant={pkg.popular ? 'gold' : 'outline'} className="w-full" asChild>
+                <Button variant={pkg.popular ? 'default' : 'outline'} className="w-full rounded-full" asChild>
                   <a href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer">
                     {t('tarifs.cta')}
                   </a>
@@ -78,19 +78,19 @@ export function Pricing() {
           })}
         </div>
 
-        <div className="rounded-2xl border border-border bg-card p-5 mb-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-1">{t('tarifs.rule.title')}</p>
+        <div className="rounded-3xl border border-border bg-card p-5 mb-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">{t('tarifs.rule.title')}</p>
           <p className="text-sm">{t('tarifs.rule.text')}</p>
           <p className="text-xs text-muted-foreground mt-2">{t('tarifs.domain.note')}</p>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card p-5 flex flex-col sm:flex-row sm:items-center gap-4">
-          <UtensilsCrossed className="h-5 w-5 text-gold shrink-0" />
+        <div className="rounded-3xl border border-border bg-card p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+          <UtensilsCrossed className="h-5 w-5 text-primary shrink-0" />
           <div className="flex-1">
             <p className="font-semibold mb-1">{t('tarifs.resto.title')}</p>
             <p className="text-sm text-muted-foreground">{t('tarifs.resto.desc')}</p>
           </div>
-          <Button variant="outline" asChild>
+          <Button variant="outline" className="rounded-full" asChild>
             <a href={whatsappUrl(restoMessage)} target="_blank" rel="noopener noreferrer">
               {t('tarifs.resto.cta')}
             </a>

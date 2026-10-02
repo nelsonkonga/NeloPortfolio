@@ -13,16 +13,16 @@ export function Faq() {
   const { t } = useLang()
 
   return (
-    <section id="faq" className="py-24 sm:py-28">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">{t('faq.eyebrow')}</p>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-8">{t('faq.title')}</h2>
-        <div className="divide-y divide-border border border-border rounded-2xl bg-card">
+    <section id="faq" className="py-20 sm:py-28">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        <p className="text-sm font-medium text-muted-foreground mb-3">{t('faq.eyebrow')}</p>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-8 max-w-3xl">{t('faq.title')}</h2>
+        <div className="divide-y divide-border border border-border rounded-3xl bg-card max-w-3xl">
           {ITEMS.map(([q, a]) => (
             <details key={q} className="group px-5 py-4">
               <summary className="cursor-pointer font-medium list-none flex items-center justify-between gap-4">
                 {t(q)}
-                <span className="text-gold text-lg leading-none group-open:rotate-45 transition-transform">+</span>
+                <span className="text-primary text-lg leading-none group-open:rotate-45 transition-transform">+</span>
               </summary>
               <p className="text-sm text-muted-foreground leading-relaxed pt-3">{t(a)}</p>
             </details>

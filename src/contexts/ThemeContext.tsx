@@ -14,8 +14,10 @@ const ThemeContext = createContext<ThemeContextValue>({
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
+    const chosen = localStorage.getItem('nelo-theme-set')
     const stored = localStorage.getItem('nelo-theme') as Theme | null
-    return stored ?? 'dark'
+    if (chosen === '1' && (stored === 'light' || stored === 'dark')) return stored
+    return 'light'
   })
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme])
 
   function setTheme(t: Theme) {
+    localStorage.setItem('nelo-theme-set', '1')
     setThemeState(t)
   }
 

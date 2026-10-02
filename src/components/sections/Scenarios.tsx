@@ -10,14 +10,14 @@ export function Scenarios() {
   const { t } = useLang()
 
   return (
-    <section id="exemples" className="py-24 sm:py-28">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">{t('scenarios.eyebrow')}</p>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-10">{t('scenarios.title')}</h2>
+    <section id="exemples" className="py-20 sm:py-28">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+        <p className="text-sm font-medium text-muted-foreground mb-3">{t('scenarios.eyebrow')}</p>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-10 max-w-3xl">{t('scenarios.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {SCENARIOS.map(([kicker, title, body]) => (
-            <article key={title} className="rounded-2xl border border-border bg-card p-5 flex flex-col">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-3">{t(kicker)}</p>
+            <article key={title} className="rounded-3xl border border-border bg-card p-6 flex flex-col">
+              <p className="text-sm font-medium text-primary mb-3">{t(kicker)}</p>
               <h3 className="font-semibold mb-3">{t(title)}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{t(body)}</p>
             </article>

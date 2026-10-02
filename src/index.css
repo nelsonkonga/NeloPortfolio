@@ -32,49 +32,49 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.97 0 0);
-  --foreground: oklch(0.12 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0 0);
-  --primary: oklch(0.15 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.94 0 0);
-  --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.94 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.94 0 0);
-  --accent-foreground: oklch(0.15 0 0);
+  --radius: 0.875rem;
+  --background: #ffffff;
+  --foreground: #040815;
+  --card: #ffffff;
+  --card-foreground: #040815;
+  --popover: #ffffff;
+  --popover-foreground: #040815;
+  --primary: #6d42f5;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f6f6;
+  --secondary-foreground: #040815;
+  --muted: #f6f6f6;
+  --muted-foreground: #5c6170;
+  --accent: #f6f6f6;
+  --accent-foreground: #040815;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0 0);
-  --input: oklch(0.88 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #6d42f5;
   --gold: oklch(0.72 0.14 76);
   --gold-foreground: oklch(0.12 0 0);
   --cyan-accent: oklch(0.72 0.12 200);
 }
 
 .dark {
-  --background: oklch(0.10 0 0);
-  --foreground: oklch(0.94 0 0);
-  --card: oklch(0.14 0 0);
-  --card-foreground: oklch(0.94 0 0);
-  --popover: oklch(0.14 0 0);
-  --popover-foreground: oklch(0.94 0 0);
-  --primary: oklch(0.92 0 0);
-  --primary-foreground: oklch(0.10 0 0);
-  --secondary: oklch(0.20 0 0);
-  --secondary-foreground: oklch(0.92 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.60 0 0);
-  --accent: oklch(0.20 0 0);
-  --accent-foreground: oklch(0.92 0 0);
+  --background: #0b0d14;
+  --foreground: #f4f5f7;
+  --card: #12141c;
+  --card-foreground: #f4f5f7;
+  --popover: #12141c;
+  --popover-foreground: #f4f5f7;
+  --primary: #8b6cf8;
+  --primary-foreground: #ffffff;
+  --secondary: #1c1f2a;
+  --secondary-foreground: #f4f5f7;
+  --muted: #1c1f2a;
+  --muted-foreground: #a1a6b3;
+  --accent: #1c1f2a;
+  --accent-foreground: #f4f5f7;
   --destructive: oklch(0.65 0.22 25);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.22 0 0);
-  --ring: oklch(0.50 0 0);
+  --border: #2a2e3a;
+  --input: #2a2e3a;
+  --ring: #8b6cf8;
   --gold: oklch(0.78 0.14 76);
   --gold-foreground: oklch(0.10 0 0);
   --cyan-accent: oklch(0.75 0.12 200);
@@ -91,7 +91,7 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

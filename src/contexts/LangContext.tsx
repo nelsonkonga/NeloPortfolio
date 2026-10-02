@@ -25,6 +25,8 @@ const translations: Record<string, Record<Lang, string>> = {
   'cta.whatsapp': { fr: 'WhatsApp', en: 'WhatsApp' },
 
   'hero.badge': { fr: 'Hôtels indépendants', en: 'Independent hotels' },
+  'hero.prices': { fr: '450 €, 990 €, 2 900 €', en: '€450, €990, €2,900' },
+  'hero.seeAll': { fr: 'Voir tout', en: 'See all' },
   'hero.title': {
     fr: 'Des réservations directes pour votre hôtel, sans commission de plateforme.',
     en: 'Direct bookings for your hotel, without a platform commission.',
