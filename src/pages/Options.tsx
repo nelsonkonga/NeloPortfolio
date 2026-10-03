@@ -1,173 +1,130 @@
-import { useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { ArrowLeft, CheckCircle2, Loader2 } from 'lucide-react'
+import { useState, type FormEvent } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { ArrowRight, Loader2 } from 'lucide-react'
+import { Emphasis } from '@/components/ui/Emphasis'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useLang } from '@/contexts/LangContext'
 import { PACKAGES, formatPackagePrice } from '@/data/packages'
-import { whatsappUrl } from '@/lib/links'
-import { supabase } from '@/lib/supabase'
+import { saveLeadDraft, storeLead } from '@/lib/lead'
 
-type FormData = {
-  hotel: string
-  email: string
-  terms: boolean
+function validEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
 }
 
 export function Options() {
   const { t, lang } = useLang()
+  const navigate = useNavigate()
   const [params] = useSearchParams()
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-
   const formule = params.get('formule')
-  const mode = params.get('mode') === 'visite' ? 'visite' : 'envoi'
   const pkg = PACKAGES.find((item) => item.id === formule) ?? PACKAGES[1]
-  const visit = mode === 'visite'
-  const price = formatPackagePrice(visit ? pkg.visitPrice : pkg.price, lang)
   const name = t(pkg.nameKey)
+  const fromPrice = formatPackagePrice(pkg.price, lang)
 
-  const schema = useMemo(
-    () =>
-      z.object({
-        hotel: z.string(),
-        email: z.string().trim().email(t('options.err.email')),
-        terms: z.boolean().refine((value) => value, { message: t('options.err.terms') }),
-      }),
-    [t],
-  )
+  const [hotel, setHotel] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [emailError, setEmailError] = useState(false)
+  const [changing, setChanging] = useState(false)
+  const [busy, setBusy] = useState(false)
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-    defaultValues: { hotel: '', email: '', terms: false },
-  })
+  const showPhone = validEmail(email)
 
-  async function onSubmit(data: FormData) {
-    setStatus('loading')
-    const hotel = data.hotel.trim()
-    const email = data.email.trim()
-    const modeLabel = visit ? t('options.mode.visit') : t('options.mode.supplied')
+  async function onSubmit(event: FormEvent) {
+    event.preventDefault()
+    if (!validEmail(email)) {
+      setEmailError(true)
+      return
+    }
+    setBusy(true)
+    const draft = { formule: pkg.id, hotel: hotel.trim(), email: email.trim(), phone: phone.trim() }
+    saveLeadDraft(draft)
     const message = lang === 'fr'
-      ? `Options de la formule ${name} (${price}, ${modeLabel}). Email : ${email}. Hôtel : ${hotel || 'non précisé'}. Conditions générales acceptées.`
-      : `Options for the ${name} package (${price}, ${modeLabel}). Email: ${email}. Hotel: ${hotel || 'not given'}. Terms accepted.`
-
-    if (!supabase) {
-      setStatus('error')
-      return
-    }
-
-    const { error } = await supabase.from('contact_messages').insert({
-      company: hotel || 'Non précisé',
-      full_name: hotel || email,
-      email,
-      phone: null,
-      need_type: pkg.id,
-      message,
-    })
-
-    if (error) {
-      setStatus('error')
-      return
-    }
-
-    setStatus('success')
-    reset({ hotel: '', email: '', terms: false })
+      ? `Informations pour la formule ${name}, à partir de ${fromPrice}. Email : ${draft.email}. Hôtel : ${draft.hotel || 'non précisé'}. Téléphone : ${draft.phone || 'non précisé'}. L’option n’est pas encore choisie.`
+      : `Details for the ${name} package, from ${fromPrice}. Email: ${draft.email}. Hotel: ${draft.hotel || 'not given'}. Phone: ${draft.phone || 'not given'}. The option is not chosen yet.`
+    await storeLead({ ...draft, message })
+    navigate(`/options/choix?formule=${pkg.id}`)
   }
 
-  const fallback = lang === 'fr'
-    ? `Bonjour Nelo, je veux les options de la formule ${name} (${price}) pour mon hôtel.`
-    : `Hello Nelo, I want the options for the ${name} package (${price}) for my hotel.`
-
   return (
-    <main className="pt-28 pb-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <Link to="/#tarifs" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
-          <ArrowLeft className="h-4 w-4" />
-          {t('options.back')}
-        </Link>
-
-        <p className="text-sm font-medium text-muted-foreground mb-3">{t('options.eyebrow')}</p>
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-4">
-          {name}
-          <span className="text-primary"> {price}</span>
-        </h1>
-        <p className="text-muted-foreground leading-relaxed mb-2">{t(pkg.taglineKey)}</p>
-        <p className="text-sm font-medium mb-8">
-          {t('tarifs.delay').replace('{n}', String(pkg.days))}
-          {' · '}
-          {visit ? t('options.mode.visit') : t('options.mode.supplied')}
-        </p>
-
-        <ul className="space-y-3 mb-10">
-          {pkg.featureKeys.map((key) => (
-            <li key={key} className="flex items-start gap-2 text-sm">
-              <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-              <span>{t(key)}</span>
-            </li>
-          ))}
-        </ul>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="rounded-3xl border border-border bg-card p-6 sm:p-8 space-y-5">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight mb-2">{t('options.form.title')}</h2>
-            <p className="text-sm text-muted-foreground">{t('options.form.lead')}</p>
+    <main className="pt-24 pb-16 bg-muted/40 min-h-screen">
+      <div className="max-w-lg mx-auto px-4">
+        <p className="text-center text-xs font-medium text-muted-foreground mb-4">{t('options.step1')}</p>
+        <form onSubmit={onSubmit} className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm">
+          <div className="rounded-2xl bg-primary/10 px-4 py-3 mb-6 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-xs text-muted-foreground">{t('options.package')}</p>
+              <p className="text-sm font-semibold">{name} · {t('options.from')} {fromPrice}</p>
+            </div>
+            <button type="button" className="text-sm font-semibold text-primary" onClick={() => setChanging((open) => !open)}>
+              {t('options.change')}
+            </button>
           </div>
-
-          <div className="space-y-1.5">
-            <Label htmlFor="hotel">
-              {t('options.hotel')}
-              <span className="text-muted-foreground font-normal"> {t('options.optional')}</span>
-            </Label>
-            <Input id="hotel" {...register('hotel')} placeholder={t('options.hotel.placeholder')} disabled={status === 'loading'} />
-          </div>
-
-          <div className="space-y-1.5">
-            <Label htmlFor="email">{t('options.email')}</Label>
-            <Input id="email" type="email" autoComplete="email" {...register('email')} placeholder={t('options.email.placeholder')} disabled={status === 'loading'} />
-            {status !== 'success' && errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
-          </div>
-
-          <div className="space-y-1.5">
-            <label className="flex items-start gap-3 text-sm leading-relaxed">
-              <input
-                type="checkbox"
-                className="mt-1 h-4 w-4 accent-primary"
-                disabled={status === 'loading'}
-                {...register('terms')}
-              />
-              <span>
-                {t('options.terms.before')}{' '}
-                <Link to="/conditions-generales" className="text-primary underline underline-offset-2">
-                  {t('options.terms.link')}
+          {changing && (
+            <div className="mb-6 grid gap-2">
+              {PACKAGES.map((item) => (
+                <Link
+                  key={item.id}
+                  to={`/options?formule=${item.id}`}
+                  className={`rounded-xl border px-3 py-2 text-sm ${item.id === pkg.id ? 'border-primary text-primary' : 'border-border'}`}
+                  onClick={() => setChanging(false)}
+                >
+                  {t(item.nameKey)} · {t('options.from')} {formatPackagePrice(item.price, lang)}
                 </Link>
-                .
-              </span>
-            </label>
-            {status !== 'success' && errors.terms && <p className="text-xs text-destructive">{errors.terms.message}</p>}
+              ))}
+            </div>
+          )}
+
+          <h1 className="text-3xl font-semibold tracking-tight leading-tight mb-3">
+            <Emphasis text={t('options.title')} />
+          </h1>
+          <p className="text-sm text-muted-foreground mb-6">{t('options.lead')}</p>
+
+          <div className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="hotel">
+                {t('options.hotel')}
+                <span className="text-muted-foreground font-normal"> · {t('options.optional')}</span>
+              </Label>
+              <Input id="hotel" value={hotel} onChange={(event) => setHotel(event.target.value)} placeholder={t('options.hotel.placeholder')} disabled={busy} />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="email">{t('options.email')}</Label>
+              <Input
+                id="email"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={(event) => { setEmail(event.target.value); setEmailError(false) }}
+                placeholder={t('options.email.placeholder')}
+                disabled={busy}
+              />
+              {emailError && <p className="text-xs text-destructive">{t('options.err.email')}</p>}
+            </div>
+            {showPhone && (
+              <div className="space-y-1.5">
+                <Label htmlFor="phone">
+                  {t('options.phone')}
+                  <span className="text-muted-foreground font-normal"> · {t('options.phone.hint')}</span>
+                </Label>
+                <Input id="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="+237 6 00 00 00 00" disabled={busy} />
+              </div>
+            )}
           </div>
 
-          <Button type="submit" className="w-full rounded-full h-12" disabled={status === 'loading'}>
-            {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
-            {t('options.submit')}
+          <Button type="submit" className="w-full rounded-full h-12 mt-6" disabled={busy}>
+            {busy && <Loader2 className="h-4 w-4 animate-spin" />}
+            {t('options.see')}
+            <ArrowRight className="h-4 w-4" />
           </Button>
-
-          {status === 'success' && <p className="text-sm text-primary">{t('options.success')}</p>}
-          {status === 'error' && (
-            <p className="text-sm text-destructive">
-              {t('options.error')}{' '}
-              <a href={whatsappUrl(fallback)} className="underline" target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </a>
-            </p>
-          )}
+          <p className="text-xs text-center text-muted-foreground mt-4 leading-relaxed">
+            {t('options.legal.before')}{' '}
+            <Link to="/conditions-generales" className="underline">{t('options.legal.terms')}</Link>
+            {' '}{t('options.legal.and')}{' '}
+            <Link to="/confidentialite" className="underline">{t('options.legal.privacy')}</Link>
+            . {t('options.legal.nospam')}
+          </p>
         </form>
       </div>
     </main>

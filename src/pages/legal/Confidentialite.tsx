@@ -18,10 +18,10 @@ export function Confidentialite() {
             Collecte des données
           </h2>
           <p>
-            Le formulaire des options collecte votre email, et le nom de l’hôtel si vous le
-            donnez, ainsi que la formule choisie. Cela sert à vous réécrire au sujet de cette
-            demande. Le formulaire d’appel collecte le nom de l’hôtel, votre nom, votre numéro
-            WhatsApp et la formule. Aucune donnée n’est collectée à votre insu.
+            Le formulaire des options collecte votre email, le nom de l’hôtel si vous le
+            donnez, le téléphone si vous le donnez, et la formule choisie. Cela sert à vous
+            réécrire au sujet de cette demande. Le formulaire d’appel collecte le nom de l’hôtel,
+            votre nom, votre numéro WhatsApp et la formule. Aucune donnée n’est collectée à votre insu.
           </p>
         </section>
 
