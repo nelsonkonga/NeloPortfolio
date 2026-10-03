@@ -71,8 +71,10 @@ export function OptionsBrief() {
 
   return (
     <main className="pt-24 pb-16 bg-muted/40 min-h-screen">
-      <div className="max-w-lg mx-auto px-4">
+      <div className="max-w-3xl mx-auto px-4">
         <FunnelStepper current={4} />
+      </div>
+      <div className="max-w-lg mx-auto px-4">
         <Link to={`/options/paiement?formule=${lead.formule}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-6">
           <ArrowLeft className="h-4 w-4" />
           {t('options.step.pay')}

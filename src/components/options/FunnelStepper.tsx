@@ -18,7 +18,7 @@ export function FunnelStepper({ current }: { current: 1 | 2 | 3 | 4 }) {
         const active = step.n === current
         return (
           <div key={step.n} className="flex items-center gap-2 sm:gap-3">
-            <span className={`inline-flex items-center gap-2 text-xs sm:text-sm ${active ? 'font-semibold text-foreground' : done ? 'text-primary' : 'text-muted-foreground'}`}>
+            <span className={`inline-flex items-center gap-2 shrink-0 whitespace-nowrap text-xs sm:text-sm ${active ? 'font-semibold text-foreground' : done ? 'text-primary' : 'text-muted-foreground'}`}>
               <span
                 className={`inline-flex h-7 w-7 items-center justify-center rounded-full text-xs ${
                   active

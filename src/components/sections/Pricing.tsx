@@ -52,7 +52,7 @@ export function Pricing() {
 
                 <Button
                   variant={pkg.popular ? 'default' : 'outline'}
-                  className={`w-full h-12 rounded-xl mb-6 ${pkg.popular ? '' : 'border-primary text-primary hover:bg-primary/5 hover:text-primary'}`}
+                  className={`w-full h-12 rounded-[10px] mb-6 ${pkg.popular ? '' : 'border-primary text-primary hover:bg-primary/5 hover:text-primary'}`}
                   asChild
                 >
                   <Link to={optionsUrl}>
@@ -94,7 +94,7 @@ export function Pricing() {
             <p className="font-semibold mb-1">{t('tarifs.resto.title')}</p>
             <p className="text-sm text-muted-foreground">{t('tarifs.resto.desc')}</p>
           </div>
-          <Button variant="outline" className="rounded-xl border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
+          <Button variant="outline" className="rounded-[10px] border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
             <Link to={`/options?formule=${RESTAURANT_FORMULE}`}>
               {t('tarifs.resto.cta')}
             </Link>
