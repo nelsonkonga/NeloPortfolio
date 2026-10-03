@@ -12,7 +12,6 @@ import { Scenarios } from '@/components/sections/Scenarios'
 import { Pricing } from '@/components/sections/Pricing'
 import { Faq } from '@/components/sections/Faq'
 import { About } from '@/components/sections/About'
-import { Contact } from '@/components/sections/Contact'
 import { MentionsLegales } from '@/pages/legal/MentionsLegales'
 import { Confidentialite } from '@/pages/legal/Confidentialite'
 import { ConditionsGenerales } from '@/pages/legal/ConditionsGenerales'
@@ -35,7 +34,6 @@ function HomePage() {
       <Methodology />
       <About />
       <Faq />
-      <Contact />
     </main>
   )
 }

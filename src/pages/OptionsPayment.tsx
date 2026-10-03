@@ -3,9 +3,11 @@ import { Link, Navigate, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { FunnelStepper } from '@/components/options/FunnelStepper'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { useLang } from '@/contexts/LangContext'
 import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
-import { openCheckout } from '@/lib/checkout'
+import { momoNumber, openCheckout } from '@/lib/checkout'
 import { readLeadDraft, updateLeadDraft, type PaymentMethod } from '@/lib/lead'
 
 export function OptionsPayment() {
@@ -15,8 +17,9 @@ export function OptionsPayment() {
   const formule = params.get('formule') || draft?.formule
   const restaurant = formule === RESTAURANT_FORMULE
   const pkg = PACKAGES.find((item) => item.id === formule)
-  const [method, setMethod] = useState<PaymentMethod>(draft?.paymentMethod ?? 'card')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'unavailable'>('idle')
+  const [method, setMethod] = useState<PaymentMethod>(draft?.paymentMethod ?? 'mtn')
+  const [reference, setReference] = useState(draft?.paymentReference ?? '')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'manual' | 'unavailable'>('idle')
 
   if (!draft || draft.formule !== formule || (!restaurant && !pkg)) {
     return <Navigate to={`/options?formule=${formule || 'essentiel'}`} replace />
@@ -35,15 +38,18 @@ export function OptionsPayment() {
   const total = restaurant
     ? t('options.pay.quote')
     : formatPackagePrice(lead.visit ? pkg!.visitPrice : pkg!.price, lang)
+  const number = momoNumber(method)
+  const motif = lead.hotel || lead.email
 
   function choose(next: PaymentMethod) {
     setMethod(next)
+    setStatus('idle')
     updateLeadDraft({ paymentMethod: next })
   }
 
   async function pay() {
     setStatus('loading')
-    updateLeadDraft({ paymentMethod: method, paymentAttempted: true })
+    updateLeadDraft({ paymentMethod: method, paymentAttempted: true, paymentReference: reference.trim() })
     const result = await openCheckout({
       email: lead.email,
       phone: lead.phone,
@@ -55,11 +61,12 @@ export function OptionsPayment() {
       successUrl: `${window.location.origin}/options/brief?formule=${lead.formule}`,
       cancelUrl: window.location.href,
     })
-    if (result === 'unavailable') setStatus('unavailable')
+    if (result === 'manual' && !restaurant) setStatus('manual')
+    else if (result !== 'redirect') setStatus('unavailable')
   }
 
   function goToBrief() {
-    updateLeadDraft({ paymentMethod: method, paymentAttempted: true })
+    updateLeadDraft({ paymentMethod: method, paymentAttempted: true, paymentReference: reference.trim() })
   }
 
   return (
@@ -77,8 +84,8 @@ export function OptionsPayment() {
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">{t('options.pay.method')}</p>
             <div className="space-y-3" role="radiogroup" aria-label={t('options.pay.method')}>
               {([
-                ['card', t('options.pay.card'), t('options.pay.card.hint')],
-                ['paypal', t('options.pay.paypal'), t('options.pay.paypal.hint')],
+                ['mtn', t('options.pay.mtn'), t('options.pay.mtn.hint')],
+                ['orange', t('options.pay.orange'), t('options.pay.orange.hint')],
               ] as const).map(([value, label, hint]) => {
                 const active = method === value
                 return (
@@ -110,12 +117,38 @@ export function OptionsPayment() {
               {status === 'loading' ? t('options.pay.redirecting') : `${t('options.pay.continue')} · ${total}`}
               {status !== 'loading' && <ArrowRight className="h-4 w-4" />}
             </Button>
+            {status === 'manual' && number && (
+              <div className="mt-4 space-y-3">
+                <p className="text-sm font-medium">{t('options.pay.send').replace('{amount}', total).replace('{number}', number)}</p>
+                <p className="text-sm text-muted-foreground">{t('options.pay.motif')} : {motif}</p>
+                <p className="text-sm text-muted-foreground">{t('options.pay.seen')}</p>
+                <div className="space-y-1.5">
+                  <Label htmlFor="payment-reference">
+                    {t('options.pay.reference')}
+                    <span className="text-muted-foreground font-normal"> · {t('options.optional')}</span>
+                  </Label>
+                  <Input
+                    id="payment-reference"
+                    value={reference}
+                    onChange={(event) => {
+                      setReference(event.target.value)
+                      updateLeadDraft({ paymentReference: event.target.value.trim() })
+                    }}
+                  />
+                </div>
+                <Button variant="outline" className="w-full h-12 rounded-[10px] border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
+                  <Link to={`/options/brief?formule=${lead.formule}`} onClick={goToBrief}>
+                    {t('options.pay.brief')}
+                  </Link>
+                </Button>
+              </div>
+            )}
             {status === 'unavailable' && (
               <div className="mt-4 space-y-3">
                 <p className="text-sm text-destructive">
                   {t('options.pay.error')} <strong className="font-semibold">{t('options.pay.uncharged')}</strong>
                 </p>
-                <Button variant="outline" className="w-full h-12 rounded-xl border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
+                <Button variant="outline" className="w-full h-12 rounded-[10px] border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
                   <Link to={`/options/brief?formule=${lead.formule}`} onClick={goToBrief}>
                     {t('options.pay.brief')}
                   </Link>

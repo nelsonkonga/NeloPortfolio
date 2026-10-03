@@ -20,9 +20,9 @@ export function Confidentialite() {
           <p>
             Le parcours collecte votre email, le nom de l’hôtel ou de l’établissement si vous le
             donnez, le téléphone si vous le donnez, la formule, l’option choisie, votre nom, la ville,
-            le nombre de chambres et les précisions du brief. Cela sert à préparer la demande.
-            Le numéro de carte n’est pas saisi sur ce site. S’il est demandé, il l’est sur la page
-            sécurisée de Stripe ou de PayPal. Aucune donnée n’est collectée à votre insu.
+            le nombre de chambres, les précisions du brief et, si vous la donnez, la référence du
+            transfert Mobile Money. Cela sert à préparer la demande et à rapprocher le paiement.
+            Aucun numéro de carte n’est demandé. Aucune donnée n’est collectée à votre insu.
           </p>
         </section>
 

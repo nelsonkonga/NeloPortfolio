@@ -49,10 +49,11 @@ export function ConditionsGenerales() {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Paiement</h2>
           <p>
             Un acompte est demandé au démarrage. Le solde est payable à la livraison. L’acompte peut
-            se régler par carte ou par PayPal, sur la page sécurisée du prestataire. Le numéro de
-            carte n’est pas saisi sur le site Nelo. Si cette page ne s’ouvre pas, aucun montant n’est
-            débité. Le devis est valable 30 jours. Le nom de domaine .com et l’hébergement de la
-            première année sont inclus. Une extension locale se paie au tarif du registrar.
+            se régler par MTN Mobile Money ou par Orange Money. Le site ne prélève rien tout seul.
+            Si le paiement n’est pas encore ouvert, aucun montant n’est débité. Le transfert est
+            confirmé lorsqu’il est vu sur le compte. Le devis est valable 30 jours. Le nom de domaine
+            .com et l’hébergement de la première année sont inclus. Une extension locale se paie au
+            tarif du registrar.
           </p>
         </section>
 

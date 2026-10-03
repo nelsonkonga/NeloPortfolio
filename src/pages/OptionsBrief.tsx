@@ -56,9 +56,10 @@ export function OptionsBrief() {
     setStatus('loading')
     const brief = { name: name.trim(), rooms: rooms.trim(), city: city.trim(), notes: notes.trim() }
     updateLeadDraft({ brief })
+    const payLabel = lead.paymentMethod === 'orange' ? 'Orange Money' : 'MTN Mobile Money'
     const message = lang === 'fr'
-      ? `Brief. Formule : ${formulaName}. Mode : ${modeLabel}. Total affiché : ${total}. Nom : ${brief.name}. Ville : ${brief.city || 'non précisée'}. Chambres : ${brief.rooms || 'non précisé'}. Hôtel : ${lead.hotel || 'non précisé'}. Email : ${lead.email}. Téléphone : ${lead.phone || 'non précisé'}. Paiement : ${lead.paymentMethod}, page sécurisée non confirmée sur ce site. Notes : ${brief.notes || 'aucune'}.`
-      : `Brief. Package: ${formulaName}. Mode: ${modeLabel}. Listed total: ${total}. Name: ${brief.name}. City: ${brief.city || 'not given'}. Rooms: ${brief.rooms || 'not given'}. Hotel: ${lead.hotel || 'not given'}. Email: ${lead.email}. Phone: ${lead.phone || 'not given'}. Payment: ${lead.paymentMethod}, secure page not confirmed on this site. Notes: ${brief.notes || 'none'}.`
+      ? `Brief. Formule : ${formulaName}. Mode : ${modeLabel}. Total affiché : ${total}. Nom : ${brief.name}. Ville : ${brief.city || 'non précisée'}. Chambres : ${brief.rooms || 'non précisé'}. Hôtel : ${lead.hotel || 'non précisé'}. Email : ${lead.email}. Téléphone : ${lead.phone || 'non précisé'}. Paiement : ${payLabel}, transfert non confirmé sur ce site. Référence : ${lead.paymentReference || 'aucune'}. Notes : ${brief.notes || 'aucune'}.`
+      : `Brief. Package: ${formulaName}. Mode: ${modeLabel}. Listed total: ${total}. Name: ${brief.name}. City: ${brief.city || 'not given'}. Rooms: ${brief.rooms || 'not given'}. Hotel: ${lead.hotel || 'not given'}. Email: ${lead.email}. Phone: ${lead.phone || 'not given'}. Payment: ${payLabel}, transfer not confirmed on this site. Reference: ${lead.paymentReference || 'none'}. Notes: ${brief.notes || 'none'}.`
     const saved = await storeLead({
       hotel: lead.hotel || brief.name,
       email: lead.email,

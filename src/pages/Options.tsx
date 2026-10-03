@@ -51,7 +51,7 @@ export function Options() {
       phone: phone.trim(),
       visit: false,
       optionsReady: false,
-      paymentMethod: 'card' as const,
+      paymentMethod: 'mtn' as const,
       paymentAttempted: false,
     }
     saveLeadDraft(draft)
