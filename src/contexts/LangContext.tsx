@@ -307,8 +307,8 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'faq.q6': { fr: 'Comment se paie le site ?', en: 'How is the website paid for?' },
   'faq.a6': {
-    fr: 'Un acompte au démarrage, le solde à la livraison. Le devis reste valable 30 jours.',
-    en: 'A deposit at the start, the balance on delivery. The quote stays valid for 30 days.',
+    fr: 'Un acompte au démarrage, par MTN Mobile Money ou Orange Money. Le solde se paie à la livraison. Le devis reste valable 30 jours.',
+    en: 'A deposit at the start, by MTN Mobile Money or Orange Money. The balance is paid on delivery. The quote stays valid for 30 days.',
   },
   'faq.q7': { fr: 'Et un restaurant ?', en: 'What about a restaurant?' },
   'faq.a7': {
@@ -328,13 +328,6 @@ const translations: Record<string, Record<Lang, string>> = {
   'about.h2': { fr: 'Délai écrit', en: 'Written deadline' },
   'about.h3': { fr: 'Domaine et hébergement la 1re année', en: 'Domain and hosting in year 1' },
   'about.available': { fr: 'Appels ouverts', en: 'Calls open' },
-
-  'contact.eyebrow': { fr: 'Démarrer', en: 'Start' },
-  'contact.title': { fr: 'Votre email, puis {em}les options{/em}.', en: 'Your email, then {em}the options{/em}.' },
-  'contact.subtitle': {
-    fr: 'Le même parcours que les formules. Rien à payer à cette étape.',
-    en: 'The same path as the packages. Nothing to pay on this step.',
-  },
 
   'options.step1': { fr: '1. Vos informations', en: '1. Your details' },
   'options.step2': { fr: '2. Options', en: '2. Options' },
@@ -399,23 +392,30 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'options.pay.title': { fr: 'Paiement', en: 'Payment' },
   'options.pay.method': { fr: 'Moyen de paiement', en: 'Payment method' },
-  'options.pay.card': { fr: 'Carte bancaire', en: 'Credit or debit card' },
-  'options.pay.card.hint': { fr: 'Débit sécurisé via Stripe', en: 'Charged securely via Stripe' },
-  'options.pay.paypal': { fr: 'PayPal', en: 'PayPal' },
-  'options.pay.paypal.hint': { fr: 'Vous serez redirigé pour terminer le paiement', en: 'You will be redirected to complete payment' },
+  'options.pay.mtn': { fr: 'MTN Mobile Money', en: 'MTN Mobile Money' },
+  'options.pay.mtn.hint': { fr: 'Depuis un compte MTN au Cameroun', en: 'From an MTN account in Cameroon' },
+  'options.pay.orange': { fr: 'Orange Money', en: 'Orange Money' },
+  'options.pay.orange.hint': { fr: 'Depuis un compte Orange au Cameroun', en: 'From an Orange account in Cameroon' },
   'options.pay.secure': {
-    fr: 'Paiement sécurisé. Chiffrement SSL. Le numéro de carte n’est pas saisi ici.',
-    en: 'Secure checkout. SSL encrypted. The card number is not entered here.',
+    fr: 'Le site ne prélève rien tout seul. Le transfert part de votre compte Mobile Money.',
+    en: 'The site does not take money by itself. The transfer leaves your Mobile Money account.',
   },
   'options.pay.continue': { fr: 'Continuer vers le paiement', en: 'Continue to payment' },
   'options.pay.redirecting': { fr: 'Redirection…', en: 'Redirecting…' },
   'options.pay.due': { fr: 'À payer aujourd’hui', en: 'Total due today' },
   'options.pay.quote': { fr: 'Devis à part', en: 'Separate quote' },
   'options.pay.error': {
-    fr: 'Nous n’avons pas pu ouvrir la page de paiement sécurisée.',
-    en: 'We could not open the secure payment page.',
+    fr: 'Le paiement Mobile Money n’est pas encore ouvert.',
+    en: 'Mobile Money payment is not open yet.',
   },
   'options.pay.uncharged': { fr: 'Vous n’avez pas été débité.', en: 'You have not been charged.' },
+  'options.pay.send': { fr: 'Envoyez {amount} au {number}.', en: 'Send {amount} to {number}.' },
+  'options.pay.motif': { fr: 'Motif', en: 'Reference' },
+  'options.pay.seen': {
+    fr: 'Le transfert est confirmé seulement quand il apparaît sur le compte.',
+    en: 'The transfer is confirmed only when it shows on the account.',
+  },
+  'options.pay.reference': { fr: 'Référence du transfert', en: 'Transfer reference' },
   'options.pay.brief': { fr: 'Continuer vers le brief', en: 'Continue to the brief' },
   'options.brief.title': { fr: 'Le brief', en: 'The brief' },
   'options.brief.lead': {
@@ -446,8 +446,8 @@ const translations: Record<string, Record<Lang, string>> = {
     en: 'The brief stays on this device. The database is not connected yet. You have not been charged.',
   },
   'options.brief.paynote': {
-    fr: 'Cette page ne confirme pas un paiement. Le débit n’a lieu que sur la page sécurisée.',
-    en: 'This page does not confirm a payment. A charge only happens on the secure page.',
+    fr: 'Cette page ne confirme pas un paiement. Le transfert est confirmé seulement quand il est vu sur le compte.',
+    en: 'This page does not confirm a payment. The transfer is confirmed only when it is seen on the account.',
   },
   'options.brief.err.name': { fr: 'Indiquez votre nom.', en: 'Add your name.' },
 

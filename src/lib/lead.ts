@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 
-export type PaymentMethod = 'card' | 'paypal'
+export type PaymentMethod = 'mtn' | 'orange'
 
 export type BriefDraft = {
   name: string
@@ -18,6 +18,7 @@ export type LeadDraft = {
   optionsReady: boolean
   paymentMethod: PaymentMethod
   paymentAttempted: boolean
+  paymentReference?: string
   brief?: BriefDraft
 }
 
@@ -40,8 +41,9 @@ export function readLeadDraft(): LeadDraft | null {
       phone: data.phone || '',
       visit: Boolean(data.visit),
       optionsReady: Boolean(data.optionsReady),
-      paymentMethod: data.paymentMethod === 'paypal' ? 'paypal' : 'card',
+      paymentMethod: data.paymentMethod === 'orange' ? 'orange' : 'mtn',
       paymentAttempted: Boolean(data.paymentAttempted),
+      paymentReference: data.paymentReference || '',
       brief: data.brief,
     }
   } catch {

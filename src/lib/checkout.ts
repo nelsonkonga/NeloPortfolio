@@ -23,6 +23,14 @@ function httpsUrl(value: string | undefined) {
   }
 }
 
+export function momoNumber(method: PaymentMethod) {
+  const raw = method === 'orange'
+    ? import.meta.env.VITE_ORANGE_MONEY_NUMBER
+    : import.meta.env.VITE_MTN_MOMO_NUMBER
+  const value = typeof raw === 'string' ? raw.trim() : ''
+  return value || null
+}
+
 async function redirectFromEndpoint(endpoint: string | undefined, input: CheckoutRequest) {
   const url = httpsUrl(endpoint)
   if (!url) return false
@@ -43,25 +51,9 @@ async function redirectFromEndpoint(endpoint: string | undefined, input: Checkou
   }
 }
 
-function redirectToLink(link: string | undefined, input: CheckoutRequest) {
-  const url = httpsUrl(link)
-  if (!url) return false
-  if (input.email) url.searchParams.set('prefilled_email', input.email)
-  url.searchParams.set('client_reference_id', input.formule)
-  window.location.href = url.toString()
-  return true
-}
-
-export async function openCheckout(input: CheckoutRequest): Promise<'redirect' | 'unavailable'> {
-  if (input.method === 'paypal') {
-    const opened = await redirectFromEndpoint(import.meta.env.VITE_PAYPAL_ENDPOINT, input)
-    if (opened) return 'redirect'
-    if (redirectToLink(import.meta.env.VITE_PAYPAL_CHECKOUT_URL, input)) return 'redirect'
-    return 'unavailable'
-  }
-
-  const opened = await redirectFromEndpoint(import.meta.env.VITE_CHECKOUT_ENDPOINT, input)
+export async function openCheckout(input: CheckoutRequest): Promise<'redirect' | 'manual' | 'unavailable'> {
+  const opened = await redirectFromEndpoint(import.meta.env.VITE_MOMO_ENDPOINT, input)
   if (opened) return 'redirect'
-  if (redirectToLink(import.meta.env.VITE_STRIPE_CHECKOUT_URL, input)) return 'redirect'
+  if (momoNumber(input.method)) return 'manual'
   return 'unavailable'
 }

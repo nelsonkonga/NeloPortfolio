@@ -10,7 +10,6 @@ const NAV_ITEMS = [
   { key: 'nav.method', href: '#methode' },
   { key: 'nav.pricing', href: '#tarifs' },
   { key: 'nav.faq', href: '#faq' },
-  { key: 'nav.contact', href: '#contact' },
 ]
 
 const LEGAL_LINKS = [
