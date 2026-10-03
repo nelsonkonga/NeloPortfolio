@@ -41,7 +41,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-muted/30 border-t border-border">
+    <footer className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div>
@@ -60,7 +60,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="flex items-center justify-center w-9 h-9 rounded-lg border border-border hover:border-gold/40 hover:text-gold transition-colors text-muted-foreground"
+                    className="flex items-center justify-center w-9 h-9 rounded-full border border-border hover:border-primary/40 hover:text-primary transition-colors text-muted-foreground"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -70,7 +70,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-gold uppercase mb-4">Navigation</p>
+            <p className="text-sm font-semibold mb-4">Navigation</p>
             <ul className="space-y-2">
               {NAV_ITEMS.map((item) => (
                 <li key={item.key}>
@@ -83,7 +83,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-gold uppercase mb-4">Légal</p>
+            <p className="text-sm font-semibold mb-4">Légal</p>
             <ul className="space-y-2">
               {LEGAL_LINKS.map((item) => (
                 <li key={item.key}>

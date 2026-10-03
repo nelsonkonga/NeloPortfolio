@@ -1,3 +1,4 @@
+import { ArrowRight, Check, X } from 'lucide-react'
 import { useLang } from '@/contexts/LangContext'
 
 const ROWS = [
@@ -11,28 +12,45 @@ export function BeforeAfter() {
   const { t } = useLang()
 
   return (
-    <section className="py-24 sm:py-28 bg-muted/30">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">{t('compare.eyebrow')}</p>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-10">{t('compare.title')}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="rounded-2xl border border-border bg-card p-6">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">{t('compare.before')}</p>
-            <ul className="space-y-4">
+    <section className="py-20 sm:py-28">
+      <div className="max-w-[980px] mx-auto px-4 sm:px-6 text-center">
+        <p className="text-sm font-medium text-muted-foreground mb-3">{t('compare.eyebrow')}</p>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-12">{t('compare.title')}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 text-left">
+          <div>
+            <p className="text-lg font-semibold mb-4">{t('compare.before')}</p>
+            <ul>
               {ROWS.map(([before]) => (
-                <li key={before} className="text-sm leading-relaxed text-muted-foreground">{t(before)}</li>
+                <li key={before} className="flex items-start gap-3 py-4 border-t border-border text-muted-foreground">
+                  <X className="h-4 w-4 mt-1 shrink-0" />
+                  <span>{t(before)}</span>
+                </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-gold/40 bg-card p-6">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-4">{t('compare.after')}</p>
-            <ul className="space-y-4">
+          <div>
+            <p className="text-lg font-semibold mb-4">{t('compare.after')}</p>
+            <ul>
               {ROWS.map(([, after]) => (
-                <li key={after} className="text-sm leading-relaxed">{t(after)}</li>
+                <li key={after} className="flex items-start gap-3 py-4 border-t border-border">
+                  <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground shrink-0">
+                    <Check className="h-3 w-3" />
+                  </span>
+                  <span>{t(after)}</span>
+                </li>
               ))}
             </ul>
           </div>
         </div>
+        <a
+          href="#tarifs"
+          className="mt-12 inline-flex items-center h-16 rounded-full bg-primary text-primary-foreground pl-7 pr-2 text-lg font-semibold"
+        >
+          {t('cta.pricing')}
+          <span className="ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+            <ArrowRight className="h-4 w-4" />
+          </span>
+        </a>
       </div>
     </section>
   )

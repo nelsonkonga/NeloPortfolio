@@ -1,77 +1,78 @@
-import { Instagram, Linkedin } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { ArrowRight, CalendarClock, PenLine, ShieldCheck } from 'lucide-react'
 import { BookCallButton } from '@/components/contact/BookCallButton'
 import { useLang } from '@/contexts/LangContext'
-import { bookCallMessage, SOCIAL, whatsappUrl } from '@/lib/links'
+
+const PHOTOS = [
+  ['/hotels/facade.jpg', 'photo.facade'],
+  ['/hotels/chambre.jpg', 'photo.chambre'],
+  ['/hotels/suite.jpg', 'photo.suite'],
+  ['/hotels/lobby.jpg', 'photo.piscine'],
+  ['/hotels/terrasse.jpg', 'photo.terrasse'],
+  ['/hotels/petitdej.jpg', 'photo.sejour'],
+] as const
 
 export function Hero() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
 
   function scrollToPricing() {
     document.querySelector('#tarifs')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, var(--border) 1px, transparent 1px),
-            linear-gradient(to bottom, var(--border) 1px, transparent 1px)
-          `,
-          backgroundSize: '64px 64px',
-          opacity: 0.3,
-        }}
-      />
-      <div
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, oklch(0.78 0.14 76 / 0.08) 0%, transparent 70%)' }}
-      />
+    <section id="hero" className="pt-[72px] bg-background">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
+        <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm mb-8">
+          <span className="h-2 w-2 rounded-full bg-primary" />
+          {t('hero.badge')}
+        </span>
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-6">
-          <Badge className="bg-gold/10 text-gold border-gold/30">{t('hero.badge')}</Badge>
-        </div>
-
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-balance mb-6 leading-tight">
+        <h1 className="max-w-4xl text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08] mb-6">
           {t('hero.title')}
         </h1>
 
-        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
           {t('hero.subtitle')}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <BookCallButton />
-          <Button size="lg" variant="outline" onClick={scrollToPricing}>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+          <button
+            onClick={scrollToPricing}
+            className="inline-flex items-center h-16 rounded-full bg-primary text-primary-foreground pl-7 pr-2 text-lg font-semibold shadow-[0_8px_20px_rgba(109,66,245,0.18)] cursor-pointer"
+          >
             {t('cta.pricing')}
-          </Button>
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
-          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-gold">
-            <Instagram className="h-4 w-4" />
-            {t('cta.instagram')}
-          </a>
-          <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-gold">
-            <Linkedin className="h-4 w-4" />
-            {t('cta.linkedin')}
-          </a>
-          <a href={whatsappUrl(bookCallMessage(lang))} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-gold">
-            {t('cta.whatsapp')}
-          </a>
-        </div>
-
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
-          {[t('hero.trust1'), t('hero.trust2'), t('hero.trust3')].map((item) => (
-            <span key={item} className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-              {item}
+            <span className="ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+              <ArrowRight className="h-4 w-4" />
             </span>
-          ))}
+          </button>
+          <BookCallButton tone="secondary" />
         </div>
+
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-foreground" />{t('hero.trust1')}</span>
+          <span className="hidden sm:inline h-3 w-px bg-border" />
+          <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4 text-foreground" />{t('hero.trust2')}</span>
+          <span className="hidden sm:inline h-3 w-px bg-border" />
+          <span className="inline-flex items-center gap-2"><PenLine className="h-4 w-4 text-foreground" />{t('hero.trust3')}</span>
+        </div>
+      </div>
+
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-14 pb-4 flex items-center justify-between">
+        <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">{t('hero.gallery')}</p>
+        <a href="#exemples" className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+          {t('hero.seeAll')}
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+
+      <div className="flex gap-4 overflow-x-auto px-4 sm:px-6 pb-16 snap-x">
+        {PHOTOS.map(([src, alt]) => (
+          <img
+            key={src}
+            src={src}
+            alt={t(alt)}
+            className="h-[420px] w-[280px] sm:w-[320px] shrink-0 rounded-3xl object-cover snap-start"
+          />
+        ))}
       </div>
     </section>
   )

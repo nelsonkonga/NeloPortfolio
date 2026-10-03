@@ -77,14 +77,14 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 sm:py-28">
-      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-semibold tracking-widest text-gold uppercase mb-3">{t('contact.eyebrow')}</p>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{t('contact.title')}</h2>
+    <section id="contact" className="py-20 sm:py-28">
+      <div className="max-w-xl mx-auto px-4 sm:px-6">
+        <p className="text-sm font-medium text-muted-foreground mb-3">{t('contact.eyebrow')}</p>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4">{t('contact.title')}</h2>
         <p className="text-muted-foreground mb-6">{t('contact.subtitle')}</p>
         <BookCallButton fullWidth className="mb-8" />
 
-        <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl border border-border bg-card p-6 space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="rounded-3xl border border-border bg-card p-6 space-y-4">
           <div className="space-y-1.5">
             <Label htmlFor="company">{t('contact.company')}</Label>
             <Input id="company" {...register('company')} placeholder={t('contact.company.placeholder')} disabled={status === 'loading'} />

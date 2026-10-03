@@ -26,11 +26,11 @@ function HomePage() {
       <Problem />
       <BeforeAfter />
       <Offer />
-      <Methodology />
-      <Scenarios />
       <Pricing />
-      <Faq />
+      <Scenarios />
+      <Methodology />
       <About />
+      <Faq />
       <Contact />
     </main>
   )

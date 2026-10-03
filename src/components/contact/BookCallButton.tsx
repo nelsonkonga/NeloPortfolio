@@ -1,4 +1,4 @@
-import { MessageCircle } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/contexts/LangContext'
 import { bookCallMessage, whatsappUrl } from '@/lib/links'
@@ -9,6 +9,7 @@ interface BookCallButtonProps {
   size?: 'default' | 'sm' | 'lg'
   fullWidth?: boolean
   message?: string
+  tone?: 'primary' | 'secondary'
 }
 
 export function BookCallButton({
@@ -16,23 +17,31 @@ export function BookCallButton({
   size = 'lg',
   fullWidth = false,
   message,
+  tone = 'primary',
 }: BookCallButtonProps) {
   const { t, lang } = useLang()
+  const primary = tone === 'primary'
 
   return (
     <Button
-      variant="gold"
+      variant={primary ? 'default' : 'secondary'}
       size={size}
       className={cn(
-        'shadow-[0_0_20px_rgba(234,179,8,0.25)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)]',
+        'h-16 rounded-full pl-7 pr-2 text-lg font-semibold',
+        primary && 'shadow-[0_8px_20px_rgba(109,66,245,0.18)]',
         fullWidth && 'w-full',
         className,
       )}
       asChild
     >
       <a href={whatsappUrl(message ?? bookCallMessage(lang))} target="_blank" rel="noopener noreferrer">
-        <MessageCircle className="h-4 w-4" />
         {t('cta.book')}
+        <span className={cn(
+          'ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full',
+          primary ? 'bg-white/10' : 'bg-foreground/5',
+        )}>
+          <ArrowRight className="h-4 w-4" />
+        </span>
       </a>
     </Button>
   )
