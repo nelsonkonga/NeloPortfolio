@@ -3,6 +3,7 @@ export type PackageId = 'decouverte' | 'essentiel' | 'complet'
 export interface PackageDef {
   id: PackageId
   price: string
+  visitPrice: string
   days: number
   popular?: boolean
   nameKey: string
@@ -15,7 +16,8 @@ export interface PackageDef {
 export const PACKAGES: PackageDef[] = [
   {
     id: 'decouverte',
-    price: '450 €',
+    price: '449 €',
+    visitPrice: '649 €',
     days: 14,
     nameKey: 'tarifs.pkg.decouverte.name',
     taglineKey: 'tarifs.pkg.decouverte.tagline',
@@ -29,6 +31,7 @@ export const PACKAGES: PackageDef[] = [
   {
     id: 'essentiel',
     price: '990 €',
+    visitPrice: '1 490 €',
     days: 21,
     popular: true,
     nameKey: 'tarifs.pkg.essentiel.name',
@@ -43,7 +46,8 @@ export const PACKAGES: PackageDef[] = [
   },
   {
     id: 'complet',
-    price: '2 900 €',
+    price: '2 990 €',
+    visitPrice: '3 990 €',
     days: 30,
     nameKey: 'tarifs.pkg.complet.name',
     taglineKey: 'tarifs.pkg.complet.tagline',
@@ -56,8 +60,22 @@ export const PACKAGES: PackageDef[] = [
   },
 ]
 
-export function packageWhatsappMessage(lang: 'fr' | 'en', name: string, price: string) {
-  return lang === 'fr'
-    ? `Bonjour Nelo, je souhaite réserver un appel de 20 minutes au sujet de la formule ${name} (${price}) pour mon hôtel.`
-    : `Hello Nelo, I would like to book a 20-minute call about the ${name} package (${price}) for my hotel.`
+export function formatPackagePrice(price: string, lang: 'fr' | 'en') {
+  if (lang === 'fr') return price
+  const digits = price.replace(' €', '').replace(/\s/g, '')
+  const grouped = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return `€${grouped}`
+}
+
+export function packageWhatsappMessage(lang: 'fr' | 'en', name: string, price: string, visit: boolean) {
+  if (lang === 'fr') {
+    const mode = visit
+      ? 'avec venue sur place à Yaoundé pour les photos et les textes'
+      : 'avec textes et photos envoyés par l’hôtel'
+    return `Bonjour Nelo, je souhaite réserver un appel de 20 minutes au sujet de la formule ${name} (${price}, ${mode}) pour mon hôtel.`
+  }
+  const mode = visit
+    ? 'with an on-site visit in Yaoundé for the photos and the texts'
+    : 'with texts and photos sent by the hotel'
+  return `Hello Nelo, I would like to book a 20-minute call about the ${name} package (${price}, ${mode}) for my hotel.`
 }
