@@ -18,10 +18,11 @@ export function Confidentialite() {
             Collecte des données
           </h2>
           <p>
-            Le formulaire des options collecte votre email, le nom de l’hôtel si vous le
-            donnez, le téléphone si vous le donnez, et la formule choisie. Cela sert à vous
-            réécrire au sujet de cette demande. Le formulaire d’appel collecte le nom de l’hôtel,
-            votre nom, votre numéro WhatsApp et la formule. Aucune donnée n’est collectée à votre insu.
+            Le parcours collecte votre email, le nom de l’hôtel ou de l’établissement si vous le
+            donnez, le téléphone si vous le donnez, la formule, l’option choisie, votre nom, la ville,
+            le nombre de chambres et les précisions du brief. Cela sert à préparer la demande.
+            Le numéro de carte n’est pas saisi sur ce site. S’il est demandé, il l’est sur la page
+            sécurisée de Stripe ou de PayPal. Aucune donnée n’est collectée à votre insu.
           </p>
         </section>
 
