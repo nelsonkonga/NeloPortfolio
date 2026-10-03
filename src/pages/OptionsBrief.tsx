@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { useLang } from '@/contexts/LangContext'
+import { formatMomoAmount, momoAmountXaf } from '@/data/momoAmounts'
 import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
 import { readLeadDraft, storeLead, updateLeadDraft } from '@/lib/lead'
 
@@ -38,9 +39,11 @@ export function OptionsBrief() {
     : lead.visit
       ? t('options.mode.visit')
       : t('options.mode.supplied')
-  const total = restaurant
+  const euro = restaurant
     ? t('options.pay.quote')
     : formatPackagePrice(lead.visit ? pkg!.visitPrice : pkg!.price, lang)
+  const xaf = restaurant ? null : momoAmountXaf(lead.formule, lead.visit)
+  const total = xaf == null ? euro : formatMomoAmount(xaf, lang)
   const hint = restaurant
     ? t('options.brief.restaurant')
     : lead.visit
@@ -58,8 +61,8 @@ export function OptionsBrief() {
     updateLeadDraft({ brief })
     const payLabel = lead.paymentMethod === 'orange' ? 'Orange Money' : 'MTN Mobile Money'
     const message = lang === 'fr'
-      ? `Brief. Formule : ${formulaName}. Mode : ${modeLabel}. Total affiché : ${total}. Nom : ${brief.name}. Ville : ${brief.city || 'non précisée'}. Chambres : ${brief.rooms || 'non précisé'}. Hôtel : ${lead.hotel || 'non précisé'}. Email : ${lead.email}. Téléphone : ${lead.phone || 'non précisé'}. Paiement : ${payLabel}, transfert non confirmé sur ce site. Référence : ${lead.paymentReference || 'aucune'}. Notes : ${brief.notes || 'aucune'}.`
-      : `Brief. Package: ${formulaName}. Mode: ${modeLabel}. Listed total: ${total}. Name: ${brief.name}. City: ${brief.city || 'not given'}. Rooms: ${brief.rooms || 'not given'}. Hotel: ${lead.hotel || 'not given'}. Email: ${lead.email}. Phone: ${lead.phone || 'not given'}. Payment: ${payLabel}, transfer not confirmed on this site. Reference: ${lead.paymentReference || 'none'}. Notes: ${brief.notes || 'none'}.`
+      ? `Brief. Formule : ${formulaName}. Mode : ${modeLabel}. Prix affiché : ${euro}. Mobile Money : ${total}. Nom : ${brief.name}. Ville : ${brief.city || 'non précisée'}. Chambres : ${brief.rooms || 'non précisé'}. Hôtel : ${lead.hotel || 'non précisé'}. Email : ${lead.email}. Téléphone : ${lead.phone || 'non précisé'}. Paiement : ${payLabel}, transfert non confirmé sur ce site. Référence : ${lead.paymentReference || 'aucune'}. Notes : ${brief.notes || 'aucune'}.`
+      : `Brief. Package: ${formulaName}. Mode: ${modeLabel}. Listed price: ${euro}. Mobile Money: ${total}. Name: ${brief.name}. City: ${brief.city || 'not given'}. Rooms: ${brief.rooms || 'not given'}. Hotel: ${lead.hotel || 'not given'}. Email: ${lead.email}. Phone: ${lead.phone || 'not given'}. Payment: ${payLabel}, transfer not confirmed on this site. Reference: ${lead.paymentReference || 'none'}. Notes: ${brief.notes || 'none'}.`
     const saved = await storeLead({
       hotel: lead.hotel || brief.name,
       email: lead.email,

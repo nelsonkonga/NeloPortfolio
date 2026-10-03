@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useLang } from '@/contexts/LangContext'
+import { formatMomoAmount, momoAmountXaf } from '@/data/momoAmounts'
 import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
 import { momoNumber, openCheckout } from '@/lib/checkout'
 import { readLeadDraft, updateLeadDraft, type PaymentMethod } from '@/lib/lead'
@@ -35,9 +36,11 @@ export function OptionsPayment() {
     : lead.visit
       ? t('options.mode.visit')
       : t('options.mode.supplied')
-  const total = restaurant
+  const euro = restaurant
     ? t('options.pay.quote')
     : formatPackagePrice(lead.visit ? pkg!.visitPrice : pkg!.price, lang)
+  const xaf = restaurant ? null : momoAmountXaf(lead.formule, lead.visit)
+  const total = xaf == null ? euro : formatMomoAmount(xaf, lang)
   const number = momoNumber(method)
   const motif = lead.hotel || lead.email
 
@@ -111,8 +114,9 @@ export function OptionsPayment() {
             <p className="font-semibold mb-1">{name}</p>
             <p className="text-sm text-muted-foreground mb-4">{modeLabel}</p>
             <p className="text-sm text-muted-foreground">{t('options.pay.due')}</p>
-            <p className="text-3xl font-semibold tracking-tight mb-5">{total}</p>
-            <Button type="button" className="w-full rounded-full h-12" onClick={pay} disabled={status === 'loading'}>
+            <p className="text-3xl font-semibold tracking-tight">{total}</p>
+            {xaf != null && <p className="text-sm text-muted-foreground mt-1">{euro}</p>}
+            <Button type="button" className="w-full rounded-full h-auto min-h-12 whitespace-normal text-center leading-tight mt-5" onClick={pay} disabled={status === 'loading'}>
               {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
               {status === 'loading' ? t('options.pay.redirecting') : `${t('options.pay.continue')} · ${total}`}
               {status !== 'loading' && <ArrowRight className="h-4 w-4" />}

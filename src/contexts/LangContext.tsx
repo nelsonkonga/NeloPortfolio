@@ -405,8 +405,8 @@ const translations: Record<string, Record<Lang, string>> = {
   'options.pay.due': { fr: 'À payer aujourd’hui', en: 'Total due today' },
   'options.pay.quote': { fr: 'Devis à part', en: 'Separate quote' },
   'options.pay.error': {
-    fr: 'Le paiement Mobile Money n’est pas encore ouvert.',
-    en: 'Mobile Money payment is not open yet.',
+    fr: 'La page de paiement sécurisée n’a pas pu s’ouvrir.',
+    en: 'The secure payment page could not be opened.',
   },
   'options.pay.uncharged': { fr: 'Vous n’avez pas été débité.', en: 'You have not been charged.' },
   'options.pay.send': { fr: 'Envoyez {amount} au {number}.', en: 'Send {amount} to {number}.' },
