@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { ArrowRight, Instagram, Linkedin, Menu, Moon, Sun, X } from 'lucide-react'
+import { ArrowRight, Menu, Moon, Sun, X } from 'lucide-react'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useLang } from '@/contexts/LangContext'
-import { bookCallMessage, SOCIAL, whatsappUrl } from '@/lib/links'
+import { bookCallMessage, whatsappUrl } from '@/lib/links'
 
 const NAV_ITEMS = [
   { key: 'nav.examples', href: '#exemples' },
   { key: 'nav.method', href: '#methode' },
-  { key: 'nav.faq', href: '#faq' },
   { key: 'nav.offer', href: '#offre' },
-  { key: 'nav.about', href: '#about' },
-  { key: 'nav.contact', href: '#contact' },
+  { key: 'nav.faq', href: '#faq' },
 ]
 
 export function Header() {
@@ -49,7 +47,7 @@ export function Header() {
             <span>Nelo</span>
           </Link>
 
-          <nav className="hidden xl:flex items-center justify-center">
+          <nav className="hidden lg:flex items-center justify-center">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.key}
@@ -61,13 +59,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden xl:flex items-center justify-end gap-1">
-            <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label={t('cta.instagram')} className="text-foreground/70 hover:text-foreground p-2">
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label={t('cta.linkedin')} className="text-foreground/70 hover:text-foreground p-2">
-              <Linkedin className="h-4 w-4" />
-            </a>
+          <div className="hidden lg:flex items-center justify-end gap-1">
             <button
               onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
               className="text-sm font-semibold px-2 py-1 cursor-pointer"
@@ -91,14 +83,14 @@ export function Header() {
             </button>
           </div>
 
-          <button className="xl:hidden justify-self-end p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+          <button className="lg:hidden justify-self-end p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
       {mobileOpen && (
-        <div className="xl:hidden bg-background border-b border-border">
+        <div className="lg:hidden bg-background border-b border-border">
           <div className="px-4 pt-2 pb-6 space-y-1">
             {NAV_ITEMS.map((item) => (
               <button
@@ -110,12 +102,6 @@ export function Header() {
               </button>
             ))}
             <div className="flex items-center gap-3 px-3 pt-3">
-              <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label={t('cta.instagram')}>
-                <Instagram className="h-4 w-4" />
-              </a>
-              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label={t('cta.linkedin')}>
-                <Linkedin className="h-4 w-4" />
-              </a>
               <button
                 onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
                 className="text-xs font-semibold border border-border rounded-full px-2 py-1 cursor-pointer"

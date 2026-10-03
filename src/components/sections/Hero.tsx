@@ -1,33 +1,30 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, CalendarClock, PenLine, ShieldCheck } from 'lucide-react'
 import { BookCallButton } from '@/components/contact/BookCallButton'
-import { Button } from '@/components/ui/button'
 import { useLang } from '@/contexts/LangContext'
 
-const JOURNEYS = [
-  ['scenarios.s1.kicker', 'scenarios.s1.title'],
-  ['scenarios.s2.kicker', 'scenarios.s2.title'],
-  ['scenarios.s3.kicker', 'scenarios.s3.title'],
+const PHOTOS = [
+  ['/hotels/facade.jpg', 'photo.facade'],
+  ['/hotels/chambre.jpg', 'photo.chambre'],
+  ['/hotels/suite.jpg', 'photo.suite'],
+  ['/hotels/lobby.jpg', 'photo.piscine'],
+  ['/hotels/terrasse.jpg', 'photo.terrasse'],
+  ['/hotels/petitdej.jpg', 'photo.sejour'],
 ] as const
 
 export function Hero() {
   const { t } = useLang()
 
-  function scrollTo(id: string) {
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
+  function scrollToPricing() {
+    document.querySelector('#tarifs')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <section id="hero" className="pt-[72px] bg-background">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-6">
-        <div className="flex flex-wrap items-center gap-3 mb-8">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm">
-            <span className="h-2 w-2 rounded-full bg-primary" />
-            {t('hero.badge')}
-          </span>
-          <span className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3 py-1.5 text-sm font-medium">
-            {t('hero.prices')}
-          </span>
-        </div>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
+        <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm mb-8">
+          <span className="h-2 w-2 rounded-full bg-primary" />
+          {t('hero.badge')}
+        </span>
 
         <h1 className="max-w-4xl text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08] mb-6">
           {t('hero.title')}
@@ -38,45 +35,43 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
-          <BookCallButton />
-          <Button
-            size="lg"
-            variant="secondary"
-            onClick={() => scrollTo('#tarifs')}
-            className="h-16 rounded-full px-8 text-lg font-medium"
+          <button
+            onClick={scrollToPricing}
+            className="inline-flex items-center h-16 rounded-full bg-primary text-primary-foreground pl-7 pr-2 text-lg font-semibold shadow-[0_8px_20px_rgba(109,66,245,0.18)] cursor-pointer"
           >
             {t('cta.pricing')}
-          </Button>
+            <span className="ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </button>
+          <BookCallButton tone="secondary" />
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-          {[t('hero.trust1'), t('hero.trust2'), t('hero.trust3')].map((item, index) => (
-            <span key={item} className="inline-flex items-center gap-4">
-              {index > 0 && <span className="hidden sm:inline h-3 w-px bg-border" />}
-              {item}
-            </span>
-          ))}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-foreground" />{t('hero.trust1')}</span>
+          <span className="hidden sm:inline h-3 w-px bg-border" />
+          <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4 text-foreground" />{t('hero.trust2')}</span>
+          <span className="hidden sm:inline h-3 w-px bg-border" />
+          <span className="inline-flex items-center gap-2"><PenLine className="h-4 w-4 text-foreground" />{t('hero.trust3')}</span>
         </div>
       </div>
 
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 pb-6 flex items-center justify-between">
-        <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">{t('nav.examples')}</p>
-        <button onClick={() => scrollTo('#exemples')} className="inline-flex items-center gap-1 text-sm font-semibold text-primary cursor-pointer">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-14 pb-4 flex items-center justify-between">
+        <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">{t('hero.gallery')}</p>
+        <a href="#exemples" className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
           {t('hero.seeAll')}
           <ArrowRight className="h-4 w-4" />
-        </button>
+        </a>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 pb-16 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {JOURNEYS.map(([kicker, title]) => (
-          <a
-            key={title}
-            href="#exemples"
-            className="rounded-3xl border border-border bg-card p-6 text-left min-h-[220px] hover:border-primary/40 transition-colors"
-          >
-            <p className="text-sm font-medium text-primary mb-3">{t(kicker)}</p>
-            <p className="text-xl font-semibold tracking-tight leading-snug">{t(title)}</p>
-          </a>
+      <div className="flex gap-4 overflow-x-auto px-4 sm:px-6 pb-16 snap-x">
+        {PHOTOS.map(([src, alt]) => (
+          <img
+            key={src}
+            src={src}
+            alt={t(alt)}
+            className="h-[420px] w-[280px] sm:w-[320px] shrink-0 rounded-3xl object-cover snap-start"
+          />
         ))}
       </div>
     </section>

@@ -9,6 +9,7 @@ interface BookCallButtonProps {
   size?: 'default' | 'sm' | 'lg'
   fullWidth?: boolean
   message?: string
+  tone?: 'primary' | 'secondary'
 }
 
 export function BookCallButton({
@@ -16,15 +17,18 @@ export function BookCallButton({
   size = 'lg',
   fullWidth = false,
   message,
+  tone = 'primary',
 }: BookCallButtonProps) {
   const { t, lang } = useLang()
+  const primary = tone === 'primary'
 
   return (
     <Button
-      variant="default"
+      variant={primary ? 'default' : 'secondary'}
       size={size}
       className={cn(
-        'h-16 rounded-full pl-7 pr-2 text-lg font-semibold shadow-[0_8px_20px_rgba(109,66,245,0.18)]',
+        'h-16 rounded-full pl-7 pr-2 text-lg font-semibold',
+        primary && 'shadow-[0_8px_20px_rgba(109,66,245,0.18)]',
         fullWidth && 'w-full',
         className,
       )}
@@ -32,7 +36,10 @@ export function BookCallButton({
     >
       <a href={whatsappUrl(message ?? bookCallMessage(lang))} target="_blank" rel="noopener noreferrer">
         {t('cta.book')}
-        <span className="ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+        <span className={cn(
+          'ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full',
+          primary ? 'bg-white/10' : 'bg-foreground/5',
+        )}>
           <ArrowRight className="h-4 w-4" />
         </span>
       </a>

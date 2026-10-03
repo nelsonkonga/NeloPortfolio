@@ -25,8 +25,16 @@ const translations: Record<string, Record<Lang, string>> = {
   'cta.whatsapp': { fr: 'WhatsApp', en: 'WhatsApp' },
 
   'hero.badge': { fr: 'Hôtels indépendants', en: 'Independent hotels' },
-  'hero.prices': { fr: '450 €, 990 €, 2 900 €', en: '€450, €990, €2,900' },
+  'hero.gallery': { fr: 'En images', en: 'In pictures' },
   'hero.seeAll': { fr: 'Voir tout', en: 'See all' },
+  'photo.facade': { fr: 'Hôtel au bord de la piscine, le soir', en: 'Hotel by the pool at dusk' },
+  'photo.chambre': { fr: 'Chambre d’hôtel', en: 'Hotel room' },
+  'photo.suite': { fr: 'Lit d’une chambre d’hôtel', en: 'Hotel bed' },
+  'photo.piscine': { fr: 'Piscine d’hôtel', en: 'Hotel pool' },
+  'photo.accueil': { fr: 'Détail d’une chambre', en: 'Room detail' },
+  'photo.terrasse': { fr: 'Terrasse d’hôtel', en: 'Hotel terrace' },
+  'photo.sejour': { fr: 'Séjour dans une chambre', en: 'A stay in a room' },
+  'photo.nuit': { fr: 'Chambre le soir', en: 'Room in the evening' },
   'hero.title': {
     fr: 'Des réservations directes pour votre hôtel, sans commission de plateforme.',
     en: 'Direct bookings for your hotel, without a platform commission.',
