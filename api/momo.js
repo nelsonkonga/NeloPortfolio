@@ -11,6 +11,13 @@ const FORMULA_LABEL = {
 }
 
 function readBody(body) {
+  if (typeof Buffer !== 'undefined' && Buffer.isBuffer(body)) {
+    try {
+      return JSON.parse(body.toString('utf8'))
+    } catch {
+      return null
+    }
+  }
   if (typeof body === 'string') {
     try {
       return JSON.parse(body)
@@ -21,7 +28,7 @@ function readBody(body) {
   return body
 }
 
-function allowedReturnUrl(value) {
+function allowedReturnUrl(value, requestHost) {
   let url
   try {
     url = new URL(value)
@@ -31,10 +38,18 @@ function allowedReturnUrl(value) {
   if (url.protocol !== 'https:') return null
   if (url.pathname !== '/options/brief') return null
   const host = url.hostname.toLowerCase()
+  const current = (requestHost || '').toLowerCase()
   const ownHost = host === 'neloportfolio.vercel.app'
+    || host === current
     || (host.endsWith('.vercel.app') && (host.startsWith('neloportfolio.') || host.startsWith('neloportfolio-')))
   if (!ownHost) return null
   return url.toString()
+}
+
+function headerHost(req) {
+  const headers = req.headers || {}
+  const raw = headers['x-forwarded-host'] || headers.host || ''
+  return String(raw).split(',')[0].trim().split(':')[0].toLowerCase()
 }
 
 function customerName(hotel) {
@@ -46,19 +61,23 @@ function customerName(hotel) {
   return { first_name: 'Client', last_name: 'Hotel' }
 }
 
-function prepare(input) {
-  const row = AMOUNTS_XAF[input.formule]
-  const label = FORMULA_LABEL[input.formule]
+function prepare(input, requestHost) {
+  const formule = input.formule.trim().toLowerCase()
+  const method = input.method.trim().toLowerCase()
+  const row = AMOUNTS_XAF[formule]
+  const label = FORMULA_LABEL[formule]
   const email = input.email.trim()
-  const returnUrl = allowedReturnUrl(input.successUrl)
-  if (!row || !label || !returnUrl) return null
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120) return null
-  if (input.method !== 'mtn' && input.method !== 'orange') return null
+  const returnUrl = allowedReturnUrl(input.successUrl, requestHost)
+    || (requestHost ? allowedReturnUrl(`https://${requestHost}/options/brief?formule=${formule}`, requestHost) : null)
+  if (!row || !label) return { reason: 'formule' }
+  if (!returnUrl) return { reason: 'url' }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120) return { reason: 'email' }
+  if (method !== 'mtn' && method !== 'orange') return { reason: 'method' }
   const digits = input.phone.replace(/\D/g, '')
   const phone = digits.length >= 8 ? input.phone.trim().slice(0, 20) : ''
   const names = customerName(input.hotel)
   const mode = input.visit ? 'venue sur place' : 'contenus envoyés par le client'
-  return {
+  return { body: {
     amount: input.visit ? row.visit : row.send,
     currency: 'XAF',
     description: `Nelo. ${label}. ${mode}.`.slice(0, 180),
@@ -70,13 +89,13 @@ function prepare(input) {
       ...(phone ? { phone } : {}),
     },
     metadata: {
-      formule: input.formule,
+      formule,
       visit: input.visit ? 'true' : 'false',
-      method: input.method,
+      method,
       hotel: input.hotel.trim().slice(0, 80),
     },
-    methods: [input.method === 'orange' ? 'orange_cm' : 'mtn_cm'],
-  }
+    methods: [method === 'orange' ? 'orange_cm' : 'mtn_cm'],
+  } }
 }
 
 function checkoutUrl(payload) {
@@ -139,7 +158,7 @@ export default async function handler(req, res) {
     return
   }
 
-  const body = prepare({
+  const prepared = prepare({
     email: typeof raw.email === 'string' ? raw.email : '',
     phone: typeof raw.phone === 'string' ? raw.phone : '',
     hotel: typeof raw.hotel === 'string' ? raw.hotel : '',
@@ -147,11 +166,12 @@ export default async function handler(req, res) {
     visit: raw.visit === true,
     method: typeof raw.method === 'string' ? raw.method : '',
     successUrl: typeof raw.successUrl === 'string' ? raw.successUrl : '',
-  })
-  if (!body) {
-    res.status(422).json({})
+  }, headerHost(req))
+  if (!prepared.body) {
+    res.status(422).json({ reason: prepared.reason || 'formule' })
     return
   }
+  const body = prepared.body
 
   try {
     const first = await initialize(secret, body)
