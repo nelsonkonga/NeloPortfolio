@@ -408,6 +408,22 @@ const translations: Record<string, Record<Lang, string>> = {
     fr: 'La page de paiement sécurisée n’a pas pu s’ouvrir.',
     en: 'The secure payment page could not be opened.',
   },
+  'options.pay.reason.formule': {
+    fr: 'Cette formule n’a pas de montant en francs CFA.',
+    en: 'This formula has no CFA franc amount.',
+  },
+  'options.pay.reason.url': {
+    fr: 'L’adresse de retour du paiement n’est pas acceptée.',
+    en: 'The payment return address was not accepted.',
+  },
+  'options.pay.reason.email': {
+    fr: 'L’email n’est pas accepté pour le paiement.',
+    en: 'The email was not accepted for payment.',
+  },
+  'options.pay.reason.method': {
+    fr: 'Choisissez MTN Mobile Money ou Orange Money.',
+    en: 'Choose MTN Mobile Money or Orange Money.',
+  },
   'options.pay.uncharged': { fr: 'Vous n’avez pas été débité.', en: 'You have not been charged.' },
   'options.pay.send': { fr: 'Envoyez {amount} au {number}.', en: 'Send {amount} to {number}.' },
   'options.pay.motif': { fr: 'Motif', en: 'Reference' },

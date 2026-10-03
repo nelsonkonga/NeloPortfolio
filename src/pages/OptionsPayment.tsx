@@ -20,7 +20,7 @@ export function OptionsPayment() {
   const pkg = PACKAGES.find((item) => item.id === formule)
   const [method, setMethod] = useState<PaymentMethod>(draft?.paymentMethod ?? 'mtn')
   const [reference, setReference] = useState(draft?.paymentReference ?? '')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'manual' | 'unavailable'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'manual' | 'unavailable' | 'formule' | 'url' | 'email' | 'method'>('idle')
 
   if (!draft || draft.formule !== formule || (!restaurant && !pkg)) {
     return <Navigate to={`/options?formule=${formule || 'essentiel'}`} replace />
@@ -65,7 +65,7 @@ export function OptionsPayment() {
       cancelUrl: window.location.href,
     })
     if (result === 'manual' && !restaurant) setStatus('manual')
-    else if (result !== 'redirect') setStatus('unavailable')
+    else if (result !== 'redirect') setStatus(result)
   }
 
   function goToBrief() {
@@ -147,10 +147,11 @@ export function OptionsPayment() {
                 </Button>
               </div>
             )}
-            {status === 'unavailable' && (
+            {(status === 'unavailable' || status === 'formule' || status === 'url' || status === 'email' || status === 'method') && (
               <div className="mt-4 space-y-3">
                 <p className="text-sm text-destructive">
-                  {t('options.pay.error')} <strong className="font-semibold">{t('options.pay.uncharged')}</strong>
+                  {status === 'unavailable' ? t('options.pay.error') : t(`options.pay.reason.${status}`)}{' '}
+                  <strong className="font-semibold">{t('options.pay.uncharged')}</strong>
                 </p>
                 <Button variant="outline" className="w-full h-12 rounded-[10px] border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
                   <Link to={`/options/brief?formule=${lead.formule}`} onClick={goToBrief}>
