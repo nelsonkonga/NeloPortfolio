@@ -3,7 +3,6 @@ import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { ArrowRight, Menu, Moon, Sun, X } from 'lucide-react'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useLang } from '@/contexts/LangContext'
-import { bookCallMessage, whatsappUrl } from '@/lib/links'
 
 const NAV_ITEMS = [
   { key: 'nav.examples', href: '#exemples' },
@@ -116,14 +115,13 @@ export function Header() {
               <button onClick={() => handleNavClick('#tarifs')} className="rounded-full bg-secondary py-3 font-semibold cursor-pointer">
                 {t('nav.pricing')}
               </button>
-              <a
-                href={whatsappUrl(bookCallMessage(lang))}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/options?formule=essentiel"
+                onClick={() => setMobileOpen(false)}
                 className="rounded-full bg-primary text-primary-foreground py-3 text-center font-semibold"
               >
                 {t('nav.cta')}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

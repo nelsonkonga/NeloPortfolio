@@ -1,5 +1,7 @@
 export type PackageId = 'decouverte' | 'essentiel' | 'complet'
 
+export const RESTAURANT_FORMULE = 'restaurant'
+
 export interface PackageDef {
   id: PackageId
   price: string

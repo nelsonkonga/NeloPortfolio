@@ -1,13 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Loader2 } from 'lucide-react'
+import { FunnelStepper } from '@/components/options/FunnelStepper'
 import { Emphasis } from '@/components/ui/Emphasis'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useLang } from '@/contexts/LangContext'
-import { PACKAGES, formatPackagePrice } from '@/data/packages'
-import { saveLeadDraft, storeLead } from '@/lib/lead'
+import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
+import { readLeadDraft, saveLeadDraft, storeLead } from '@/lib/lead'
 
 function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
@@ -18,13 +19,18 @@ export function Options() {
   const navigate = useNavigate()
   const [params] = useSearchParams()
   const formule = params.get('formule')
-  const pkg = PACKAGES.find((item) => item.id === formule) ?? PACKAGES[1]
-  const name = t(pkg.nameKey)
-  const fromPrice = formatPackagePrice(pkg.price, lang)
+  const restaurant = formule === RESTAURANT_FORMULE
+  const pkg = restaurant ? null : (PACKAGES.find((item) => item.id === formule) ?? PACKAGES[1])
+  const activeId = restaurant ? RESTAURANT_FORMULE : pkg!.id
+  const existing = readLeadDraft()
+  const same = existing?.formule === activeId
 
-  const [hotel, setHotel] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
+  const name = restaurant ? t('options.resto.name') : t(pkg!.nameKey)
+  const fromPrice = pkg ? formatPackagePrice(pkg.price, lang) : ''
+
+  const [hotel, setHotel] = useState(same && existing ? existing.hotel : '')
+  const [email, setEmail] = useState(same && existing ? existing.email : '')
+  const [phone, setPhone] = useState(same && existing ? existing.phone : '')
   const [emailError, setEmailError] = useState(false)
   const [changing, setChanging] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -38,24 +44,39 @@ export function Options() {
       return
     }
     setBusy(true)
-    const draft = { formule: pkg.id, hotel: hotel.trim(), email: email.trim(), phone: phone.trim() }
+    const draft = {
+      formule: activeId,
+      hotel: hotel.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      visit: false,
+      optionsReady: false,
+      paymentMethod: 'card' as const,
+      paymentAttempted: false,
+    }
     saveLeadDraft(draft)
-    const message = lang === 'fr'
-      ? `Informations pour la formule ${name}, à partir de ${fromPrice}. Email : ${draft.email}. Hôtel : ${draft.hotel || 'non précisé'}. Téléphone : ${draft.phone || 'non précisé'}. L’option n’est pas encore choisie.`
-      : `Details for the ${name} package, from ${fromPrice}. Email: ${draft.email}. Hotel: ${draft.hotel || 'not given'}. Phone: ${draft.phone || 'not given'}. The option is not chosen yet.`
+    const message = restaurant
+      ? (lang === 'fr'
+        ? `Informations pour un devis restaurant. Email : ${draft.email}. Établissement : ${draft.hotel || 'non précisé'}. Téléphone : ${draft.phone || 'non précisé'}.`
+        : `Details for a restaurant quote. Email: ${draft.email}. Place: ${draft.hotel || 'not given'}. Phone: ${draft.phone || 'not given'}.`)
+      : (lang === 'fr'
+        ? `Informations pour la formule ${name}, à partir de ${fromPrice}. Email : ${draft.email}. Hôtel : ${draft.hotel || 'non précisé'}. Téléphone : ${draft.phone || 'non précisé'}. L’option n’est pas encore choisie.`
+        : `Details for the ${name} package, from ${fromPrice}. Email: ${draft.email}. Hotel: ${draft.hotel || 'not given'}. Phone: ${draft.phone || 'not given'}. The option is not chosen yet.`)
     await storeLead({ ...draft, message })
-    navigate(`/options/choix?formule=${pkg.id}`)
+    navigate(`/options/choix?formule=${activeId}`)
   }
 
   return (
     <main className="pt-24 pb-16 bg-muted/40 min-h-screen">
       <div className="max-w-lg mx-auto px-4">
-        <p className="text-center text-xs font-medium text-muted-foreground mb-4">{t('options.step1')}</p>
+        <FunnelStepper current={1} />
         <form onSubmit={onSubmit} className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm">
           <div className="rounded-2xl bg-primary/10 px-4 py-3 mb-6 flex items-center justify-between gap-3">
             <div>
               <p className="text-xs text-muted-foreground">{t('options.package')}</p>
-              <p className="text-sm font-semibold">{name} · {t('options.from')} {fromPrice}</p>
+              <p className="text-sm font-semibold">
+                {restaurant ? `${name} · ${t('options.pay.quote')}` : `${name} · ${t('options.from')} ${fromPrice}`}
+              </p>
             </div>
             <button type="button" className="text-sm font-semibold text-primary" onClick={() => setChanging((open) => !open)}>
               {t('options.change')}
@@ -67,27 +88,34 @@ export function Options() {
                 <Link
                   key={item.id}
                   to={`/options?formule=${item.id}`}
-                  className={`rounded-xl border px-3 py-2 text-sm ${item.id === pkg.id ? 'border-primary text-primary' : 'border-border'}`}
+                  className={`rounded-xl border px-3 py-2 text-sm ${item.id === activeId ? 'border-primary text-primary' : 'border-border'}`}
                   onClick={() => setChanging(false)}
                 >
                   {t(item.nameKey)} · {t('options.from')} {formatPackagePrice(item.price, lang)}
                 </Link>
               ))}
+              <Link
+                to={`/options?formule=${RESTAURANT_FORMULE}`}
+                className={`rounded-xl border px-3 py-2 text-sm ${restaurant ? 'border-primary text-primary' : 'border-border'}`}
+                onClick={() => setChanging(false)}
+              >
+                {t('options.resto.name')} · {t('options.pay.quote')}
+              </Link>
             </div>
           )}
 
           <h1 className="text-3xl font-semibold tracking-tight leading-tight mb-3">
-            <Emphasis text={t('options.title')} />
+            <Emphasis text={restaurant ? t('options.title.resto') : t('options.title')} />
           </h1>
           <p className="text-sm text-muted-foreground mb-6">{t('options.lead')}</p>
 
           <div className="space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="hotel">
-                {t('options.hotel')}
+                {restaurant ? t('options.place') : t('options.hotel')}
                 <span className="text-muted-foreground font-normal"> · {t('options.optional')}</span>
               </Label>
-              <Input id="hotel" value={hotel} onChange={(event) => setHotel(event.target.value)} placeholder={t('options.hotel.placeholder')} disabled={busy} />
+              <Input id="hotel" value={hotel} onChange={(event) => setHotel(event.target.value)} placeholder={restaurant ? t('options.place.placeholder') : t('options.hotel.placeholder')} disabled={busy} />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="email">{t('options.email')}</Label>

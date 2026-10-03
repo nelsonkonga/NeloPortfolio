@@ -1,14 +1,13 @@
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/contexts/LangContext'
-import { bookCallMessage, whatsappUrl } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
 interface BookCallButtonProps {
   className?: string
   size?: 'default' | 'sm' | 'lg'
   fullWidth?: boolean
-  message?: string
   tone?: 'primary' | 'secondary'
 }
 
@@ -16,10 +15,9 @@ export function BookCallButton({
   className,
   size = 'lg',
   fullWidth = false,
-  message,
   tone = 'primary',
 }: BookCallButtonProps) {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const primary = tone === 'primary'
 
   return (
@@ -34,7 +32,7 @@ export function BookCallButton({
       )}
       asChild
     >
-      <a href={whatsappUrl(message ?? bookCallMessage(lang))} target="_blank" rel="noopener noreferrer">
+      <Link to="/options?formule=essentiel">
         {t('cta.book')}
         <span className={cn(
           'ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full',
@@ -42,7 +40,7 @@ export function BookCallButton({
         )}>
           <ArrowRight className="h-4 w-4" />
         </span>
-      </a>
+      </Link>
     </Button>
   )
 }

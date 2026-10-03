@@ -1,0 +1,132 @@
+import { useState, type FormEvent } from 'react'
+import { Link, Navigate, useSearchParams } from 'react-router-dom'
+import { ArrowLeft, Loader2 } from 'lucide-react'
+import { FunnelStepper } from '@/components/options/FunnelStepper'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { useLang } from '@/contexts/LangContext'
+import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
+import { readLeadDraft, storeLead, updateLeadDraft } from '@/lib/lead'
+
+export function OptionsBrief() {
+  const { t, lang } = useLang()
+  const [params] = useSearchParams()
+  const draft = readLeadDraft()
+  const formule = params.get('formule') || draft?.formule
+  const restaurant = formule === RESTAURANT_FORMULE
+  const pkg = PACKAGES.find((item) => item.id === formule)
+  const [name, setName] = useState(draft?.brief?.name ?? '')
+  const [rooms, setRooms] = useState(draft?.brief?.rooms ?? '')
+  const [city, setCity] = useState(draft?.brief?.city ?? '')
+  const [notes, setNotes] = useState(draft?.brief?.notes ?? '')
+  const [nameError, setNameError] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'saved' | 'local'>('idle')
+
+  if (!draft || !draft.paymentAttempted || draft.formule !== formule || (!restaurant && !pkg)) {
+    const fallback = draft?.optionsReady
+      ? `/options/paiement?formule=${draft.formule}`
+      : `/options?formule=${formule || 'essentiel'}`
+    return <Navigate to={fallback} replace />
+  }
+
+  const lead = draft
+  const formulaName = restaurant ? t('options.resto.name') : t(pkg!.nameKey)
+  const modeLabel = restaurant
+    ? t('options.pay.quote')
+    : lead.visit
+      ? t('options.mode.visit')
+      : t('options.mode.supplied')
+  const total = restaurant
+    ? t('options.pay.quote')
+    : formatPackagePrice(lead.visit ? pkg!.visitPrice : pkg!.price, lang)
+  const hint = restaurant
+    ? t('options.brief.restaurant')
+    : lead.visit
+      ? t('options.brief.visit')
+      : t('options.brief.supplied')
+
+  async function onSubmit(event: FormEvent) {
+    event.preventDefault()
+    if (name.trim().length < 2) {
+      setNameError(true)
+      return
+    }
+    setStatus('loading')
+    const brief = { name: name.trim(), rooms: rooms.trim(), city: city.trim(), notes: notes.trim() }
+    updateLeadDraft({ brief })
+    const message = lang === 'fr'
+      ? `Brief. Formule : ${formulaName}. Mode : ${modeLabel}. Total affiché : ${total}. Nom : ${brief.name}. Ville : ${brief.city || 'non précisée'}. Chambres : ${brief.rooms || 'non précisé'}. Hôtel : ${lead.hotel || 'non précisé'}. Email : ${lead.email}. Téléphone : ${lead.phone || 'non précisé'}. Paiement : ${lead.paymentMethod}, page sécurisée non confirmée sur ce site. Notes : ${brief.notes || 'aucune'}.`
+      : `Brief. Package: ${formulaName}. Mode: ${modeLabel}. Listed total: ${total}. Name: ${brief.name}. City: ${brief.city || 'not given'}. Rooms: ${brief.rooms || 'not given'}. Hotel: ${lead.hotel || 'not given'}. Email: ${lead.email}. Phone: ${lead.phone || 'not given'}. Payment: ${lead.paymentMethod}, secure page not confirmed on this site. Notes: ${brief.notes || 'none'}.`
+    const saved = await storeLead({
+      hotel: lead.hotel || brief.name,
+      email: lead.email,
+      phone: lead.phone,
+      formule: lead.formule,
+      message,
+    })
+    setStatus(saved ? 'saved' : 'local')
+  }
+
+  return (
+    <main className="pt-24 pb-16 bg-muted/40 min-h-screen">
+      <div className="max-w-lg mx-auto px-4">
+        <FunnelStepper current={4} />
+        <Link to={`/options/paiement?formule=${lead.formule}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-6">
+          <ArrowLeft className="h-4 w-4" />
+          {t('options.step.pay')}
+        </Link>
+        <form onSubmit={onSubmit} className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-sm">
+          <h1 className="text-3xl font-semibold tracking-tight mb-3">{t('options.brief.title')}</h1>
+          <p className="text-sm text-muted-foreground mb-2">{t('options.brief.lead')}</p>
+          <p className="text-sm text-muted-foreground mb-6">{hint}</p>
+
+          <div className="rounded-2xl bg-muted/60 px-4 py-3 mb-6 text-sm">
+            <p className="font-semibold">{formulaName}</p>
+            <p className="text-muted-foreground">{modeLabel} · {total}</p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="brief-name">{t('options.brief.name')}</Label>
+              <Input id="brief-name" value={name} onChange={(event) => { setName(event.target.value); setNameError(false) }} disabled={status === 'loading' || status === 'saved'} />
+              {nameError && <p className="text-xs text-destructive">{t('options.brief.err.name')}</p>}
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="brief-city">
+                {t('options.brief.city')}
+                <span className="text-muted-foreground font-normal"> · {t('options.optional')}</span>
+              </Label>
+              <Input id="brief-city" value={city} onChange={(event) => setCity(event.target.value)} placeholder={t('options.brief.city.placeholder')} disabled={status === 'loading' || status === 'saved'} />
+            </div>
+            {!restaurant && (
+              <div className="space-y-1.5">
+                <Label htmlFor="brief-rooms">
+                  {t('options.brief.rooms')}
+                  <span className="text-muted-foreground font-normal"> · {t('options.optional')}</span>
+                </Label>
+                <Input id="brief-rooms" inputMode="numeric" value={rooms} onChange={(event) => setRooms(event.target.value)} disabled={status === 'loading' || status === 'saved'} />
+              </div>
+            )}
+            <div className="space-y-1.5">
+              <Label htmlFor="brief-notes">
+                {t('options.brief.notes')}
+                <span className="text-muted-foreground font-normal"> · {t('options.optional')}</span>
+              </Label>
+              <Textarea id="brief-notes" value={notes} onChange={(event) => setNotes(event.target.value)} disabled={status === 'loading' || status === 'saved'} />
+            </div>
+          </div>
+
+          <p className="text-xs text-muted-foreground mt-6">{t('options.brief.paynote')}</p>
+          <Button type="submit" className="w-full rounded-full h-12 mt-4" disabled={status === 'loading' || status === 'saved'}>
+            {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
+            {t('options.brief.send')}
+          </Button>
+          {status === 'saved' && <p className="text-sm text-primary mt-3">{t('options.brief.saved')}</p>}
+          {status === 'local' && <p className="text-sm mt-3">{t('options.brief.local')}</p>}
+        </form>
+      </div>
+    </main>
+  )
+}

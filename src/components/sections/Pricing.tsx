@@ -3,15 +3,10 @@ import { ArrowRight, CheckCircle2, Sparkles, UtensilsCrossed } from 'lucide-reac
 import { Emphasis } from '@/components/ui/Emphasis'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/contexts/LangContext'
-import { PACKAGES, formatPackagePrice } from '@/data/packages'
-import { whatsappUrl } from '@/lib/links'
+import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
 
 export function Pricing() {
   const { t, lang } = useLang()
-
-  const restoMessage = lang === 'fr'
-    ? 'Bonjour Nelo, je tiens un restaurant ou une gelateria et je souhaite un devis à part.'
-    : 'Hello Nelo, I run a restaurant or a gelateria and I would like a separate quote.'
 
   return (
     <section id="tarifs" className="py-20 sm:py-28 bg-muted/40">
@@ -51,29 +46,13 @@ export function Pricing() {
                 )}
 
                 <h3 className="text-2xl font-bold mb-2">{name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6 min-h-[60px]">{t(pkg.taglineKey)}</p>
-
                 <p className="text-4xl font-extrabold tracking-tight mb-1">{price}</p>
                 <p className="text-xs text-muted-foreground mb-4">{t('tarifs.rooms')}</p>
-                <p className="text-sm font-medium mb-1">{t('tarifs.delay').replace('{n}', String(pkg.days))}</p>
-                <p className="text-sm text-muted-foreground mb-6">{t('tarifs.revisions')}</p>
-
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">{t('tarifs.includedTitle')}</p>
-                {pkg.includedHeaderKey && (
-                  <p className="text-xs font-medium mb-3">{t(pkg.includedHeaderKey)}</p>
-                )}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {pkg.featureKeys.map((key) => (
-                    <li key={key} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                      <span>{t(key)}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6 min-h-[60px]">{t(pkg.taglineKey)}</p>
 
                 <Button
                   variant={pkg.popular ? 'default' : 'outline'}
-                  className={`w-full h-12 rounded-full ${pkg.popular ? '' : 'border-primary text-primary hover:bg-primary/5 hover:text-primary'}`}
+                  className={`w-full h-12 rounded-xl mb-6 ${pkg.popular ? '' : 'border-primary text-primary hover:bg-primary/5 hover:text-primary'}`}
                   asChild
                 >
                   <Link to={optionsUrl}>
@@ -81,6 +60,23 @@ export function Pricing() {
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
+
+                <p className="text-sm font-semibold text-primary mb-4">{t('guarantee.title')}</p>
+                <p className="text-sm font-medium mb-1">{t('tarifs.delay').replace('{n}', String(pkg.days))}</p>
+                <p className="text-sm text-muted-foreground mb-6">{t('tarifs.revisions')}</p>
+
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">{t('tarifs.includedTitle')}</p>
+                {pkg.includedHeaderKey && (
+                  <p className="text-xs font-medium mb-3">{t(pkg.includedHeaderKey)}</p>
+                )}
+                <ul className="space-y-3 flex-1">
+                  {pkg.featureKeys.map((key) => (
+                    <li key={key} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                      <span>{t(key)}</span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             )
           })}
@@ -98,10 +94,10 @@ export function Pricing() {
             <p className="font-semibold mb-1">{t('tarifs.resto.title')}</p>
             <p className="text-sm text-muted-foreground">{t('tarifs.resto.desc')}</p>
           </div>
-          <Button variant="outline" className="rounded-full" asChild>
-            <a href={whatsappUrl(restoMessage)} target="_blank" rel="noopener noreferrer">
+          <Button variant="outline" className="rounded-xl border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
+            <Link to={`/options?formule=${RESTAURANT_FORMULE}`}>
               {t('tarifs.resto.cta')}
-            </a>
+            </Link>
           </Button>
         </div>
 

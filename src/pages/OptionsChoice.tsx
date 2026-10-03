@@ -1,84 +1,96 @@
 import { useState } from 'react'
-import { Link, Navigate, useSearchParams } from 'react-router-dom'
-import { ArrowLeft, CheckCircle2, Loader2 } from 'lucide-react'
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom'
+import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
+import { FunnelStepper } from '@/components/options/FunnelStepper'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/contexts/LangContext'
-import { PACKAGES, formatPackagePrice } from '@/data/packages'
-import { readLeadDraft, storeLead } from '@/lib/lead'
-import { whatsappUrl } from '@/lib/links'
+import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
+import { readLeadDraft, storeLead, updateLeadDraft } from '@/lib/lead'
 
 export function OptionsChoice() {
   const { t, lang } = useLang()
+  const navigate = useNavigate()
   const [params] = useSearchParams()
   const draft = readLeadDraft()
   const formule = params.get('formule') || draft?.formule
+  const restaurant = formule === RESTAURANT_FORMULE
   const pkg = PACKAGES.find((item) => item.id === formule)
-  const [visit, setVisit] = useState(false)
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [visit, setVisit] = useState(draft?.visit ?? false)
+  const [status, setStatus] = useState<'idle' | 'loading'>('idle')
 
-  if (!draft || !pkg || draft.formule !== pkg.id) {
+  if (!draft || draft.formule !== formule || (!restaurant && !pkg)) {
     return <Navigate to={`/options?formule=${formule || 'essentiel'}`} replace />
   }
 
   const lead = draft
   const selected = pkg
-  const name = t(selected.nameKey)
-  const price = formatPackagePrice(visit ? selected.visitPrice : selected.price, lang)
-  const modeLabel = visit ? t('options.mode.visit') : t('options.mode.supplied')
+  const name = restaurant ? t('options.resto.name') : t(selected!.nameKey)
+  const price = restaurant
+    ? t('options.pay.quote')
+    : formatPackagePrice(visit ? selected!.visitPrice : selected!.price, lang)
+  const modeLabel = restaurant
+    ? t('options.pay.quote')
+    : visit
+      ? t('options.mode.visit')
+      : t('options.mode.supplied')
 
-  async function confirm() {
+  async function continueToPay() {
     setStatus('loading')
+    updateLeadDraft({ visit: restaurant ? false : visit, optionsReady: true, paymentAttempted: false })
     const message = lang === 'fr'
       ? `Option choisie : ${name}, ${price}, ${modeLabel}. Email : ${lead.email}. Hôtel : ${lead.hotel || 'non précisé'}. Téléphone : ${lead.phone || 'non précisé'}.`
       : `Chosen option: ${name}, ${price}, ${modeLabel}. Email: ${lead.email}. Hotel: ${lead.hotel || 'not given'}. Phone: ${lead.phone || 'not given'}.`
-    const saved = await storeLead({
+    await storeLead({
       hotel: lead.hotel,
       email: lead.email,
       phone: lead.phone,
-      formule: selected.id,
+      formule: lead.formule,
       message,
     })
-    setStatus(saved ? 'success' : 'error')
+    navigate(`/options/paiement?formule=${lead.formule}`)
   }
-
-  const fallback = lang === 'fr'
-    ? `Bonjour Nelo, je choisis la formule ${name} (${price}, ${modeLabel}). Mon email : ${lead.email}.`
-    : `Hello Nelo, I choose the ${name} package (${price}, ${modeLabel}). My email: ${lead.email}.`
 
   return (
     <main className="pt-24 pb-16 bg-muted/40 min-h-screen">
       <div className="max-w-5xl mx-auto px-4">
-        <Link to={`/options?formule=${selected.id}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-6">
+        <FunnelStepper current={2} />
+        <Link to={`/options?formule=${lead.formule}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-6">
           <ArrowLeft className="h-4 w-4" />
-          {t('options.step1')}
+          {t('options.step.info')}
         </Link>
-        <p className="text-xs font-medium text-muted-foreground mb-3">{t('options.step2')}</p>
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-8">{t('options.choice.title')}</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
           <div className="space-y-3">
-            {([false, true] as const).map((isVisit) => {
-              const active = visit === isVisit
-              const amount = formatPackagePrice(isVisit ? selected.visitPrice : selected.price, lang)
-              return (
-                <button
-                  key={String(isVisit)}
-                  type="button"
-                  onClick={() => setVisit(isVisit)}
-                  className={`w-full text-left rounded-2xl border bg-card p-5 ${active ? 'border-primary shadow-[0_0_0_3px_rgba(109,66,245,0.15)]' : 'border-border'}`}
-                >
-                  <span className="flex items-start justify-between gap-4">
-                    <span>
-                      <span className="block font-semibold">{isVisit ? t('options.mode.visit') : t('options.mode.supplied')}</span>
-                      <span className="block text-sm text-muted-foreground mt-1">{isVisit ? t('options.mode.visit.desc') : t('options.mode.supplied.desc')}</span>
+            {restaurant ? (
+              <div className="rounded-2xl border border-primary bg-card p-5 shadow-[0_0_0_3px_rgba(109,66,245,0.15)]">
+                <p className="font-semibold">{t('options.resto.choice')}</p>
+                <p className="text-sm text-muted-foreground mt-1">{t('options.resto.choice.desc')}</p>
+              </div>
+            ) : (
+              ([false, true] as const).map((isVisit) => {
+                const active = visit === isVisit
+                const amount = formatPackagePrice(isVisit ? selected!.visitPrice : selected!.price, lang)
+                return (
+                  <button
+                    key={String(isVisit)}
+                    type="button"
+                    onClick={() => setVisit(isVisit)}
+                    className={`w-full text-left rounded-2xl border bg-card p-5 ${active ? 'border-primary shadow-[0_0_0_3px_rgba(109,66,245,0.15)]' : 'border-border'}`}
+                  >
+                    <span className="flex items-start justify-between gap-4">
+                      <span>
+                        <span className="block font-semibold">{isVisit ? t('options.mode.visit') : t('options.mode.supplied')}</span>
+                        <span className="block text-sm text-muted-foreground mt-1">{isVisit ? t('options.mode.visit.desc') : t('options.mode.supplied.desc')}</span>
+                      </span>
+                      <span className="font-semibold shrink-0">{amount}</span>
                     </span>
-                    <span className="font-semibold shrink-0">{amount}</span>
-                  </span>
-                </button>
-              )
-            })}
+                  </button>
+                )
+              })
+            )}
 
-            {visit && (
+            {visit && !restaurant && (
               <div className="text-sm text-muted-foreground space-y-1 px-1">
                 <p>{t('tarifs.visit.note')}</p>
                 <p>{t('tarifs.visit.yaounde')}</p>
@@ -86,14 +98,16 @@ export function OptionsChoice() {
               </div>
             )}
 
-            <ul className="rounded-2xl border border-border bg-card p-5 space-y-3">
-              {selected.featureKeys.map((key) => (
-                <li key={key} className="flex items-start gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                  <span>{t(key)}</span>
-                </li>
-              ))}
-            </ul>
+            {selected && (
+              <ul className="rounded-2xl border border-border bg-card p-5 space-y-3">
+                {selected.featureKeys.map((key) => (
+                  <li key={key} className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <span>{t(key)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <aside className="rounded-3xl border border-border bg-card p-6 lg:sticky lg:top-24">
@@ -102,17 +116,11 @@ export function OptionsChoice() {
             <p className="text-sm text-muted-foreground mb-4">{modeLabel}</p>
             <p className="text-sm text-muted-foreground">{t('options.total')}</p>
             <p className="text-3xl font-semibold tracking-tight mb-5">{price}</p>
-            <Button type="button" className="w-full rounded-full h-12" onClick={confirm} disabled={status === 'loading' || status === 'success'}>
+            <Button type="button" className="w-full rounded-full h-12" onClick={continueToPay} disabled={status === 'loading'}>
               {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
-              {t('options.confirm')}
+              {t('options.choice.continue')}
+              <ArrowRight className="h-4 w-4" />
             </Button>
-            {status === 'success' && <p className="text-sm text-primary mt-3">{t('options.success')}</p>}
-            {status === 'error' && (
-              <p className="text-sm text-destructive mt-3">
-                {t('options.error')}{' '}
-                <a href={whatsappUrl(fallback)} className="underline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-              </p>
-            )}
           </aside>
         </div>
       </div>

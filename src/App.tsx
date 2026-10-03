@@ -19,6 +19,8 @@ import { ConditionsGenerales } from '@/pages/legal/ConditionsGenerales'
 import { Tarifs } from '@/pages/Tarifs'
 import { Options } from '@/pages/Options'
 import { OptionsChoice } from '@/pages/OptionsChoice'
+import { OptionsPayment } from '@/pages/OptionsPayment'
+import { OptionsBrief } from '@/pages/OptionsBrief'
 import './index.css'
 
 function HomePage() {
@@ -51,6 +53,8 @@ function App() {
                 <Route path="/tarifs" element={<Tarifs />} />
                 <Route path="/options" element={<Options />} />
                 <Route path="/options/choix" element={<OptionsChoice />} />
+                <Route path="/options/paiement" element={<OptionsPayment />} />
+                <Route path="/options/brief" element={<OptionsBrief />} />
                 <Route path="/portfolio" element={<Navigate to="/#exemples" replace />} />
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />
