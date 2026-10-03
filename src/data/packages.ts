@@ -70,12 +70,12 @@ export function formatPackagePrice(price: string, lang: 'fr' | 'en') {
 export function packageWhatsappMessage(lang: 'fr' | 'en', name: string, price: string, visit: boolean) {
   if (lang === 'fr') {
     const mode = visit
-      ? 'avec venue sur place à Yaoundé pour les photos et les textes'
+      ? 'avec venue sur place pour les photos et les textes'
       : 'avec textes et photos envoyés par l’hôtel'
     return `Bonjour Nelo, je souhaite réserver un appel de 20 minutes au sujet de la formule ${name} (${price}, ${mode}) pour mon hôtel.`
   }
   const mode = visit
-    ? 'with an on-site visit in Yaoundé for the photos and the texts'
+    ? 'with an on-site visit for the photos and the texts'
     : 'with texts and photos sent by the hotel'
   return `Hello Nelo, I would like to book a 20-minute call about the ${name} package (${price}, ${mode}) for my hotel.`
 }

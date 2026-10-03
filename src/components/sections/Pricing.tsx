@@ -48,6 +48,7 @@ export function Pricing() {
         {visit && (
           <div className="max-w-3xl mb-6 space-y-1">
             <p className="text-sm leading-relaxed">{t('tarifs.visit.note')}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t('tarifs.visit.yaounde')}</p>
             <p className="text-sm text-muted-foreground leading-relaxed">{t('tarifs.visit.outside')}</p>
           </div>
         )}

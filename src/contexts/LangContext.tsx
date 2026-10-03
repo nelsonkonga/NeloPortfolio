@@ -40,8 +40,8 @@ const translations: Record<string, Record<Lang, string>> = {
     en: 'Direct bookings for your hotel, without a platform commission.',
   },
   'hero.subtitle': {
-    fr: 'Nous aidons les hôtels indépendants à recevoir des réservations sur leur propre site. Découverte en 14 jours, Essentiel en 21 jours, Complet en 30 jours. Vous envoyez les textes et les photos, ou nous venons les faire à Yaoundé.',
-    en: 'We help independent hotels take bookings on their own website. Discovery in 14 days, Essential in 21 days, Complete in 30 days. You send the texts and photos, or we come to Yaoundé to make them.',
+    fr: 'Nous aidons les hôtels indépendants à recevoir des réservations sur leur propre site. Découverte en 14 jours, Essentiel en 21 jours, Complet en 30 jours. Vous envoyez les textes et les photos, ou nous venons les faire sur place.',
+    en: 'We help independent hotels take bookings on their own website. Discovery in 14 days, Essential in 21 days, Complete in 30 days. You send the texts and photos, or we come on site to make them.',
   },
   'hero.trust1': { fr: 'Un seul service', en: 'One service' },
   'hero.trust2': { fr: 'Délai écrit', en: 'A written deadline' },
@@ -104,8 +104,8 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'offer.b2.title': { fr: 'Le délai est écrit avant l’appel', en: 'The deadline is written before the call' },
   'offer.b2.desc': {
-    fr: '14, 21 ou 30 jours selon la formule. Le délai part à la réception de vos contenus, ou le lendemain de la venue à Yaoundé.',
-    en: '14, 21 or 30 days depending on the package. The deadline starts when your content arrives, or the day after the Yaoundé visit.',
+    fr: '14, 21 ou 30 jours selon la formule. Le délai part à la réception de vos contenus, ou le lendemain de la venue sur place.',
+    en: '14, 21 or 30 days depending on the package. The deadline starts when your content arrives, or the day after the on-site visit.',
   },
   'offer.b3.title': { fr: 'Deux séries de modifications', en: 'Two rounds of edits' },
   'offer.b3.desc': {
@@ -114,25 +114,25 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'offer.b4.title': { fr: 'Le prix est sur cette page', en: 'The price is on this page' },
   'offer.b4.desc': {
-    fr: '449 €, 990 € ou 2 990 € si vous envoyez les contenus. 649 €, 1 490 € ou 3 990 € si nous venons à Yaoundé. Jusqu’à 15 chambres.',
-    en: '€449, €990 or €2,990 if you send the content. €649, €1,490 or €3,990 if we come to Yaoundé. Up to 15 rooms.',
+    fr: '449 €, 990 € ou 2 990 € si vous envoyez les contenus. 649 €, 1 490 € ou 3 990 € si nous venons sur place. Jusqu’à 15 chambres.',
+    en: '€449, €990 or €2,990 if you send the content. €649, €1,490 or €3,990 if we come on site. Up to 15 rooms.',
   },
 
   'method.eyebrow': { fr: 'Déroulement', en: 'Process' },
   'method.title': { fr: 'Quatre étapes, un délai qui commence quand vous êtes prêt.', en: 'Four steps, and a deadline that starts when you are ready.' },
   'method.subtitle': {
-    fr: 'Deux façons de démarrer. Vous envoyez les textes et les photos, ou nous venons à Yaoundé les réaliser.',
-    en: 'Two ways to start. You send the texts and photos, or we come to Yaoundé to make them.',
+    fr: 'Deux façons de démarrer. Vous envoyez les textes et les photos, ou nous venons sur place les réaliser.',
+    en: 'Two ways to start. You send the texts and photos, or we come on site to make them.',
   },
   'method.s1.title': { fr: 'Appel de 20 minutes', en: '20-minute call' },
   'method.s1.desc': {
-    fr: 'On vérifie le nombre de chambres, la formule, et si vous envoyez les contenus ou si nous venons à Yaoundé.',
-    en: 'We check the room count, the package, and whether you send the content or we come to Yaoundé.',
+    fr: 'On vérifie le nombre de chambres, la formule, et si vous envoyez les contenus ou si nous venons sur place.',
+    en: 'We check the room count, the package, and whether you send the content or we come on site.',
   },
   'method.s2.title': { fr: 'Acompte, puis le délai', en: 'Deposit, then the deadline' },
   'method.s2.desc': {
-    fr: 'Si vous envoyez les contenus, le délai part le jour où l’acompte, les textes et les photos sont reçus. Si nous venons à Yaoundé, il part le lendemain de la visite, une fois l’acompte payé.',
-    en: 'If you send the content, the deadline starts the day the deposit, texts and photos arrive. If we come to Yaoundé, it starts the day after the visit, once the deposit is paid.',
+    fr: 'Si vous envoyez les contenus, le délai part le jour où l’acompte, les textes et les photos sont reçus. Si nous venons sur place, il part le lendemain de la visite, une fois l’acompte payé.',
+    en: 'If you send the content, the deadline starts the day the deposit, texts and photos arrive. If we come on site, it starts the day after the visit, once the deposit is paid.',
   },
   'method.s3.title': { fr: 'Livraison dans le délai', en: 'Delivery within the deadline' },
   'method.s3.desc': {
@@ -180,10 +180,14 @@ const translations: Record<string, Record<Lang, string>> = {
   'tarifs.cta': { fr: 'Réserver un appel pour cette formule', en: 'Book a call for this package' },
   'tarifs.mode.label': { fr: 'Qui prépare les textes et les photos', en: 'Who prepares the texts and photos' },
   'tarifs.mode.supplied': { fr: 'Vous envoyez les contenus', en: 'You send the content' },
-  'tarifs.mode.visit': { fr: 'Nous venons à Yaoundé', en: 'We come to Yaoundé' },
+  'tarifs.mode.visit': { fr: 'Nous venons sur place', en: 'We come on site' },
   'tarifs.visit.note': {
     fr: 'Les textes et les photos publiés décrivent ce que nous avons vu sur place.',
     en: 'The published texts and photos describe what we saw on site.',
+  },
+  'tarifs.visit.yaounde': {
+    fr: 'À Yaoundé, la venue est dans le prix affiché.',
+    en: 'In Yaoundé, the visit is included in the listed price.',
   },
   'tarifs.visit.outside': {
     fr: 'Hors Yaoundé, le déplacement se chiffre à part, avant l’acompte.',
@@ -260,8 +264,8 @@ const translations: Record<string, Record<Lang, string>> = {
     en: 'If your package deadline is missed because of us, the following month of hosting is free. Two rounds of edits are included. The deadline starts the day the deposit, the texts and the photos are received.',
   },
   'guarantee.visit': {
-    fr: 'Si le délai de votre formule est dépassé de notre fait, le mois d’hébergement suivant est offert. Deux séries de modifications sont incluses. Le délai part le lendemain de la visite à Yaoundé, une fois l’acompte payé. Si l’hôtel reporte la visite, le délai se décale d’autant.',
-    en: 'If your package deadline is missed because of us, the following month of hosting is free. Two rounds of edits are included. The deadline starts the day after the Yaoundé visit, once the deposit is paid. If the hotel postpones the visit, the deadline moves by the same amount.',
+    fr: 'Si le délai de votre formule est dépassé de notre fait, le mois d’hébergement suivant est offert. Deux séries de modifications sont incluses. Le délai part le lendemain de la visite sur place, une fois l’acompte payé. Si l’hôtel reporte la visite, le délai se décale d’autant.',
+    en: 'If your package deadline is missed because of us, the following month of hosting is free. Two rounds of edits are included. The deadline starts the day after the on-site visit, once the deposit is paid. If the hotel postpones the visit, the deadline moves by the same amount.',
   },
   'tarifs.rule.title': { fr: 'Au-delà de 15 chambres', en: 'Beyond 15 rooms' },
   'tarifs.rule.text': {
@@ -288,13 +292,13 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'faq.q2': { fr: 'Le délai part quand ?', en: 'When does the deadline start?' },
   'faq.a2': {
-    fr: 'Si vous envoyez les contenus, le jour où l’acompte, les textes et les photos sont reçus. Si nous venons à Yaoundé, le lendemain de la visite, une fois l’acompte payé. Découverte : 14 jours. Essentiel : 21 jours. Complet : 30 jours.',
-    en: 'If you send the content, the day the deposit, texts and photos arrive. If we come to Yaoundé, the day after the visit, once the deposit is paid. Discovery: 14 days. Essential: 21 days. Complete: 30 days.',
+    fr: 'Si vous envoyez les contenus, le jour où l’acompte, les textes et les photos sont reçus. Si nous venons sur place, le lendemain de la visite, une fois l’acompte payé. Découverte : 14 jours. Essentiel : 21 jours. Complet : 30 jours.',
+    en: 'If you send the content, the day the deposit, texts and photos arrive. If we come on site, the day after the visit, once the deposit is paid. Discovery: 14 days. Essential: 21 days. Complete: 30 days.',
   },
   'faq.q3': { fr: 'Qui fournit les textes et les photos ?', en: 'Who provides the texts and the photos?' },
   'faq.a3': {
-    fr: 'Vous, ou nous. Si vous les envoyez, le délai attend leur réception avec l’acompte. Si nous venons à Yaoundé, nous photographions et nous écrivons d’après ce que nous avons vu. Ce qui n’a pas été vu n’est pas publié. Hors Yaoundé, le déplacement se chiffre à part.',
-    en: 'You, or us. If you send them, the deadline waits for them together with the deposit. If we come to Yaoundé, we photograph and write from what we saw. What was not seen is not published. Outside Yaoundé, travel is quoted separately.',
+    fr: 'Vous, ou nous. Si vous les envoyez, le délai attend leur réception avec l’acompte. Si nous venons sur place, nous photographions et nous écrivons d’après ce que nous avons vu. Ce qui n’a pas été vu n’est pas publié. À Yaoundé, la venue est dans le prix. Hors Yaoundé, le déplacement se chiffre à part.',
+    en: 'You, or us. If you send them, the deadline waits for them together with the deposit. If we come on site, we photograph and write from what we saw. What was not seen is not published. In Yaoundé, the visit is included in the price. Outside Yaoundé, travel is quoted separately.',
   },
   'faq.q4': { fr: 'Que se passe-t-il si le délai n’est pas tenu ?', en: 'What if the deadline is missed?' },
   'faq.a4': {
@@ -317,8 +321,8 @@ const translations: Record<string, Record<Lang, string>> = {
   'about.role': { fr: 'Sites de réservation pour hôtels indépendants', en: 'Booking websites for independent hotels' },
   'about.location': { fr: 'Yaoundé, Cameroun. Hôtels en français et en anglais.', en: 'Yaoundé, Cameroon. Hotels in French and English.' },
   'about.bio': {
-    fr: 'Je livre un site de réservation pour les hôtels indépendants, en 14, 21 ou 30 jours. Vous envoyez les textes et les photos, ou je viens à Yaoundé les faire. Ce qui est publié décrit ce qui a été vu ou reçu. L’appel de 20 minutes sert à choisir la formule.',
-    en: 'I deliver a booking website for independent hotels, in 14, 21 or 30 days. You send the texts and photos, or I come to Yaoundé to make them. What is published describes what was seen or received. The 20-minute call is for choosing the package.',
+    fr: 'Je livre un site de réservation pour les hôtels indépendants, en 14, 21 ou 30 jours. Vous envoyez les textes et les photos, ou je viens sur place les faire. Ce qui est publié décrit ce qui a été vu ou reçu. L’appel de 20 minutes sert à choisir la formule.',
+    en: 'I deliver a booking website for independent hotels, in 14, 21 or 30 days. You send the texts and photos, or I come on site to make them. What is published describes what was seen or received. The 20-minute call is for choosing the package.',
   },
   'about.h1': { fr: 'Une formule, un site', en: 'One package, one website' },
   'about.h2': { fr: 'Délai écrit', en: 'Written deadline' },
