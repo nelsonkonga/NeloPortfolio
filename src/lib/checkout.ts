@@ -23,6 +23,14 @@ function httpsUrl(value: string | undefined) {
   }
 }
 
+function checkoutEndpoint() {
+  const configured = import.meta.env.VITE_MOMO_ENDPOINT
+  if (typeof configured === 'string' && configured.trim()) return configured.trim()
+  if (typeof window === 'undefined') return undefined
+  if (window.location.protocol !== 'https:') return undefined
+  return `${window.location.origin}/api/momo`
+}
+
 export function momoNumber(method: PaymentMethod) {
   const raw = method === 'orange'
     ? import.meta.env.VITE_ORANGE_MONEY_NUMBER
@@ -39,6 +47,7 @@ async function redirectFromEndpoint(endpoint: string | undefined, input: Checkou
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(input),
+      signal: AbortSignal.timeout(15000),
     })
     if (!response.ok) return false
     const data = (await response.json()) as { url?: unknown }
@@ -52,7 +61,7 @@ async function redirectFromEndpoint(endpoint: string | undefined, input: Checkou
 }
 
 export async function openCheckout(input: CheckoutRequest): Promise<'redirect' | 'manual' | 'unavailable'> {
-  const opened = await redirectFromEndpoint(import.meta.env.VITE_MOMO_ENDPOINT, input)
+  const opened = await redirectFromEndpoint(checkoutEndpoint(), input)
   if (opened) return 'redirect'
   if (momoNumber(input.method)) return 'manual'
   return 'unavailable'
