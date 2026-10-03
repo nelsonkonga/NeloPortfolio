@@ -81,15 +81,43 @@ function prepare(input) {
 
 function checkoutUrl(payload) {
   if (!payload || typeof payload !== 'object') return null
-  const candidate = payload.data?.checkout_url ?? payload.checkout_url
-  if (typeof candidate !== 'string') return null
-  try {
-    const url = new URL(candidate)
-    if (url.protocol !== 'https:') return null
-    return url.toString()
-  } catch {
-    return null
+  const data = payload.data && typeof payload.data === 'object' ? payload.data : {}
+  const candidates = [data.checkout_url, data.payment_url, data.url, payload.checkout_url, payload.payment_url, payload.url]
+  for (const candidate of candidates) {
+    if (typeof candidate !== 'string') continue
+    try {
+      const url = new URL(candidate)
+      if (url.protocol !== 'https:') continue
+      return url.toString()
+    } catch {
+      continue
+    }
   }
+  return null
+}
+
+function secretKey() {
+  let value = process.env.MONEROO_SECRET_KEY?.trim() ?? ''
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    value = value.slice(1, -1).trim()
+  }
+  if (value.toLowerCase().startsWith('bearer ')) value = value.slice(7).trim()
+  return value
+}
+
+async function initialize(secret, body) {
+  const response = await fetch('https://api.moneroo.io/v1/payments/initialize', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${secret}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(12000),
+  })
+  const payload = await response.json().catch(() => null)
+  return { status: response.status, url: response.ok ? checkoutUrl(payload) : null }
 }
 
 export default async function handler(req, res) {
@@ -99,7 +127,7 @@ export default async function handler(req, res) {
     return
   }
 
-  const secret = process.env.MONEROO_SECRET_KEY?.trim()
+  const secret = secretKey()
   if (!secret) {
     res.status(503).json({})
     return
@@ -126,23 +154,29 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://api.moneroo.io/v1/payments/initialize', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${secret}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(body),
-      signal: AbortSignal.timeout(12000),
-    })
-    const payload = await response.json().catch(() => null)
-    const url = response.ok ? checkoutUrl(payload) : null
-    if (!url) {
-      res.status(502).json({})
+    const first = await initialize(secret, body)
+    if (first.url) {
+      res.status(200).json({ url: first.url })
       return
     }
-    res.status(200).json({ url })
+    if (first.status === 401 || first.status === 403) {
+      res.status(502).json({ upstream: first.status })
+      return
+    }
+    const { methods, metadata, customer, ...rest } = body
+    const second = await initialize(secret, {
+      ...rest,
+      customer: {
+        email: customer.email,
+        first_name: customer.first_name,
+        last_name: customer.last_name,
+      },
+    })
+    if (second.url) {
+      res.status(200).json({ url: second.url })
+      return
+    }
+    res.status(502).json({ upstream: second.status || first.status })
   } catch {
     res.status(502).json({})
   }
