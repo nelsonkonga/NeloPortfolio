@@ -381,7 +381,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'options.total': { fr: 'Total', en: 'Total' },
   'options.confirm': { fr: 'Continuer vers le paiement', en: 'Continue to payment' },
   'options.choice.continue': { fr: 'Continuer vers le paiement', en: 'Continue to payment' },
-  'options.success': { fr: 'C’est noté. On vous écrit à cette adresse.', en: 'Noted. We will write to this address.' },
+  'options.success': { fr: 'C’est noté. Votre demande est enregistrée.', en: 'Noted. Your request is saved.' },
   'options.error': { fr: 'L’enregistrement n’a pas abouti.', en: 'The request was not saved.' },
   'options.err.email': { fr: 'Indiquez un email valide.', en: 'Add a valid email.' },
   'options.resto.name': { fr: 'Restaurant', en: 'Restaurant' },
@@ -456,7 +456,7 @@ const translations: Record<string, Record<Lang, string>> = {
     en: 'Describe the menu, the QR menu, table booking or click and collect.',
   },
   'options.brief.send': { fr: 'Envoyer le brief', en: 'Send the brief' },
-  'options.brief.saved': { fr: 'C’est noté. On vous écrit à cette adresse.', en: 'Noted. We will write to this address.' },
+  'options.brief.saved': { fr: 'C’est noté. Votre demande est enregistrée.', en: 'Noted. Your request is saved.' },
   'options.brief.local': {
     fr: 'Le brief est conservé sur cet appareil. L’enregistrement en base n’est pas encore branché. Vous n’avez pas été débité.',
     en: 'The brief stays on this device. The database is not connected yet. You have not been charged.',
