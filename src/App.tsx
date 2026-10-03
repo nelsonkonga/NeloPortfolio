@@ -17,6 +17,8 @@ import { MentionsLegales } from '@/pages/legal/MentionsLegales'
 import { Confidentialite } from '@/pages/legal/Confidentialite'
 import { ConditionsGenerales } from '@/pages/legal/ConditionsGenerales'
 import { Tarifs } from '@/pages/Tarifs'
+import { Options } from '@/pages/Options'
+import { OptionsChoice } from '@/pages/OptionsChoice'
 import './index.css'
 
 function HomePage() {
@@ -47,6 +49,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/tarifs" element={<Tarifs />} />
+                <Route path="/options" element={<Options />} />
+                <Route path="/options/choix" element={<OptionsChoice />} />
                 <Route path="/portfolio" element={<Navigate to="/#exemples" replace />} />
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />

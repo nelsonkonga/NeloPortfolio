@@ -1,4 +1,5 @@
 import { ArrowRight, Check, X } from 'lucide-react'
+import { Emphasis } from '@/components/ui/Emphasis'
 import { useLang } from '@/contexts/LangContext'
 
 const ROWS = [
@@ -15,7 +16,7 @@ export function BeforeAfter() {
     <section className="py-20 sm:py-28">
       <div className="max-w-[980px] mx-auto px-4 sm:px-6 text-center">
         <p className="text-sm font-medium text-muted-foreground mb-3">{t('compare.eyebrow')}</p>
-        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-12">{t('compare.title')}</h2>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-12"><Emphasis text={t('compare.title')} /></h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 text-left">
           <div>
             <p className="text-lg font-semibold mb-4">{t('compare.before')}</p>

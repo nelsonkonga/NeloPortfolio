@@ -36,8 +36,8 @@ const translations: Record<string, Record<Lang, string>> = {
   'photo.sejour': { fr: 'Séjour dans une chambre', en: 'A stay in a room' },
   'photo.nuit': { fr: 'Chambre le soir', en: 'Room in the evening' },
   'hero.title': {
-    fr: 'Des réservations directes pour votre hôtel, sans commission de plateforme.',
-    en: 'Direct bookings for your hotel, without a platform commission.',
+    fr: 'Des réservations directes pour votre hôtel, {em}sans commission{/em} de plateforme.',
+    en: 'Direct bookings for your hotel, {em}without a platform commission{/em}.',
   },
   'hero.subtitle': {
     fr: 'Nous aidons les hôtels indépendants à recevoir des réservations sur leur propre site. Découverte en 14 jours, Essentiel en 21 jours, Complet en 30 jours. Vous envoyez les textes et les photos, ou nous venons les faire sur place.',
@@ -49,8 +49,8 @@ const translations: Record<string, Record<Lang, string>> = {
 
   'problem.eyebrow': { fr: 'Le problème', en: 'The problem' },
   'problem.title': {
-    fr: 'Chaque nuit réservée sur une plateforme vous laisse une commission.',
-    en: 'Every night booked on a platform costs you a commission.',
+    fr: 'Chaque nuit réservée sur une plateforme vous laisse {em}une commission{/em}.',
+    en: 'Every night booked on a platform costs you {em}a commission{/em}.',
   },
   'problem.lead': {
     fr: 'Le voyageur compare, réserve ailleurs, et vous payez pour une nuitée que vous auriez pu encaisser. Un site qui se contente de montrer des photos laisse ce réflexe en place.',
@@ -71,8 +71,8 @@ const translations: Record<string, Record<Lang, string>> = {
 
   'compare.eyebrow': { fr: 'Avant / après', en: 'Before / after' },
   'compare.title': {
-    fr: 'Le même hôtel, avec un endroit pour réserver.',
-    en: 'The same hotel, with a place to book.',
+    fr: 'Le même hôtel, avec {em}un endroit pour réserver{/em}.',
+    en: 'The same hotel, with {em}a place to book{/em}.',
   },
   'compare.before': { fr: 'Aujourd’hui', en: 'Today' },
   'compare.after': { fr: 'Avec le site', en: 'With the website' },
@@ -119,7 +119,7 @@ const translations: Record<string, Record<Lang, string>> = {
   },
 
   'method.eyebrow': { fr: 'Déroulement', en: 'Process' },
-  'method.title': { fr: 'Quatre étapes, un délai qui commence quand vous êtes prêt.', en: 'Four steps, and a deadline that starts when you are ready.' },
+  'method.title': { fr: 'Quatre étapes, {em}un délai{/em} qui commence quand vous êtes prêt.', en: 'Four steps, and {em}a deadline{/em} that starts when you are ready.' },
   'method.subtitle': {
     fr: 'Deux façons de démarrer. Vous envoyez les textes et les photos, ou nous venons sur place les réaliser.',
     en: 'Two ways to start. You send the texts and photos, or we come on site to make them.',
@@ -146,7 +146,7 @@ const translations: Record<string, Record<Lang, string>> = {
   },
 
   'scenarios.eyebrow': { fr: 'Parcours', en: 'Journeys' },
-  'scenarios.title': { fr: 'Trois parcours pour voir à quoi sert chaque formule.', en: 'Three journeys so you can see what each package is for.' },
+  'scenarios.title': { fr: 'Trois parcours pour voir à quoi sert {em}chaque formule{/em}.', en: 'Three journeys so you can see what {em}each package{/em} is for.' },
   'scenarios.s1.kicker': { fr: 'Formule Découverte', en: 'Discovery package' },
   'scenarios.s1.title': { fr: 'L’hôtel qui n’a pas encore de site', en: 'The hotel that does not have a website yet' },
   'scenarios.s1.body': {
@@ -167,7 +167,7 @@ const translations: Record<string, Record<Lang, string>> = {
   },
 
   'tarifs.eyebrow': { fr: 'Tarifs', en: 'Pricing' },
-  'tarifs.title': { fr: 'Trois formules, jusqu’à 15 chambres.', en: 'Three packages, up to 15 rooms.' },
+  'tarifs.title': { fr: 'Trois formules, {em}jusqu’à 15 chambres{/em}.', en: 'Three packages, {em}up to 15 rooms{/em}.' },
   'tarifs.subtitle': {
     fr: 'Les trois formules livrent un site d’hôtel, jusqu’à 15 chambres.',
     en: 'All three packages deliver a hotel website, for up to 15 rooms.',
@@ -177,7 +177,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'tarifs.delay': { fr: 'Livré en {n} jours', en: 'Delivered in {n} days' },
   'tarifs.revisions': { fr: '2 séries de modifications incluses', en: '2 rounds of edits included' },
   'tarifs.includedTitle': { fr: 'Inclus', en: 'Included' },
-  'tarifs.cta': { fr: 'Réserver un appel pour cette formule', en: 'Book a call for this package' },
+  'tarifs.cta': { fr: 'Voir les options', en: 'View options' },
   'tarifs.mode.label': { fr: 'Qui prépare les textes et les photos', en: 'Who prepares the texts and photos' },
   'tarifs.mode.supplied': { fr: 'Vous envoyez les contenus', en: 'You send the content' },
   'tarifs.mode.visit': { fr: 'Nous venons sur place', en: 'We come on site' },
@@ -284,7 +284,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'tarifs.resto.cta': { fr: 'Écrire pour un restaurant', en: 'Write about a restaurant' },
 
   'faq.eyebrow': { fr: 'Questions', en: 'Questions' },
-  'faq.title': { fr: 'Avant l’appel.', en: 'Before the call.' },
+  'faq.title': { fr: 'Avant {em}l’appel{/em}.', en: 'Before {em}the call{/em}.' },
   'faq.q1': { fr: 'Pour qui est cette offre ?', en: 'Who is this offer for?' },
   'faq.a1': {
     fr: 'Les hôtels indépendants. Le prix affiché va jusqu’à 15 chambres. Au-dessus, comptez 15 € par chambre supplémentaire.',
@@ -330,7 +330,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'about.available': { fr: 'Appels ouverts', en: 'Calls open' },
 
   'contact.eyebrow': { fr: 'Appel', en: 'Call' },
-  'contact.title': { fr: 'Vingt minutes pour choisir la formule.', en: 'Twenty minutes to choose the package.' },
+  'contact.title': { fr: 'Vingt minutes pour {em}choisir la formule{/em}.', en: 'Twenty minutes to {em}choose the package{/em}.' },
   'contact.subtitle': {
     fr: 'Le bouton ouvre WhatsApp. Le formulaire sert si vous préférez qu’on vous rappelle.',
     en: 'The button opens WhatsApp. The form is there if you prefer a callback.',
@@ -357,6 +357,50 @@ const translations: Record<string, Record<Lang, string>> = {
   'contact.err.place': { fr: 'Indiquez le nom de l’hôtel.', en: 'Add the hotel name.' },
   'contact.err.need': { fr: 'Choisissez une formule.', en: 'Choose a package.' },
   'contact.direct': { fr: 'Ou écrire tout de suite', en: 'Or write now' },
+
+  'options.step1': { fr: '1. Vos informations', en: '1. Your details' },
+  'options.step2': { fr: '2. Options', en: '2. Options' },
+  'options.package': { fr: 'Votre formule', en: 'Your package' },
+  'options.from': { fr: 'à partir de', en: 'from' },
+  'options.change': { fr: 'Changer', en: 'Change' },
+  'options.title': {
+    fr: 'Vous êtes à une étape d’un site qui prend {em}les réservations{/em}.',
+    en: 'You are one step away from a website that takes {em}the bookings{/em}.',
+  },
+  'options.lead': {
+    fr: 'Dites-nous où envoyer le détail. Rien à payer à cette étape.',
+    en: 'Tell us where to send the details. Nothing to pay on this step.',
+  },
+  'options.hotel': { fr: 'Nom de l’hôtel', en: 'Hotel name' },
+  'options.optional': { fr: 'facultatif', en: 'optional' },
+  'options.hotel.placeholder': { fr: 'Hôtel du Centre', en: 'Central Hotel' },
+  'options.email': { fr: 'Email', en: 'Email' },
+  'options.email.placeholder': { fr: 'vous@hotel.com', en: 'you@hotel.com' },
+  'options.phone': { fr: 'Téléphone', en: 'Phone' },
+  'options.phone.hint': { fr: 'pour vous joindre au sujet du projet', en: 'so we can reach you about the project' },
+  'options.see': { fr: 'Voir mes options', en: 'See my options' },
+  'options.legal.before': { fr: 'En continuant, vous acceptez les', en: 'By continuing, you agree to the' },
+  'options.legal.terms': { fr: 'conditions générales', en: 'terms' },
+  'options.legal.and': { fr: 'et la', en: 'and the' },
+  'options.legal.privacy': { fr: 'politique de confidentialité', en: 'privacy policy' },
+  'options.legal.nospam': { fr: 'Pas de spam.', en: 'No spam.' },
+  'options.choice.title': { fr: 'Vos options', en: 'Your options' },
+  'options.mode.supplied': { fr: 'Vous envoyez les contenus', en: 'You send the content' },
+  'options.mode.supplied.desc': {
+    fr: 'Le délai part le jour où l’acompte, les textes et les photos sont reçus.',
+    en: 'The deadline starts the day the deposit, the texts and the photos are received.',
+  },
+  'options.mode.visit': { fr: 'Nous venons sur place', en: 'We come on site' },
+  'options.mode.visit.desc': {
+    fr: 'Le délai part le lendemain de la visite, une fois l’acompte payé.',
+    en: 'The deadline starts the day after the visit, once the deposit is paid.',
+  },
+  'options.summary': { fr: 'Récapitulatif', en: 'Summary' },
+  'options.total': { fr: 'Total', en: 'Total' },
+  'options.confirm': { fr: 'Confirmer ces options', en: 'Confirm these options' },
+  'options.success': { fr: 'C’est noté. On vous écrit à cette adresse.', en: 'Noted. We will write to this address.' },
+  'options.error': { fr: 'L’enregistrement n’a pas abouti.', en: 'The request was not saved.' },
+  'options.err.email': { fr: 'Indiquez un email valide.', en: 'Add a valid email.' },
 
   'footer.desc': {
     fr: 'Sites de réservation directe pour hôtels indépendants. 14, 21 ou 30 jours selon la formule.',
