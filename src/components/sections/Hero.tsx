@@ -1,5 +1,6 @@
 import { ArrowRight, CalendarClock, PenLine, ShieldCheck } from 'lucide-react'
 import { BookCallButton } from '@/components/contact/BookCallButton'
+import { Emphasis } from '@/components/ui/Emphasis'
 import { useLang } from '@/contexts/LangContext'
 
 const PHOTOS = [
@@ -27,7 +28,7 @@ export function Hero() {
         </span>
 
         <h1 className="max-w-4xl text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08] mb-6">
-          {t('hero.title')}
+          <Emphasis text={t('hero.title')} />
         </h1>
 
         <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">

@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { BookCallButton } from '@/components/contact/BookCallButton'
+import { Emphasis } from '@/components/ui/Emphasis'
 import { useLang } from '@/contexts/LangContext'
 import { whatsappUrl } from '@/lib/links'
 import { supabase } from '@/lib/supabase'
@@ -80,7 +81,7 @@ export function Contact() {
     <section id="contact" className="py-20 sm:py-28">
       <div className="max-w-xl mx-auto px-4 sm:px-6">
         <p className="text-sm font-medium text-muted-foreground mb-3">{t('contact.eyebrow')}</p>
-        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4">{t('contact.title')}</h2>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4"><Emphasis text={t('contact.title')} /></h2>
         <p className="text-muted-foreground mb-6">{t('contact.subtitle')}</p>
         <BookCallButton fullWidth className="mb-8" />
 
