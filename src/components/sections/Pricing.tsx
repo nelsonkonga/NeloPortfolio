@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { CheckCircle2, Sparkles, UtensilsCrossed } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, CheckCircle2, Sparkles, UtensilsCrossed } from 'lucide-react'
+import { Emphasis } from '@/components/ui/Emphasis'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/contexts/LangContext'
-import { PACKAGES, formatPackagePrice, packageWhatsappMessage } from '@/data/packages'
+import { PACKAGES, formatPackagePrice } from '@/data/packages'
 import { whatsappUrl } from '@/lib/links'
 
 export function Pricing() {
@@ -18,7 +20,7 @@ export function Pricing() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mb-8">
           <p className="text-sm font-medium text-muted-foreground mb-3">{t('tarifs.eyebrow')}</p>
-          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4">{t('tarifs.title')}</h2>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4"><Emphasis text={t('tarifs.title')} /></h2>
           <p className="text-muted-foreground leading-relaxed">{t('tarifs.subtitle')}</p>
         </div>
 
@@ -62,7 +64,7 @@ export function Pricing() {
           {PACKAGES.map((pkg) => {
             const name = t(pkg.nameKey)
             const price = formatPackagePrice(visit ? pkg.visitPrice : pkg.price, lang)
-            const message = packageWhatsappMessage(lang, name, price, visit)
+            const optionsUrl = `/options?formule=${pkg.id}&mode=${visit ? 'visite' : 'envoi'}`
             return (
               <article
                 key={pkg.id}
@@ -102,10 +104,11 @@ export function Pricing() {
                   ))}
                 </ul>
 
-                <Button variant={pkg.popular ? 'default' : 'outline'} className="w-full rounded-full" asChild>
-                  <a href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="w-full h-12 rounded-full border-primary text-primary hover:bg-primary/5 hover:text-primary" asChild>
+                  <Link to={optionsUrl}>
                     {t('tarifs.cta')}
-                  </a>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </Button>
               </article>
             )

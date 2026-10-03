@@ -1,3 +1,4 @@
+import { Emphasis } from '@/components/ui/Emphasis'
 import { useLang } from '@/contexts/LangContext'
 
 const STEPS = [
@@ -13,7 +14,7 @@ export function Methodology() {
   return (
     <section id="methode" className="py-20 sm:py-28">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-center mb-4">{t('method.title')}</h2>
+        <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-center mb-4"><Emphasis text={t('method.title')} /></h2>
         <p className="text-center text-muted-foreground text-lg max-w-2xl mx-auto mb-14">{t('method.subtitle')}</p>
         <ol className="space-y-12">
           {STEPS.map(([number, src, alt, title, desc]) => (
