@@ -32,7 +32,7 @@ export function BookCallButton({
       )}
       asChild
     >
-      <Link to="/options?formule=essentiel">
+      <Link to="/appel">
         {t('cta.book')}
         <span className={cn(
           'ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full',

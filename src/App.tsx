@@ -20,6 +20,7 @@ import { Options } from '@/pages/Options'
 import { OptionsChoice } from '@/pages/OptionsChoice'
 import { OptionsPayment } from '@/pages/OptionsPayment'
 import { OptionsBrief } from '@/pages/OptionsBrief'
+import { BookCall } from '@/pages/BookCall'
 import './index.css'
 
 function HomePage() {
@@ -49,6 +50,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/tarifs" element={<Tarifs />} />
+                <Route path="/appel" element={<BookCall />} />
                 <Route path="/options" element={<Options />} />
                 <Route path="/options/choix" element={<OptionsChoice />} />
                 <Route path="/options/paiement" element={<OptionsPayment />} />

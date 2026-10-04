@@ -20,6 +20,15 @@ const translations: Record<string, Record<Lang, string>> = {
 
   'cta.book': { fr: 'Réserver un appel de 20 min', en: 'Book a 20-min call' },
   'cta.pricing': { fr: 'Voir les formules', en: 'See the packages' },
+  'call.title': { fr: 'Réserver un appel de 20 minutes', en: 'Book a 20-minute call' },
+  'call.lead': {
+    fr: 'Cet appel sert à choisir la formule. Rien à payer sur cette page.',
+    en: 'This call is for choosing the package. Nothing to pay on this page.',
+  },
+  'call.missing': {
+    fr: 'Les créneaux ne sont pas encore ouverts. Écrivez à nelo.engineering@hotmail.com pour fixer l’appel.',
+    en: 'The time slots are not open yet. Write to nelo.engineering@hotmail.com to set the call.',
+  },
   'cta.instagram': { fr: 'Instagram', en: 'Instagram' },
   'cta.linkedin': { fr: 'LinkedIn', en: 'LinkedIn' },
   'cta.whatsapp': { fr: 'WhatsApp', en: 'WhatsApp' },
