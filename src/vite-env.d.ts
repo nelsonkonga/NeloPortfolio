@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_MOMO_ENDPOINT?: string
   readonly VITE_MTN_MOMO_NUMBER?: string
   readonly VITE_ORANGE_MONEY_NUMBER?: string
+  readonly VITE_CALENDLY_URL?: string
 }
 
 interface ImportMeta {

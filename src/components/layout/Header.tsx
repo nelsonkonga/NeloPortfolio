@@ -116,7 +116,7 @@ export function Header() {
                 {t('nav.pricing')}
               </button>
               <Link
-                to="/options?formule=essentiel"
+                to="/appel"
                 onClick={() => setMobileOpen(false)}
                 className="rounded-full bg-primary text-primary-foreground py-3 text-center font-semibold"
               >
