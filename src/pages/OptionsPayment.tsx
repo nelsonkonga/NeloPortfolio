@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { useLang } from '@/contexts/LangContext'
 import { formatMomoAmount, momoAmountXaf } from '@/data/momoAmounts'
 import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
-import { momoNumber, openCheckout } from '@/lib/checkout'
+import { momoNumber, openCheckout, personalMomoMethods } from '@/lib/checkout'
 import { readLeadDraft, updateLeadDraft, type PaymentMethod } from '@/lib/lead'
 
 export function OptionsPayment() {
@@ -18,7 +18,11 @@ export function OptionsPayment() {
   const formule = params.get('formule') || draft?.formule
   const restaurant = formule === RESTAURANT_FORMULE
   const pkg = PACKAGES.find((item) => item.id === formule)
-  const [method, setMethod] = useState<PaymentMethod>(draft?.paymentMethod ?? 'mtn')
+  const personalMethods = personalMomoMethods()
+  const methods: PaymentMethod[] = personalMethods.length > 0 ? personalMethods : ['mtn', 'orange']
+  const [method, setMethod] = useState<PaymentMethod>(
+    methods.includes(draft?.paymentMethod ?? 'mtn') ? (draft?.paymentMethod ?? 'mtn') : methods[0],
+  )
   const [reference, setReference] = useState(draft?.paymentReference ?? '')
   const [status, setStatus] = useState<'idle' | 'loading' | 'manual' | 'unavailable' | 'formule' | 'url' | 'email' | 'method'>('idle')
 
@@ -51,8 +55,12 @@ export function OptionsPayment() {
   }
 
   async function pay() {
-    setStatus('loading')
     updateLeadDraft({ paymentMethod: method, paymentAttempted: true, paymentReference: reference.trim() })
+    if (number && !restaurant) {
+      setStatus('manual')
+      return
+    }
+    setStatus('loading')
     const result = await openCheckout({
       email: lead.email,
       phone: lead.phone,
@@ -89,7 +97,7 @@ export function OptionsPayment() {
               {([
                 ['mtn', t('options.pay.mtn'), t('options.pay.mtn.hint')],
                 ['orange', t('options.pay.orange'), t('options.pay.orange.hint')],
-              ] as const).map(([value, label, hint]) => {
+              ] as const).filter(([value]) => methods.includes(value)).map(([value, label, hint]) => {
                 const active = method === value
                 return (
                   <button
