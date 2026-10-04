@@ -23,6 +23,8 @@ export function BookCall() {
       if (!widget) return
       parent.innerHTML = ''
       widget.initInlineWidget({ url: url as string, parentElement: parent })
+      const iframe = parent.querySelector('iframe')
+      if (iframe) iframe.style.height = '760px'
     }
 
     const src = 'https://assets.calendly.com/assets/external/widget.js'
@@ -51,7 +53,7 @@ export function BookCall() {
         <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-4">{t('call.title')}</h1>
         <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-xl">{t('call.lead')}</p>
         {url ? (
-          <div ref={frame} className="min-h-[700px]" />
+          <div ref={frame} className="h-[760px] w-full" />
         ) : (
           <p className="text-sm text-muted-foreground">{t('call.missing')}</p>
         )}
