@@ -1,5 +1,6 @@
 const AMOUNTS_XAF = {
-  decouverte: { send: 297900, visit: 425900 },
+  // Test temporaire : remettre Découverte à 297900 / 425900 ensuite.
+  decouverte: { send: 1000, visit: 1000 },
   essentiel: { send: 649900, visit: 977900 },
   complet: { send: 1961900, visit: 2617900 },
 } as const
