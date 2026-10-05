@@ -115,13 +115,59 @@ function checkoutUrl(payload) {
   return null
 }
 
-function secretKey() {
-  let value = process.env.MONEROO_SECRET_KEY?.trim() ?? ''
+function cleanEnv(name) {
+  let value = process.env[name]?.trim() ?? ''
   if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
     value = value.slice(1, -1).trim()
   }
+  return value
+}
+
+function secretKey() {
+  let value = cleanEnv('MONEROO_SECRET_KEY')
   if (value.toLowerCase().startsWith('bearer ')) value = value.slice(7).trim()
   return value
+}
+
+function fapshiCreds() {
+  const apiuser = cleanEnv('FAPSHI_API_USER')
+  const apikey = cleanEnv('FAPSHI_API_KEY')
+  if (!apiuser || !apikey) return null
+  return { apiuser, apikey }
+}
+
+function httpsLink(value) {
+  if (typeof value !== 'string') return null
+  try {
+    const url = new URL(value)
+    if (url.protocol !== 'https:') return null
+    return url.toString()
+  } catch {
+    return null
+  }
+}
+
+async function initiateFapshi(creds, body) {
+  const externalId = `nelo-${body.metadata.formule}-${body.metadata.method}-${Date.now()}`.slice(0, 100)
+  const response = await fetch('https://live.fapshi.com/initiate-pay', {
+    method: 'POST',
+    headers: {
+      apiuser: creds.apiuser,
+      apikey: creds.apikey,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      amount: body.amount,
+      email: body.customer.email,
+      redirectUrl: body.return_url,
+      externalId,
+      message: body.description,
+    }),
+    signal: AbortSignal.timeout(12000),
+  })
+  const payload = await response.json().catch(() => null)
+  return { status: response.status, url: response.ok ? httpsLink(payload?.link) : null }
 }
 
 async function initialize(secret, body) {
@@ -146,8 +192,9 @@ export default async function handler(req, res) {
     return
   }
 
+  const fapshi = fapshiCreds()
   const secret = secretKey()
-  if (!secret) {
+  if (!fapshi && !secret) {
     res.status(503).json({})
     return
   }
@@ -174,6 +221,15 @@ export default async function handler(req, res) {
   const body = prepared.body
 
   try {
+    if (fapshi) {
+      const payment = await initiateFapshi(fapshi, body)
+      if (payment.url) {
+        res.status(200).json({ url: payment.url })
+        return
+      }
+      res.status(502).json({ upstream: payment.status })
+      return
+    }
     const first = await initialize(secret, body)
     if (first.url) {
       res.status(200).json({ url: first.url })

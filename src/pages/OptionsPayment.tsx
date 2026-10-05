@@ -56,10 +56,6 @@ export function OptionsPayment() {
 
   async function pay() {
     updateLeadDraft({ paymentMethod: method, paymentAttempted: true, paymentReference: reference.trim() })
-    if (number && !restaurant) {
-      setStatus('manual')
-      return
-    }
     setStatus('loading')
     const result = await openCheckout({
       email: lead.email,
