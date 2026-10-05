@@ -316,8 +316,8 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'faq.q6': { fr: 'Comment se paie le site ?', en: 'How is the website paid for?' },
   'faq.a6': {
-    fr: 'Un acompte au démarrage, par MTN Mobile Money ou Orange Money. Le solde se paie à la livraison. Le devis reste valable 30 jours.',
-    en: 'A deposit at the start, by MTN Mobile Money or Orange Money. The balance is paid on delivery. The quote stays valid for 30 days.',
+    fr: 'Un acompte au démarrage, par MTN Mobile Money ou Orange Money. Un paiement est limité à 500 000 FCFA, donc le prix est découpé en parts de ce montant. Le solde se paie à la livraison. Le devis reste valable 30 jours.',
+    en: 'A deposit at the start, by MTN Mobile Money or Orange Money. One payment is limited to 500,000 FCFA, so the price is split into parts of that amount. The balance is paid on delivery. The quote stays valid for 30 days.',
   },
   'faq.q7': { fr: 'Et un restaurant ?', en: 'What about a restaurant?' },
   'faq.a7': {
@@ -411,7 +411,13 @@ const translations: Record<string, Record<Lang, string>> = {
   },
   'options.pay.continue': { fr: 'Continuer vers le paiement', en: 'Continue to payment' },
   'options.pay.redirecting': { fr: 'Redirection…', en: 'Redirecting…' },
-  'options.pay.due': { fr: 'À payer aujourd’hui', en: 'Total due today' },
+  'options.pay.due': { fr: 'À payer aujourd’hui', en: 'Due today' },
+  'options.pay.deposit': { fr: 'Payer l’acompte', en: 'Pay the deposit' },
+  'options.pay.balance': { fr: 'Solde à la livraison', en: 'Balance on delivery' },
+  'options.pay.cap': {
+    fr: 'Un paiement Mobile Money est limité à 500 000 FCFA. Le premier versement est l’acompte.',
+    en: 'One Mobile Money payment is limited to 500,000 FCFA. The first payment is the deposit.',
+  },
   'options.pay.quote': { fr: 'Devis à part', en: 'Separate quote' },
   'options.pay.error': {
     fr: 'La page de paiement sécurisée n’a pas pu s’ouvrir.',
