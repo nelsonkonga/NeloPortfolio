@@ -73,10 +73,9 @@ async function redirectFromEndpoint(endpoint: string | undefined, input: Checkou
 }
 
 export async function openCheckout(input: CheckoutRequest): Promise<CheckoutResult> {
-  if (momoNumber(input.method)) return 'manual'
-  if (personalMomoMethods().length > 0) return 'unavailable'
   const opened = await redirectFromEndpoint(checkoutEndpoint(), input)
   if (opened === 'redirect') return 'redirect'
   if (opened !== 'failed') return opened
+  if (momoNumber(input.method)) return 'manual'
   return 'unavailable'
 }
