@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useLang } from '@/contexts/LangContext'
-import { formatMomoAmount, momoAmountXaf } from '@/data/momoAmounts'
+import { formatMomoAmount, momoAmountXaf, momoParts } from '@/data/momoAmounts'
 import { PACKAGES, RESTAURANT_FORMULE, formatPackagePrice } from '@/data/packages'
 import { momoNumber, openCheckout, personalMomoMethods } from '@/lib/checkout'
 import { readLeadDraft, updateLeadDraft, type PaymentMethod } from '@/lib/lead'
@@ -44,7 +44,11 @@ export function OptionsPayment() {
     ? t('options.pay.quote')
     : formatPackagePrice(lead.visit ? pkg!.visitPrice : pkg!.price, lang)
   const xaf = restaurant ? null : momoAmountXaf(lead.formule, lead.visit)
+  const parts = xaf == null ? [] : momoParts(xaf)
+  const due = parts[0] ?? null
   const total = xaf == null ? euro : formatMomoAmount(xaf, lang)
+  const dueLabel = due == null ? total : formatMomoAmount(due, lang)
+  const balance = parts.slice(1)
   const number = momoNumber(method)
   const motif = lead.hotel || lead.email
 
@@ -64,7 +68,7 @@ export function OptionsPayment() {
       formule: lead.formule,
       visit: lead.visit,
       method,
-      amountLabel: total,
+      amountLabel: dueLabel,
       successUrl: `${window.location.origin}/options/brief?formule=${lead.formule}`,
       cancelUrl: window.location.href,
     })
@@ -117,17 +121,37 @@ export function OptionsPayment() {
             <p className="text-xs text-muted-foreground mb-1">{t('options.summary')}</p>
             <p className="font-semibold mb-1">{name}</p>
             <p className="text-sm text-muted-foreground mb-4">{modeLabel}</p>
+            {balance.length > 0 && (
+              <>
+                <p className="text-sm text-muted-foreground">{t('options.total')}</p>
+                <p className="text-2xl font-semibold tracking-tight">{total}</p>
+                {xaf != null && <p className="text-sm text-muted-foreground mt-1 mb-4">{euro}</p>}
+              </>
+            )}
             <p className="text-sm text-muted-foreground">{t('options.pay.due')}</p>
-            <p className="text-3xl font-semibold tracking-tight">{total}</p>
-            {xaf != null && <p className="text-sm text-muted-foreground mt-1">{euro}</p>}
+            <p className="text-3xl font-semibold tracking-tight">{dueLabel}</p>
+            {xaf != null && balance.length === 0 && <p className="text-sm text-muted-foreground mt-1">{euro}</p>}
+            {balance.length > 0 && (
+              <div className="mt-4">
+                <p className="text-sm text-muted-foreground">{t('options.pay.cap')}</p>
+                <p className="text-sm font-medium mt-3">{t('options.pay.balance')}</p>
+                <ul className="mt-1 space-y-1">
+                  {balanceGroups(balance).map((group) => (
+                    <li key={`${group.amount}-${group.count}`} className="text-sm">
+                      {group.count > 1 ? `${group.count} × ${formatMomoAmount(group.amount, lang)}` : formatMomoAmount(group.amount, lang)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <Button type="button" className="w-full rounded-full h-auto min-h-12 whitespace-normal text-center leading-tight mt-5" onClick={pay} disabled={status === 'loading'}>
               {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
-              {status === 'loading' ? t('options.pay.redirecting') : `${t('options.pay.continue')} · ${total}`}
+              {status === 'loading' ? t('options.pay.redirecting') : `${balance.length > 0 ? t('options.pay.deposit') : t('options.pay.continue')} · ${dueLabel}`}
               {status !== 'loading' && <ArrowRight className="h-4 w-4" />}
             </Button>
             {status === 'manual' && number && (
               <div className="mt-4 space-y-3">
-                <p className="text-sm font-medium">{t('options.pay.send').replace('{amount}', total).replace('{number}', number)}</p>
+                <p className="text-sm font-medium">{t('options.pay.send').replace('{amount}', dueLabel).replace('{number}', number)}</p>
                 <p className="text-sm text-muted-foreground">{t('options.pay.motif')} : {motif}</p>
                 <p className="text-sm text-muted-foreground">{t('options.pay.seen')}</p>
                 <div className="space-y-1.5">
@@ -169,4 +193,14 @@ export function OptionsPayment() {
       </div>
     </main>
   )
+}
+
+function balanceGroups(parts: number[]) {
+  const groups: { amount: number, count: number }[] = []
+  for (const amount of parts) {
+    const last = groups[groups.length - 1]
+    if (last && last.amount === amount) last.count += 1
+    else groups.push({ amount, count: 1 })
+  }
+  return groups
 }

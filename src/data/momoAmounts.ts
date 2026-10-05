@@ -10,6 +10,25 @@ export function momoAmountXaf(formule: string, visit: boolean) {
   return visit ? row.visit : row.send
 }
 
+export const MOMO_CAP_XAF = 500_000
+const MOMO_MIN_XAF = 100
+
+export function momoParts(total: number) {
+  if (total <= MOMO_CAP_XAF) return [total]
+  const parts: number[] = []
+  let left = total
+  while (left > MOMO_CAP_XAF) {
+    parts.push(MOMO_CAP_XAF)
+    left -= MOMO_CAP_XAF
+  }
+  if (left < MOMO_MIN_XAF) {
+    parts[parts.length - 1] -= MOMO_MIN_XAF - left
+    left = MOMO_MIN_XAF
+  }
+  parts.push(left)
+  return parts
+}
+
 export function formatMomoAmount(amount: number, lang: 'fr' | 'en') {
   const text = lang === 'fr'
     ? amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')

@@ -49,8 +49,10 @@ export function ConditionsGenerales() {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Paiement</h2>
           <p>
             Un acompte est demandé au démarrage. Le solde est payable à la livraison. L’acompte peut
-            se régler par MTN Mobile Money ou par Orange Money. Le montant demandé par Mobile Money
-            est le montant en FCFA affiché sur la page de paiement. Le site ne prélève rien tout seul.
+            se régler par MTN Mobile Money ou par Orange Money. Un paiement Mobile Money est limité
+            à 500 000 FCFA. Au-dessus, le prix est découpé en parts de ce montant : la première est
+            l’acompte, les suivantes sont le solde. Le montant demandé est celui affiché sur la page
+            de paiement. Le site ne prélève rien tout seul.
             Si le paiement n’est pas encore ouvert, aucun montant n’est débité. Le transfert est
             confirmé lorsqu’il est vu sur le compte. Le devis est valable 30 jours. Le nom de domaine
             .com et l’hébergement de la première année sont inclus. Une extension locale se paie au

@@ -4,6 +4,25 @@ const AMOUNTS_XAF = {
   complet: { send: 1961900, visit: 2617900 },
 }
 
+const MOMO_CAP_XAF = 500000
+const MOMO_MIN_XAF = 100
+
+function momoParts(total) {
+  if (total <= MOMO_CAP_XAF) return [total]
+  const parts = []
+  let left = total
+  while (left > MOMO_CAP_XAF) {
+    parts.push(MOMO_CAP_XAF)
+    left -= MOMO_CAP_XAF
+  }
+  if (left < MOMO_MIN_XAF) {
+    parts[parts.length - 1] -= MOMO_MIN_XAF - left
+    left = MOMO_MIN_XAF
+  }
+  parts.push(left)
+  return parts
+}
+
 const FORMULA_LABEL = {
   decouverte: 'Découverte',
   essentiel: 'Essentiel',
@@ -77,10 +96,15 @@ function prepare(input, requestHost) {
   const phone = digits.length >= 8 ? input.phone.trim().slice(0, 20) : ''
   const names = customerName(input.hotel)
   const mode = input.visit ? 'venue sur place' : 'contenus envoyés par le client'
+  const total = input.visit ? row.visit : row.send
+  const parts = momoParts(total)
+  const description = parts.length > 1
+    ? `Acompte. Nelo. ${label}. ${mode}. Solde à la livraison.`
+    : `Nelo. ${label}. ${mode}.`
   return { body: {
-    amount: input.visit ? row.visit : row.send,
+    amount: parts[0],
     currency: 'XAF',
-    description: `Nelo. ${label}. ${mode}.`.slice(0, 180),
+    description: description.slice(0, 180),
     return_url: returnUrl,
     customer: {
       email,
