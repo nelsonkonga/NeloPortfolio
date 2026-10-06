@@ -34,8 +34,8 @@ export function About() {
                 </li>
               ))}
             </ul>
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-green-500/10 text-green-500 border border-green-500/20 rounded-full px-3 py-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-primary/10 text-foreground border border-border rounded-full px-3 py-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-rouge" />
               {t('about.available')}
             </span>
           </div>

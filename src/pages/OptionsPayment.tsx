@@ -106,7 +106,7 @@ export function OptionsPayment() {
                     role="radio"
                     aria-checked={active}
                     onClick={() => choose(value)}
-                    className={`w-full text-left rounded-2xl border bg-card p-5 ${active ? 'border-primary shadow-[0_0_0_3px_rgba(109,66,245,0.15)]' : 'border-border'}`}
+                    className={`w-full text-left rounded-2xl border bg-card p-5 ${active ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
                   >
                     <span className="block font-semibold">{label}</span>
                     <span className="block text-sm text-muted-foreground mt-1">{hint}</span>
