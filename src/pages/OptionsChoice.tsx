@@ -63,7 +63,7 @@ export function OptionsChoice() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
           <div className="space-y-3">
             {restaurant ? (
-              <div className="rounded-2xl border border-primary bg-card p-5 ring-2 ring-primary/20">
+              <div className="rounded-2xl border border-primary bg-card p-5 shadow-[0_0_0_3px_rgba(59,108,246,0.15)]">
                 <p className="font-semibold">{t('options.resto.choice')}</p>
                 <p className="text-sm text-muted-foreground mt-1">{t('options.resto.choice.desc')}</p>
               </div>
@@ -76,7 +76,7 @@ export function OptionsChoice() {
                     key={String(isVisit)}
                     type="button"
                     onClick={() => setVisit(isVisit)}
-                    className={`w-full text-left rounded-2xl border bg-card p-5 ${active ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
+                    className={`w-full text-left rounded-2xl border bg-card p-5 ${active ? 'border-primary shadow-[0_0_0_3px_rgba(59,108,246,0.15)]' : 'border-border'}`}
                   >
                     <span className="flex items-start justify-between gap-4">
                       <span>

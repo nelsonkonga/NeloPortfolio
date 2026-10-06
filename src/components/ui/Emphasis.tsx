@@ -6,7 +6,7 @@ export function Emphasis({ text }: { text: string }) {
         const marked = chunk.match(/^\{em\}([\s\S]*)\{\/em\}$/)
         if (!marked) return <span key={index}>{chunk}</span>
         return (
-          <span key={index} className="text-rouge">
+          <span key={index} className="text-primary">
             {marked[1]}
           </span>
         )

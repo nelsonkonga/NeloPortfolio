@@ -26,6 +26,7 @@ export function BookCallButton({
       size={size}
       className={cn(
         'h-16 rounded-full pl-7 pr-2 text-lg font-semibold',
+        primary && 'shadow-[0_8px_20px_rgba(59,108,246,0.18)]',
         fullWidth && 'w-full',
         className,
       )}

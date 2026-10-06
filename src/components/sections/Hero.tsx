@@ -38,7 +38,7 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <button
             onClick={scrollToPricing}
-            className="inline-flex items-center h-16 rounded-full bg-primary text-primary-foreground pl-7 pr-2 text-lg font-semibold cursor-pointer"
+            className="inline-flex items-center h-16 rounded-full bg-primary text-primary-foreground pl-7 pr-2 text-lg font-semibold shadow-[0_8px_20px_rgba(59,108,246,0.18)] cursor-pointer"
           >
             {t('cta.pricing')}
             <span className="ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
