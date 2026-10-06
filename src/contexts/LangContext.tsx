@@ -55,6 +55,21 @@ const translations: Record<string, Record<Lang, string>> = {
   'hero.trust1': { fr: 'Un seul service', en: 'One service' },
   'hero.trust2': { fr: 'Délai écrit', en: 'A written deadline' },
   'hero.trust3': { fr: 'Deux séries de retouches', en: 'Two rounds of edits' },
+  'hero.visual.aria': {
+    fr: 'Une réservation directe arrive sur le site de l’hôtel. La commission de plateforme ne suit pas.',
+    en: 'A direct booking arrives on the hotel website. The platform commission does not follow.',
+  },
+  'hero.visual.room': { fr: 'Chambre double', en: 'Double room' },
+  'hero.visual.nights': { fr: '2 nuits', en: '2 nights' },
+  'hero.visual.arrival': { fr: 'Arrivée', en: 'Arrival' },
+  'hero.visual.departure': { fr: 'Départ', en: 'Departure' },
+  'hero.visual.arrivalDate': { fr: 'Ven. 12', en: 'Fri 12' },
+  'hero.visual.departureDate': { fr: 'Dim. 14', en: 'Sun 14' },
+  'hero.visual.book': { fr: 'Réserver', en: 'Book' },
+  'hero.visual.direct': { fr: 'Réservation directe', en: 'Direct booking' },
+  'hero.visual.site': { fr: 'Sur votre site', en: 'On your site' },
+  'hero.visual.commission': { fr: 'Commission', en: 'Commission' },
+  'hero.visual.kept': { fr: 'Sans commission', en: 'No commission' },
 
   'problem.eyebrow': { fr: 'Le problème', en: 'The problem' },
   'problem.title': {
