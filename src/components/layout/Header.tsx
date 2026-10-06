@@ -51,7 +51,7 @@ export function Header() {
               <button
                 key={item.key}
                 onClick={() => handleNavClick(item.href)}
-                className="px-3 py-2 text-[16px] font-semibold text-foreground hover:text-primary transition-colors cursor-pointer"
+                className="px-3 py-2 text-[16px] font-semibold text-foreground hover:text-gold transition-colors cursor-pointer"
               >
                 {t(item.key)}
               </button>

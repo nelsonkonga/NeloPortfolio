@@ -32,7 +32,7 @@ export function Pricing() {
                 key={pkg.id}
                 className={`relative rounded-3xl flex flex-col bg-card p-6 sm:p-8 ${
                   pkg.popular
-                    ? 'border-2 border-primary shadow-xl lg:-translate-y-2'
+                    ? 'border-2 border-primary lg:-translate-y-2'
                     : 'border border-border'
                 }`}
               >
