@@ -163,8 +163,7 @@ body {
   animation-direction: reverse;
 }
 
-.zephyr-card {
-  transform: translateY(-50%);
+.zephyr-stack {
   animation: zephyr-float 6.5s ease-in-out infinite;
 }
 
@@ -189,17 +188,52 @@ body {
 }
 
 @keyframes zephyr-float {
-  0%, 100% { transform: translateY(-50%); }
-  50% { transform: translateY(calc(-50% - 8px)); }
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
 }
 
 @keyframes zephyr-slip {
-  0% { transform: translate3d(0, 12px, 0); opacity: 0; }
-  12% { transform: translate3d(0, 0, 0); opacity: 1; }
-  46% { transform: translate3d(32cqw, -8cqh, 0); opacity: 1; }
-  60% { transform: translate3d(40cqw, -2cqh, 0) scale(0.94); opacity: 1; }
-  72% { transform: translate3d(44cqw, 0, 0) scale(0.88); opacity: 0; }
-  100% { transform: translate3d(0, 12px, 0); opacity: 0; }
+  0% { left: 1.5rem; opacity: 0; transform: translateY(calc(-50% + 12px)); }
+  12% { opacity: 1; transform: translateY(-50%); }
+  54% { left: calc(100% - 29rem); opacity: 1; transform: translateY(-50%); }
+  70% { left: calc(100% - 27.5rem); opacity: 0; transform: translateY(-46%) scale(0.96); }
+  100% { left: 1.5rem; opacity: 0; transform: translateY(calc(-50% + 12px)); }
+}
+
+@keyframes zephyr-slip-down {
+  0% { opacity: 0; transform: translate3d(-50%, 8px, 0); }
+  14% { opacity: 1; transform: translate3d(-50%, 0, 0); }
+  50% { opacity: 1; transform: translate3d(-50%, 8cqh, 0); }
+  68% { opacity: 0; transform: translate3d(-50%, 14cqh, 0) scale(0.96); }
+  100% { opacity: 0; transform: translate3d(-50%, 8px, 0); }
+}
+
+@keyframes zephyr-commission-aside {
+  0% { opacity: 0; transform: translateY(6px); }
+  16% { opacity: 1; transform: translateY(0); }
+  42% { opacity: 1; transform: translateX(10px); }
+  60% { opacity: 0; transform: translate(-12px, 42px) rotate(-12deg); }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 639px) {
+  .zephyr-stage {
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.35rem;
+  }
+
+  .zephyr-slip {
+    top: 1.15rem;
+    left: 50%;
+    animation-name: zephyr-slip-down;
+  }
+
+  .zephyr-commission {
+    top: 1rem;
+    left: 0.7rem;
+    animation-name: zephyr-commission-aside;
+  }
 }
 
 @keyframes zephyr-commission {
@@ -211,10 +245,9 @@ body {
 }
 
 @keyframes zephyr-confirm {
-  0%, 62% { opacity: 0; transform: translateY(8px) scale(0.94); }
-  74% { opacity: 1; transform: translateY(0) scale(1); }
-  90% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(6px) scale(0.96); }
+  0%, 62% { opacity: 0; }
+  74%, 90% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes zephyr-press {
@@ -225,7 +258,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .zephyr-wind path,
-  .zephyr-card,
+  .zephyr-stack,
   .zephyr-slip,
   .zephyr-commission,
   .zephyr-confirm,
@@ -233,14 +266,19 @@ body {
     animation: none;
   }
 
-  .zephyr-card {
+  .zephyr-slip {
+    opacity: 1;
     transform: translateY(-50%);
   }
 
-  .zephyr-slip,
+  @media (max-width: 639px) {
+    .zephyr-slip {
+      transform: translateX(-50%);
+    }
+  }
+
   .zephyr-confirm {
     opacity: 1;
-    transform: none;
   }
 
   .zephyr-commission {

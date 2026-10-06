@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section id="hero" className="overflow-x-hidden pt-[72px] bg-background">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 lg:pt-20">
-        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-10 xl:gap-14">
+        <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-8 xl:gap-10">
           <div className="min-w-0">
             <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm mb-6 sm:mb-8">
               <span className="h-2 w-2 rounded-full bg-primary" />
@@ -38,7 +38,7 @@ export function Hero() {
               {t('hero.subtitle')}
             </p>
 
-            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 mb-6 sm:mb-8">
               <button
                 onClick={scrollToPricing}
                 className="inline-flex w-full sm:w-auto items-center justify-center h-14 sm:h-16 rounded-full bg-primary text-primary-foreground pl-6 sm:pl-7 pr-2 text-base sm:text-lg font-semibold shadow-[0_8px_20px_rgba(59,108,246,0.18)] cursor-pointer"
