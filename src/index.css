@@ -130,3 +130,120 @@ body {
   backdrop-filter: blur(16px) saturate(1.5);
   -webkit-backdrop-filter: blur(16px) saturate(1.5);
 }
+
+.zephyr-stage {
+  container-type: size;
+  background:
+    radial-gradient(ellipse 72% 62% at 74% 46%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 48% 42% at 16% 82%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 72%),
+    color-mix(in srgb, var(--muted) 72%, var(--background));
+}
+
+.zephyr-wind path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 7 11;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.55;
+  animation: zephyr-dash 8s linear infinite;
+}
+
+.zephyr-wind path:nth-child(2) {
+  stroke: var(--gold);
+  stroke-width: 1.3;
+  opacity: 0.7;
+  animation-duration: 11s;
+}
+
+.zephyr-wind path:nth-child(3) {
+  opacity: 0.28;
+  animation-duration: 13s;
+  animation-direction: reverse;
+}
+
+.zephyr-card {
+  transform: translateY(-50%);
+  animation: zephyr-float 6.5s ease-in-out infinite;
+}
+
+.zephyr-slip {
+  animation: zephyr-slip 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.zephyr-commission {
+  animation: zephyr-commission 9s ease-in-out infinite;
+}
+
+.zephyr-confirm {
+  animation: zephyr-confirm 9s ease-in-out infinite;
+}
+
+.zephyr-book {
+  animation: zephyr-press 9s ease-in-out infinite;
+}
+
+@keyframes zephyr-dash {
+  to { stroke-dashoffset: -180; }
+}
+
+@keyframes zephyr-float {
+  0%, 100% { transform: translateY(-50%); }
+  50% { transform: translateY(calc(-50% - 8px)); }
+}
+
+@keyframes zephyr-slip {
+  0% { transform: translate3d(0, 12px, 0); opacity: 0; }
+  12% { transform: translate3d(0, 0, 0); opacity: 1; }
+  46% { transform: translate3d(32cqw, -8cqh, 0); opacity: 1; }
+  60% { transform: translate3d(40cqw, -2cqh, 0) scale(0.94); opacity: 1; }
+  72% { transform: translate3d(44cqw, 0, 0) scale(0.88); opacity: 0; }
+  100% { transform: translate3d(0, 12px, 0); opacity: 0; }
+}
+
+@keyframes zephyr-commission {
+  0% { transform: translate3d(0, 8px, 0); opacity: 0; }
+  14% { transform: translate3d(0, 0, 0); opacity: 1; }
+  36% { transform: translate3d(14cqw, -5cqh, 0); opacity: 1; }
+  52% { transform: translate3d(16cqw, 16cqh, 0) rotate(14deg); opacity: 0; }
+  100% { transform: translate3d(16cqw, 16cqh, 0) rotate(14deg); opacity: 0; }
+}
+
+@keyframes zephyr-confirm {
+  0%, 62% { opacity: 0; transform: translateY(8px) scale(0.94); }
+  74% { opacity: 1; transform: translateY(0) scale(1); }
+  90% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(6px) scale(0.96); }
+}
+
+@keyframes zephyr-press {
+  0%, 54% { transform: scale(1); }
+  62% { transform: scale(0.97); }
+  70%, 100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zephyr-wind path,
+  .zephyr-card,
+  .zephyr-slip,
+  .zephyr-commission,
+  .zephyr-confirm,
+  .zephyr-book {
+    animation: none;
+  }
+
+  .zephyr-card {
+    transform: translateY(-50%);
+  }
+
+  .zephyr-slip,
+  .zephyr-confirm {
+    opacity: 1;
+    transform: none;
+  }
+
+  .zephyr-commission {
+    opacity: 0;
+  }
+}

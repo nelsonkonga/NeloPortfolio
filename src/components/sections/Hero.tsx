@@ -1,5 +1,6 @@
 import { ArrowRight, CalendarClock, PenLine, ShieldCheck } from 'lucide-react'
 import { BookCallButton } from '@/components/contact/BookCallButton'
+import { HeroArrival } from '@/components/sections/HeroArrival'
 import { Emphasis } from '@/components/ui/Emphasis'
 import { useLang } from '@/contexts/LangContext'
 
@@ -20,40 +21,46 @@ export function Hero() {
   }
 
   return (
-    <section id="hero" className="pt-[72px] bg-background">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm mb-8">
-          <span className="h-2 w-2 rounded-full bg-primary" />
-          {t('hero.badge')}
-        </span>
-
-        <h1 className="max-w-4xl text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08] mb-6">
-          <Emphasis text={t('hero.title')} />
-        </h1>
-
-        <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
-          {t('hero.subtitle')}
-        </p>
-
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
-          <button
-            onClick={scrollToPricing}
-            className="inline-flex items-center h-16 rounded-full bg-primary text-primary-foreground pl-7 pr-2 text-lg font-semibold shadow-[0_8px_20px_rgba(59,108,246,0.18)] cursor-pointer"
-          >
-            {t('cta.pricing')}
-            <span className="ml-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
-              <ArrowRight className="h-4 w-4" />
+    <section id="hero" className="overflow-x-hidden pt-[72px] bg-background">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 lg:pt-20">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-10 xl:gap-14">
+          <div className="min-w-0">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm mb-6 sm:mb-8">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              {t('hero.badge')}
             </span>
-          </button>
-          <BookCallButton tone="secondary" />
-        </div>
 
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-foreground" />{t('hero.trust1')}</span>
-          <span className="hidden sm:inline h-3 w-px bg-border" />
-          <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4 text-foreground" />{t('hero.trust2')}</span>
-          <span className="hidden sm:inline h-3 w-px bg-border" />
-          <span className="inline-flex items-center gap-2"><PenLine className="h-4 w-4 text-foreground" />{t('hero.trust3')}</span>
+            <h1 className="text-[2rem] sm:text-5xl xl:text-6xl font-semibold tracking-tight leading-[1.08] mb-5 sm:mb-6">
+              <Emphasis text={t('hero.title')} />
+            </h1>
+
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 sm:mb-8">
+              {t('hero.subtitle')}
+            </p>
+
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <button
+                onClick={scrollToPricing}
+                className="inline-flex w-full sm:w-auto items-center justify-center h-14 sm:h-16 rounded-full bg-primary text-primary-foreground pl-6 sm:pl-7 pr-2 text-base sm:text-lg font-semibold shadow-[0_8px_20px_rgba(59,108,246,0.18)] cursor-pointer"
+              >
+                {t('cta.pricing')}
+                <span className="ml-3 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white/10">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </button>
+              <BookCallButton tone="secondary" className="h-14 w-full text-base sm:h-16 sm:w-auto sm:text-lg" />
+            </div>
+
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
+              <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-foreground" />{t('hero.trust1')}</span>
+              <span className="hidden sm:inline h-3 w-px bg-border" />
+              <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4 text-foreground" />{t('hero.trust2')}</span>
+              <span className="hidden sm:inline h-3 w-px bg-border" />
+              <span className="inline-flex items-center gap-2"><PenLine className="h-4 w-4 text-foreground" />{t('hero.trust3')}</span>
+            </div>
+          </div>
+
+          <HeroArrival />
         </div>
       </div>
 
@@ -65,13 +72,13 @@ export function Hero() {
         </a>
       </div>
 
-      <div className="flex gap-4 overflow-x-auto px-4 sm:px-6 pb-16 snap-x">
+      <div className="flex max-w-full gap-3 sm:gap-4 overflow-x-auto px-4 sm:px-6 pb-12 sm:pb-16 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {PHOTOS.map(([src, alt]) => (
           <img
             key={src}
             src={src}
             alt={t(alt)}
-            className="h-[420px] w-[280px] sm:w-[320px] shrink-0 rounded-3xl object-cover snap-start"
+            className="h-64 w-56 sm:h-80 sm:w-72 lg:h-[420px] lg:w-[320px] shrink-0 rounded-3xl object-cover snap-start"
           />
         ))}
       </div>
