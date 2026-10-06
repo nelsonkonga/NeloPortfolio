@@ -13,9 +13,9 @@ export function ConditionsGenerales() {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Objet</h2>
           <p>
             Les présentes conditions régissent la création d’un site de réservation pour un hôtel
-            indépendant, vendu par Nelo sous l’une des trois formules. Si l’hôtel envoie les textes
+            indépendant, vendu par Nextzephyr sous l’une des trois formules. Si l’hôtel envoie les textes
             et les photos : Découverte (449 €, 14 jours), Essentiel (990 €, 21 jours), Complet
-            (2 990 €, 30 jours). Si Nelo vient sur place photographier et écrire : Découverte
+            (2 990 €, 30 jours). Si Nextzephyr vient sur place photographier et écrire : Découverte
             (649 €), Essentiel (1 490 €), Complet (3 990 €), aux mêmes délais. Ces prix couvrent
             jusqu’à 15 chambres. Chaque chambre au-dessus ajoute 15 €. À Yaoundé, la venue est
             dans le prix. Hors Yaoundé, le déplacement se chiffre à part, avant l’acompte.
@@ -30,7 +30,7 @@ export function ConditionsGenerales() {
           <p>
             Si l’hôtel envoie les textes et les photos, le délai commence le jour où l’acompte,
             les textes et les photos sont reçus. Un retard du client sur ces éléments décale le
-            délai d’autant. Si Nelo vient sur place, le délai commence le lendemain de la visite,
+            délai d’autant. Si Nextzephyr vient sur place, le délai commence le lendemain de la visite,
             une fois l’acompte payé. Si l’hôtel reporte la visite, le délai se décale d’autant.
             Les textes et les photos publiés dans ce cas décrivent ce qui a été vu sur place.
           </p>
@@ -39,7 +39,7 @@ export function ConditionsGenerales() {
         <section className="space-y-3">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Garantie de délai</h2>
           <p>
-            Si le délai est dépassé du fait de Nelo, le mois d’hébergement suivant la première année
+            Si le délai est dépassé du fait de Nextzephyr, le mois d’hébergement suivant la première année
             est offert. Chaque formule inclut deux séries de modifications. Cette garantie ne porte
             pas sur un nombre de réservations, de nuitées ou de chiffre d’affaires.
           </p>
@@ -64,7 +64,7 @@ export function ConditionsGenerales() {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Propriété</h2>
           <p>
             Le transfert des droits sur le site livré s’effectue après paiement total. Jusqu’à
-            complet paiement, les livrables restent la propriété de Nelo.
+            complet paiement, les livrables restent la propriété de Nextzephyr.
           </p>
         </section>
       </div>

@@ -18,7 +18,7 @@ export function MentionsLegales() {
             Éditeur du site
           </h2>
           <p>
-            Ce site est édité par <strong className="text-foreground">Nelo</strong>,
+            Ce site est édité par <strong className="text-foreground">Nextzephyr</strong>,
             qui livre des sites de réservation pour hôtels indépendants, basé à Yaoundé, Cameroun.
           </p>
           <p>

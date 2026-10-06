@@ -45,8 +45,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div>
             <Link to="/" className="flex items-center gap-2 mb-3 font-bold text-xl">
-              <img src="/NeloLogo3.png" alt="Nelo" className="h-10 w-10 rounded-lg object-cover border border-border/60" />
-              Nelo
+              <img src="/NeloLogo3.png" alt="Nextzephyr" className="h-10 w-10 rounded-lg object-cover border border-border/60" />
+              Nextzephyr
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">{t('footer.desc')}</p>
             <div className="flex items-center flex-wrap gap-3 mt-5">
