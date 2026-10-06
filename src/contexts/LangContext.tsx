@@ -326,7 +326,7 @@ const translations: Record<string, Record<Lang, string>> = {
   },
 
   'about.eyebrow': { fr: 'À propos', en: 'About' },
-  'about.title': { fr: 'Nelo', en: 'Nelo' },
+  'about.title': { fr: 'Nextzephyr', en: 'Nextzephyr' },
   'about.role': { fr: 'Sites de réservation pour hôtels indépendants', en: 'Booking websites for independent hotels' },
   'about.location': { fr: 'Yaoundé, Cameroun. Hôtels en français et en anglais.', en: 'Yaoundé, Cameroon. Hotels in French and English.' },
   'about.bio': {
@@ -489,7 +489,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'footer.legal': { fr: 'Mentions légales', en: 'Legal notice' },
   'footer.privacy': { fr: 'Confidentialité', en: 'Privacy' },
   'footer.cgu': { fr: 'Conditions générales', en: 'Terms' },
-  'footer.copyright': { fr: '© 2026 Nelo. Tous droits réservés.', en: '© 2026 Nelo. All rights reserved.' },
+  'footer.copyright': { fr: '© 2026 Nextzephyr. Tous droits réservés.', en: '© 2026 Nextzephyr. All rights reserved.' },
 }
 
 const LangContext = createContext<LangContextValue>({

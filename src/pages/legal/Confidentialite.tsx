@@ -31,7 +31,7 @@ export function Confidentialite() {
             Utilisation et Sécurité
           </h2>
           <p>
-            Vos données sont destinées exclusivement à Nelo. Elles ne sont ni cédées, ni vendues,
+            Vos données sont destinées exclusivement à Nextzephyr. Elles ne sont ni cédées, ni vendues,
             ni transférées à des tiers.
           </p>
         </section>
