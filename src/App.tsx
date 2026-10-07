@@ -21,6 +21,7 @@ import { OptionsChoice } from '@/pages/OptionsChoice'
 import { OptionsPayment } from '@/pages/OptionsPayment'
 import { OptionsBrief } from '@/pages/OptionsBrief'
 import { BookCall } from '@/pages/BookCall'
+import { Octobre } from '@/pages/Octobre'
 import './index.css'
 
 function HomePage() {
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />
                 <Route path="/conditions-generales" element={<ConditionsGenerales />} />
+                <Route path="/octobre" element={<Octobre />} />
               </Routes>
             </div>
             <Footer />
