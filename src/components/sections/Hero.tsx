@@ -4,15 +4,6 @@ import { HeroArrival } from '@/components/sections/HeroArrival'
 import { Emphasis } from '@/components/ui/Emphasis'
 import { useLang } from '@/contexts/LangContext'
 
-const PHOTOS = [
-  ['/hotels/facade.jpg', 'photo.facade'],
-  ['/hotels/chambre.jpg', 'photo.chambre'],
-  ['/hotels/suite.jpg', 'photo.suite'],
-  ['/hotels/lobby.jpg', 'photo.piscine'],
-  ['/hotels/terrasse.jpg', 'photo.terrasse'],
-  ['/hotels/petitdej.jpg', 'photo.sejour'],
-] as const
-
 export function Hero() {
   const { t } = useLang()
 
@@ -21,7 +12,7 @@ export function Hero() {
   }
 
   return (
-    <section id="hero" className="overflow-x-hidden pt-[72px] bg-background">
+    <section id="hero" className="overflow-x-hidden pt-[72px] pb-16 sm:pb-24 bg-background">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 lg:pt-20">
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-8 xl:gap-10">
           <div className="min-w-0">
@@ -62,25 +53,6 @@ export function Hero() {
 
           <HeroArrival />
         </div>
-      </div>
-
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-14 pb-4 flex items-center justify-between">
-        <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">{t('hero.gallery')}</p>
-        <a href="#exemples" className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
-          {t('hero.seeAll')}
-          <ArrowRight className="h-4 w-4" />
-        </a>
-      </div>
-
-      <div className="flex max-w-full gap-3 sm:gap-4 overflow-x-auto px-4 sm:px-6 pb-12 sm:pb-16 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {PHOTOS.map(([src, alt]) => (
-          <img
-            key={src}
-            src={src}
-            alt={t(alt)}
-            className="h-64 w-56 sm:h-80 sm:w-72 lg:h-[420px] lg:w-[320px] shrink-0 rounded-3xl object-cover snap-start"
-          />
-        ))}
       </div>
     </section>
   )

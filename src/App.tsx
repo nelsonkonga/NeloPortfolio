@@ -10,6 +10,8 @@ import { Offer } from '@/components/sections/Offer'
 import { Methodology } from '@/components/sections/Methodology'
 import { Scenarios } from '@/components/sections/Scenarios'
 import { Pricing } from '@/components/sections/Pricing'
+import { Work } from '@/components/sections/Work'
+import { Reviews } from '@/components/sections/Reviews'
 import { Faq } from '@/components/sections/Faq'
 import { About } from '@/components/sections/About'
 import { MentionsLegales } from '@/pages/legal/MentionsLegales'
@@ -33,6 +35,8 @@ function HomePage() {
       <Pricing />
       <Scenarios />
       <Methodology />
+      <Work />
+      <Reviews />
       <About />
       <Faq />
     </main>
@@ -55,7 +59,7 @@ function App() {
                 <Route path="/options/choix" element={<OptionsChoice />} />
                 <Route path="/options/paiement" element={<OptionsPayment />} />
                 <Route path="/options/brief" element={<OptionsBrief />} />
-                <Route path="/portfolio" element={<Navigate to="/#exemples" replace />} />
+                <Route path="/portfolio" element={<Navigate to="/#realisations" replace />} />
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />
                 <Route path="/conditions-generales" element={<ConditionsGenerales />} />
