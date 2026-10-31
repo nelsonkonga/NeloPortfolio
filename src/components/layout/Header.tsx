@@ -5,7 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext'
 import { useLang } from '@/contexts/LangContext'
 
 const NAV_ITEMS = [
-  { key: 'nav.examples', href: '#realisations' },
+  { key: 'nav.examples', href: '#exemples' },
   { key: 'nav.method', href: '#methode' },
   { key: 'nav.offer', href: '#offre' },
   { key: 'nav.faq', href: '#faq' },

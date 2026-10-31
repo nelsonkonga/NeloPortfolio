@@ -6,7 +6,7 @@ import { SOCIAL } from '@/lib/links'
 
 const NAV_ITEMS = [
   { key: 'nav.offer', href: '#offre' },
-  { key: 'nav.examples', href: '#realisations' },
+  { key: 'nav.examples', href: '#exemples' },
   { key: 'nav.method', href: '#methode' },
   { key: 'nav.pricing', href: '#tarifs' },
   { key: 'nav.faq', href: '#faq' },
