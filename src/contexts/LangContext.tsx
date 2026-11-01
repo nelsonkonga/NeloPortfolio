@@ -10,7 +10,7 @@ interface LangContextValue {
 
 const translations: Record<string, Record<Lang, string>> = {
   'nav.offer': { fr: 'Offre', en: 'Offer' },
-  'nav.examples': { fr: 'Réalisations', en: 'Work' },
+  'nav.examples': { fr: 'Parcours', en: 'Journeys' },
   'nav.method': { fr: 'Déroulement', en: 'Process' },
   'nav.pricing': { fr: 'Tarifs', en: 'Pricing' },
   'nav.faq': { fr: 'Questions', en: 'FAQ' },
@@ -276,30 +276,6 @@ const translations: Record<string, Record<Lang, string>> = {
     fr: 'Le nom de domaine .com et l’hébergement de la première année sont dans chaque formule. Une extension locale (.cm) se chiffre à part, au tarif du registrar.',
     en: 'The .com domain and the first year of hosting are in every package. A local extension (.cm) is quoted separately, at the registrar’s price.',
   },
-  'work.eyebrow': { fr: 'Réalisations', en: 'Work' },
-  'work.title': { fr: 'Les sites livrés, {em}par activité{/em}.', en: 'Delivered websites, {em}by activity{/em}.' },
-  'work.lead': {
-    fr: 'Un hôtel est une case, au même titre qu’un restaurant ou un salon. On n’y met que de vrais clients.',
-    en: 'A hotel is one case, the same as a restaurant or a salon. Only real clients go here.',
-  },
-  'work.empty': { fr: 'Aucun client dans cette case pour l’instant.', en: 'No client in this case yet.' },
-  'work.filter.all': { fr: 'Toutes', en: 'All' },
-  'work.filter.saas': { fr: 'SaaS', en: 'SaaS' },
-  'work.filter.beauty': { fr: 'Beauté', en: 'Beauty' },
-  'work.filter.health': { fr: 'Santé', en: 'Health' },
-  'work.filter.property': { fr: 'Immobilier', en: 'Real estate' },
-  'work.filter.travel': { fr: 'Voyage', en: 'Travel' },
-  'work.filter.hotel': { fr: 'Hôtel', en: 'Hotel' },
-  'work.filter.restaurant': { fr: 'Restaurant', en: 'Restaurant' },
-  'work.filter.salon': { fr: 'Salon', en: 'Salon' },
-
-  'reviews.eyebrow': { fr: 'Avis', en: 'Reviews' },
-  'reviews.title': { fr: 'Ce que disent {em}les clients{/em}.', en: 'What {em}clients{/em} say.' },
-  'reviews.empty': {
-    fr: 'Cet emplacement reste vide tant qu’il n’y a pas un vrai avis.',
-    en: 'This space stays empty until there is a real review.',
-  },
-
   'faq.eyebrow': { fr: 'Questions', en: 'Questions' },
   'faq.title': { fr: 'Avant {em}l’appel{/em}.', en: 'Before {em}the call{/em}.' },
   'faq.q1': { fr: 'Pour qui est cette offre ?', en: 'Who is this offer for?' },
