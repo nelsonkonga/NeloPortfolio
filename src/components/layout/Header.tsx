@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { ArrowRight, Menu, Moon, Sun, X } from 'lucide-react'
+import { Logo } from '@/components/brand/Logo'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useLang } from '@/contexts/LangContext'
 
@@ -42,8 +43,8 @@ export function Header() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-[auto_1fr_auto] items-center h-[72px] gap-4">
           <Link to="/" className="flex items-center gap-2 font-semibold text-[17px] tracking-tight shrink-0">
-            <img src="/NeloLogo3.png" alt="Nelo" className="h-8 w-8 rounded-lg object-cover" />
-            <span>Nelo</span>
+            <Logo className="h-7 w-auto text-foreground" />
+            <span className="whitespace-nowrap">Newzephyr</span>
           </Link>
 
           <nav className="hidden lg:flex items-center justify-center">
